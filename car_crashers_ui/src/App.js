@@ -1,23 +1,15 @@
+import React from 'react';
 import './App.css';
+import Layout from './components/layout/layout.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img  className="App-logo" alt="CarCrashers" />
-        <p>
-          Edit a<code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.StrictMode>
+        <Layout>
+          <h1>Hola soy el hijo!</h1>
+        </Layout>
+    </React.StrictMode>  
   );
 }
 
