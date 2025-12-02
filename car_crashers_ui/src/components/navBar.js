@@ -5,9 +5,8 @@ import './layout/layout.css';
 function navBar() {
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-5 h-25 w-50">
-        <div class="container d-flex flex-row justify-content-between align-items-center w-100 h-100">
+        <div class="container d-flex flex-row justify-content-evenly align-items-center w-100 h-100">
             <a class="navbar-brand" href="#">CarCrashers</a>
-            <p className="text-black fst-italic">Drive more, crash less</p>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,9 +29,9 @@ function navBar() {
                 <a class="nav-link" href="#">
                 <i class="bi bi-buildings-fill">Nor gara?</i>
                 </a>
-                <button class="btn btn-outline-dark bg-orange" type="submit">Hasi Saioa </button>
             </div>
             </div>
+            <button class="btn btn-outline-dark bg-orange" type="submit">Hasi Saioa </button>
         </div>
     </nav>
   );
