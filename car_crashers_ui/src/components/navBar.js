@@ -1,37 +1,37 @@
 import './layout/layout.css';
 
 
-
 function navBar() {
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded-5 h-25 w-50">
-        <div class="container d-flex flex-row justify-content-evenly align-items-center w-100 h-100">
-            <a class="navbar-brand" href="#">CarCrashers</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-lg rounded-5 h-25 w-50">
+        <div className="container d-flex flex-row justify-content-evenly align-items-center w-100 h-100">
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-house-door-fill text-black">Home</i>      
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+                <a className="nav-link d-flex d-row px-4 fs-5" href="#">
+                    <i className="bi bi-house-door-fill text-black"></i>
+                    &nbsp;&nbsp;Home
                 </a>
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         <i class="bi bi-currency-euro text-black"></i>
-                        Salerosketa
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle px-4 fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i className="bi bi-cart4"></i> 
+                        &nbsp;&nbsp;Salerosketa
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Erosi</a></li>
-                        <li><a class="dropdown-item" href="#">Saldu</a></li>
+                    <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
+                        <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Saldu</a></li>
                     </ul>
                 </li>
 
-                <a class="nav-link" href="#">
-                <i class="bi bi-buildings-fill">Nor gara?</i>
+                <a className="nav-link px-4 fs-5" href="#">
+                    <i className="bi bi-buildings-fill"></i>
+                    &nbsp;&nbsp;Nor gara?
                 </a>
             </div>
             </div>
-            <button class="btn btn-outline-dark bg-orange" type="submit">Hasi Saioa </button>
+            <button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>
         </div>
     </nav>
   );

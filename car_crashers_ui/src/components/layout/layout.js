@@ -6,12 +6,13 @@ import "./layout.css";
 
 function Layout({ children }) {
   return (
-    <div class="row">
-      <header class="text-white p-3 mb-4 header-orange d-flex flex-row justify-content-evenly align-items-center">
-        <div>
+    <div className="d-flex flex-column min-vh-100">
+      <header className="p-3 px-5 mb-4 header-orange d-flex flex-row justify-content-between align-items-center">
+        <div className="d-flex d-row align-items-center justify-content-around">
           <a href="index.html">
-            <img class="h-50" src={Logo} alt="Logo"></img>
+            <img className="logo" src={Logo} alt="Logo"></img>
           </a>
+          <a className="navbar-brand" href="#"><h1>CarCrashers</h1></a>
           {/* ¿Aqui el nombre? O solo en el navBar*/}
         </div>
         <React.StrictMode>
@@ -19,41 +20,46 @@ function Layout({ children }) {
         </React.StrictMode>
       </header>
 
-      <main style={{ padding: "1rem" }}>{children}</main>
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <main className="flex-fill" style={{ padding: "1rem" }}>{children}</main>
+
+      <footer className="d-flex flex-wrap justify-content-between align-items-center px-5 my-4 border-top">
         {" "}
-        <div class="col-md-4 d-flex align-items-center">
+        <div className="col-md-4 d-flex align-items-center">
           {" "}
-          <a
-            href="/"
-            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
-            aria-label="Bootstrap"
-          >
+          <a href="/" className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+          {" "}
+            <img className="h-50" src={Logo} alt="Logo"></img>
             {" "}
-            <svg
-              class="bi"
-              width="30"
-              height="24"
-              aria-hidden="true"
-            ></svg>{" "}
-          </a>{" "}
-          <span class="mb-3 mb-md-0 text-body-secondary">
-            © 2025 Company, Inc
-          </span>{" "}
-        </div>{" "}
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          </a>
           {" "}
-          <li class="ms-3">
-            <a class="text-body-secondary" href="#" aria-label="Instagram">
-              <svg class="bi" width="24" height="24" aria-hidden="true"></svg>
+          <span className="mb-3 mb-md-0 text-body-secondary">
+            © 2025 CarCrashers
+          </span>
+          {" "}
+        </div>
+        {" "}
+        <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+          {" "}
+          <li className="ms-3">
+            <a className="text-body-secondary" href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
             </a>
-          </li>{" "}
-          <li class="ms-3">
-            <a class="text-body-secondary" href="#" aria-label="Facebook">
-              <svg class="bi" width="24" height="24"></svg>
+          </li>
+          {" "}
+          <li className="ms-3">
+            <a className="text-body-secondary" href="#" aria-label="Facebook">
+              <i class="bi bi-twitter-x"></i>
             </a>
-          </li>{" "}
-        </ul>{" "}
+          </li>
+          {" "}
+          <li className="ms-3">
+            <a className="text-body-secondary" href="#" aria-label="Facebook">
+              <i class="bi bi-github"></i>
+            </a>
+          </li>
+          {" "}
+        </ul>
+        {" "}
       </footer>
     </div>
   );
