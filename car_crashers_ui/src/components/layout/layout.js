@@ -1,5 +1,5 @@
 import Header from "../ui/header";
-import Footer from "../ui/footer";
+import Footer from "../ui/footer/footer";
 import React from "react";
 import "./layout.css";
 
