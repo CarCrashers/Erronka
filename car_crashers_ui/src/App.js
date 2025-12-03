@@ -14,12 +14,3 @@ function App() {
 
 export default App;
 
-{/*
-  Tener todas las paginas en la carpeta pages y llamarlas desde aquí con las rutas
-
-  <BrowserRouter>
-    <Routes>
-      <Route />
-    </Routes>
-  </BrowserRouter>
-  */}
