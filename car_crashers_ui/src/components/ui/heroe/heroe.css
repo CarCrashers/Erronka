@@ -1,0 +1,16 @@
+.back-image{
+    background-image: url("../../../assets/images/heroeBackground.jpeg");
+    background-size: cover;      
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 80vh;
+}
+
+.heroe-glass {
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 2rem;
+    border-radius: 1rem;
+}

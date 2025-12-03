@@ -1,5 +1,4 @@
-import './layout/layout.css';
-
+import '../layout/layout.css';
 
 function navBar() {
   return (
