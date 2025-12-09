@@ -21,6 +21,8 @@ function navBar() {
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Saldu</a></li>
+                        <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu</a></li>
+
                     </ul>
                 </li>
 
