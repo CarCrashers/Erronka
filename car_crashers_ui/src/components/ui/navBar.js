@@ -1,4 +1,5 @@
 import '../layout/layout.css';
+import { Link } from "react-router-dom";
 
 function navBar() {
   return (
@@ -20,7 +21,7 @@ function navBar() {
                     </a>
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
-                        <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Saldu</a></li>
+                        <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i><Link to={"/saldu"} className='text-decoration-none text-black'>&nbsp;&nbsp;Saldu</Link></a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu</a></li>
 
                     </ul>

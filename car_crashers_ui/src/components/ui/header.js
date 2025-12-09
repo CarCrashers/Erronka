@@ -10,7 +10,7 @@ function header() {
             <Link to="/">
             <img className="logo" src={Logo} alt="Logo"></img>
             </Link>
-            <a className="navbar-brand" href="#"><h1>CarCrashers</h1></a>
+            <Link to="/" className="text-black text-decoration-none"><h1>CarCrashers</h1></Link>
         </div>
         <React.StrictMode>
             <NavBar />
