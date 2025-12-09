@@ -49,7 +49,7 @@ const Desguazatu = () => {
           <div className="container py-5">
             <div className="row justify-content-center">
                 <div className="col-lg-8">
-                    <h1>Información del Vehículo</h1>
+                    <h1>Desguazerako datuak</h1>
                     <form onSubmit={handleSubmit} className="main-form">
                         <KontaktuForm formData={formData} handleChange={handleChange}/>
                         <hr className="section-divider my-4"/>

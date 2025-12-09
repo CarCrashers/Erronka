@@ -17,10 +17,10 @@ const KotxeForm = ({ formData, handleChange, handleCheckboxChange }) => {
         
         <div className="row">
             <div className="col-md-4">
-                <Input label="Marka" name="marca" value={formData.marca} onChange={handleChange} required placeholder="Adib: Seat"/>
+                <Input label="Marka" name="marca" value={formData.marca} onChange={handleChange} required placeholder="Adb: Seat"/>
             </div>
             <div className="col-md-4">
-                <Input label="Modeloa" name="modelo" value={formData.modelo} onChange={handleChange} required placeholder="Adib: Ibiza"/>
+                <Input label="Modeloa" name="modelo" value={formData.modelo} onChange={handleChange} required placeholder="Adb: Ibiza"/>
             </div>
             <div className="col-md-4">
                 <Input label="Urtea" name="ano" type="number" value={formData.ano} onChange={handleChange} required placeholder="2023"/>
@@ -35,7 +35,7 @@ const KotxeForm = ({ formData, handleChange, handleCheckboxChange }) => {
 
         <div className="mb-3 form-check">
             <input type="checkbox" className="form-check-input" id="documentacionOk" name="documentacionOk" checked={formData.documentacionOk} onChange={handleCheckboxChange}/>
-            <label className="form-check-label" htmlFor="documentacionOk">Kotxearen dokumentazio guztia egunean du</label>
+            <label className="form-check-label" htmlFor="documentacionOk">Ibilgailuak dokumentazio guztia egunean du</label>
         </div>
 
         <div className="mb-3">
