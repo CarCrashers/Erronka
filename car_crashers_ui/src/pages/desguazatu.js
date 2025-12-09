@@ -42,7 +42,6 @@ const Desguazatu = () => {
     //Hemen logica backend/API-rako datuak bidaltzeko
   };
 
-function Desguazatu() {
   return (
 
     <React.StrictMode>
@@ -70,7 +69,6 @@ function Desguazatu() {
         </Layout>
     </React.StrictMode>  
   );
-}
 }
 
 export default Desguazatu;
