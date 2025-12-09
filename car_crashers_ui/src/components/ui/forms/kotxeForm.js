@@ -1,7 +1,7 @@
 import React from 'react';
-import Input from '../ui/desguazatu/Input';
-import Select from '../ui/desguazatu/Select';
-import Textarea from '../ui/desguazatu/Textarea';
+import Input from '../desguazatu/input.js';
+import Select from '../desguazatu/select.js';
+import Textarea from '../desguazatu/textarea.js';
 
 const vehicleStates = [
     { value: 'bikaina', label: 'Bikaina' },

@@ -1,6 +1,5 @@
 import React from 'react';
-// Importamos nuestros componentes reutilizables
-import Input from '../ui/desguazatu/Input';
+import Input from '../desguazatu/input.js';
 
 const KontaktuForm = ({ formData, handleChange }) => {
   return (

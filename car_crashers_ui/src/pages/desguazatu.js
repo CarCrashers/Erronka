@@ -1,14 +1,76 @@
-import React from 'react';
-import '../App.css';
+import React, { useState } from 'react';import '../App.css';
 import Layout from '../components/layout/layout.js';
+import KontaktuForm from '../components/ui/forms/kontaktuForm';
+import KotxeForm from '../components/ui/forms/kotxeForm';
+
+const Desguazatu = () => {
+  const [formData, setFormData] = useState({
+    nombreCompleto: '',
+    email: '',
+    telefono: '',
+    marca: '',
+    modelo: '',
+    ano: '',
+    estado: '',
+    documentacionOk: false,
+    descripcion: '',
+    fotos: []
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: checked }));
+  };
+
+  // Para subida de archivos
+  /*const handleFileChange = (e) => {
+    // Convertimos FileList a un Array normal
+    const filesArray = Array.from(e.target.files);
+    setFormData(prev => ({ ...prev, fotos: filesArray }));
+    console.log("Archivos listos para subir:", filesArray.length);
+  };*/
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Formularioa bidalia:', formData);
+    alert("Eskaria bidalia!");
+    //Hemen logica backend/API-rako datuak bidaltzeko
+  };
 
 function Desguazatu() {
   return (
+
     <React.StrictMode>
         <Layout>
+          <div className="desguazatu-container page-content">
+            <h1>Información del Vehículo</h1>
+            
+            <form onSubmit={handleSubmit} className="main-form">
+
+              <KontaktuForm formData={formData}  handleChange={handleChange}/>
+              <hr className="section-divider"/>
+
+              <KotxeForm formData={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange}/>
+              <hr className="section-divider"/>
+
+              {/*<PhotoUploadSection handleFileChange={handleFileChange}/>*/}
+
+              <div className="form-footer">
+                  <p className="disclaimer">Inprimaki hau bidalita, onartzen duzu zure ibilgailua ebaluatzeko zurekin harremanetan jar gaitezkeela. 24-48 laneguneko epean erantzuteko konpromisoa hartzen dugu.</p>
+                  <button type="submit" className="btn-submit-primary">Desguazatu</button>
+              </div>
+
+            </form>
+          </div>
         </Layout>
     </React.StrictMode>  
   );
+}
 }
 
 export default Desguazatu;
