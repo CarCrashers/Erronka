@@ -56,7 +56,7 @@ const Desguazatu = () => {
                         <KotxeForm formData={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange}/>
                         <hr className="section-divider my-4"/>
                         <div className="text-center mt-4">
-                            <p className="small text-muted mb-3">Inprimaki hau bidalita...</p>
+                            <p className="small text-muted mb-3">Inprimaki hau bidalita, onartzen duzu zure ibilgailua ebaluatzeko zurekin harremanetan jar gaitezkeela. 24-48 laneguneko epean erantzuteko konpromisoa hartzen dugu.</p>
                             <button type="submit" className="btn btn-primary w-100 py-2 fw-bold">Desguazatu</button>
                         </div>
                     </form>
