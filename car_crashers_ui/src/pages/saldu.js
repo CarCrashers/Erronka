@@ -96,10 +96,12 @@ function saldu() {
                     <label className="btn btn-outline-danger w-100" htmlFor="danger-outlined">Ibilgailuak ez dauka dokumentazio guztia eguneratuta.</label>
                   </div>
                 </div>
-
-                <div className="mt-3">
-                  <input type="file" multiple accept="image/*" />
-                </div>
+ 
+             <div class="mb-3">
+               
+                <label for="formFileMultiple" class="form-label"> <strong>Igo ibilgailuaren argazkiak:</strong></label>
+                <input class="form-control" type="file" id="formFileMultiple" multiple />
+            </div>
               </div>
                 <div className="mt-4 d-flex justify-content-end">
                     <button type="submit" className="btn orange">Bidali</button>
