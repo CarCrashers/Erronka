@@ -12,25 +12,35 @@ const vehicleStates = [
 
 const KotxeForm = ({ formData, handleChange, handleCheckboxChange }) => {
   return (
-    <div className="form-section">
-      <h3 className="section-title">Kotxearen datuak</h3>
-      
-      <div className="fields-grid-3">
-        <Input label="Marka" name="marca" value={formData.marca} onChange={handleChange} required placeholder="Adib: Seat"/>
-        <Input label="Modeloa" name="modelo" value={formData.modelo} onChange={handleChange} required placeholder="Adib: Ibiza"/>
-        <Input label="Urtea" name="ano" type="number" value={formData.ano} onChange={handleChange} required placeholder="2023"/>
-      </div>
+    <div className="card border-0 mt-3 card-body p-0">
+        <h3 className="mb-3">Kotxearen datuak</h3>
+        
+        <div className="row">
+            <div className="col-md-4">
+                <Input label="Marka" name="marca" value={formData.marca} onChange={handleChange} required placeholder="Adib: Seat"/>
+            </div>
+            <div className="col-md-4">
+                <Input label="Modeloa" name="modelo" value={formData.modelo} onChange={handleChange} required placeholder="Adib: Ibiza"/>
+            </div>
+            <div className="col-md-4">
+                <Input label="Urtea" name="ano" type="number" value={formData.ano} onChange={handleChange} required placeholder="2023"/>
+            </div>
+        </div>
 
-      <Select label="Ibilgailuaren egoera" name="estado" value={formData.estado} onChange={handleChange} options={vehicleStates} required/>
+        <div className="row">
+            <div className="col-12">
+                <Select label="Ibilgailuaren egoera" name="estado" value={formData.estado} onChange={handleChange} options={vehicleStates} required/>
+            </div>
+        </div>
 
-      <div className="form-group checkbox-group">
-        <input type="checkbox" id="documentacionOk" name="documentacionOk" checked={formData.documentacionOk} onChange={handleCheckboxChange}/>
-        <label htmlFor="documentacionOk">
-             Ibilgailuak dokumentazio guztia egunean du
-        </label>
-      </div>
+        <div className="mb-3 form-check">
+            <input type="checkbox" className="form-check-input" id="documentacionOk" name="documentacionOk" checked={formData.documentacionOk} onChange={handleCheckboxChange}/>
+            <label className="form-check-label" htmlFor="documentacionOk">Kotxearen dokumentazio guztia egunean du</label>
+        </div>
 
-      <Textarea label="Deskribapen gehigarria" name="descripcion" value={formData.descripcion} onChange={handleChange} placeholder="Eman xehetasun gehiago ibilgailuaren egoerari, kilometroei eta gehigarriei buruz..."/>
+        <div className="mb-3">
+            <Textarea label="Deskribapen gehigarria" name="descripcion" value={formData.descripcion} onChange={handleChange} placeholder="Eman xehetasun gehiago..."/>
+        </div>
     </div>
   );
 };

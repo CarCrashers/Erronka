@@ -2,9 +2,9 @@ import React from 'react';
 
 const Select = ({ label, name, value, onChange, options, required = false, className = '' }) => {
   return (
-    <div className={`form-group ${className}`}>
-      <label className="form-label" htmlFor={name}>
-        {label} {required && <span className="required-asterisk">*</span>}
+    <div className="mb-3">
+      <label className="form-label fw-bold">
+        {label} {required && <span className="text-danger">*</span>}
       </label>
       <select className="form-select" id={name} name={name} value={value} onChange={onChange} required={required}>
         <option value="">Aukera bat hautatu...</option>

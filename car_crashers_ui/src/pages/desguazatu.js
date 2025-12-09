@@ -46,28 +46,26 @@ const Desguazatu = () => {
 
     <React.StrictMode>
         <Layout>
-          <div className="desguazatu-container page-content">
-            <h1>Información del Vehículo</h1>
-            
-            <form onSubmit={handleSubmit} className="main-form">
+          <div className="container py-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-8">
+                    <h1>Información del Vehículo</h1>
+                    <form onSubmit={handleSubmit} className="main-form">
+                        <KontaktuForm formData={formData} handleChange={handleChange}/>
+                        <hr className="section-divider my-4"/>
+                        <KotxeForm formData={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange}/>
+                        <hr className="section-divider my-4"/>
+                        <div className="text-center mt-4">
+                            <p className="small text-muted mb-3">Inprimaki hau bidalita...</p>
+                            <button type="submit" className="btn btn-primary w-100 py-2 fw-bold">Desguazatu</button>
+                        </div>
+                    </form>
 
-              <KontaktuForm formData={formData}  handleChange={handleChange}/>
-              <hr className="section-divider"/>
-
-              <KotxeForm formData={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange}/>
-              <hr className="section-divider"/>
-
-              {/*<PhotoUploadSection handleFileChange={handleFileChange}/>*/}
-
-              <div className="form-footer">
-                  <p className="disclaimer">Inprimaki hau bidalita, onartzen duzu zure ibilgailua ebaluatzeko zurekin harremanetan jar gaitezkeela. 24-48 laneguneko epean erantzuteko konpromisoa hartzen dugu.</p>
-                  <button type="submit" className="btn-submit-primary">Desguazatu</button>
-              </div>
-
-            </form>
+                </div>
+            </div>
           </div>
         </Layout>
-    </React.StrictMode>  
+    </React.StrictMode>   
   );
 }
 
