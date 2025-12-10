@@ -4,6 +4,7 @@ import Layout from '../components/layout/layout.js';
 import KontaktuForm from '../components/ui/forms/kontaktuForm';
 import KotxeForm from '../components/ui/forms/kotxeForm';
 import ArgazkiForm from '../components/ui/forms/argazkiForm';
+import MezuForm from '../components/ui/forms/mezuForm';
 
 const initialState = {
     nombreCompleto: '',
@@ -75,7 +76,7 @@ const Desguazatu = () => {
                 <div className="col-lg-8">
                     
                     {isSubmitted ? (
-                        <SuccessMessage onReset={handleReset} />
+                        <MezuForm onReset={handleReset} />
                     ) : (
                         <>
                             <h1 className="mb-4">Desguazerako datuak</h1>
@@ -87,7 +88,7 @@ const Desguazatu = () => {
                                 <KotxeForm formData={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange}/>
                                 <hr className="section-divider my-4"/>
 
-                                <ArgazkiForm key={formKey} handleFileChange={handleFileChange}/>
+                                <ArgazkiForm key={formKey} handleFileChange={handleFileChange} fotos={formData.fotos}/>
                                 
                                 {formData.fotos.length > 0 && (
                                     <div className="alert alert-success mt-2">
