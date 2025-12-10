@@ -1,3 +1,7 @@
 footer{
     background-color: rgb(17, 24, 39);
 }
+
+.hover-white:hover {
+    color: #fff !important;
+}
