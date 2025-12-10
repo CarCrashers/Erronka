@@ -10,7 +10,7 @@ function navBar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-                <a className="nav-link d-flex d-row px-4 fs-5" href="#">
+                <a className="nav-link d-flex d-row px-4 fs-5" href="/">
                     <i className="bi bi-house-door-fill text-black"></i>
                     &nbsp;&nbsp;Home
                 </a>

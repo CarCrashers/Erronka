@@ -1,11 +1,11 @@
 import "./forms.css";
 
-function forms({children}) {
+function Forms({ onSubmit, children }) {
   return (
-        <form>
-            {children}
-        </form>
+    <form onSubmit={onSubmit}>
+      {children}
+    </form>
   );
 }
 
-export default forms;
+export default Forms;

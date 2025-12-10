@@ -22,6 +22,7 @@ function floatingInput({
                 onChange={onChange} 
                 readOnly={readOnly} 
                 disabled={disabled}
+                required={required}
                 name = {name} 
                 className="form-control border-1 border-black" />
             <label htmlFor={id}>{children}</label>
