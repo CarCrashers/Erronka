@@ -12,13 +12,13 @@ const KontaktuForm = ({ formData, handleChange }) => {
                     <Input label="Izen-abizenak" name="izenOsoa" value={formData.izenOsoa} onChange={handleChange} required/>
                 </div>
                 <div className="col-md-6">
-                    <Input label="E-posta" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="juan@adibidea.com"/>
+                    <Input label="Emaila" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="juan@adibidea.com"/>
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-12">
-                    <Input label="Telefonoa" name="telefono" type="tel" value={formData.telefono} onChange={handleChange} required placeholder="+34 600 000 000"/>
+                    <Input label="Telefonoa" name="telefonoa" type="tel" value={formData.telefonoa} onChange={handleChange} required placeholder="+34 600 000 000"/>
                 </div>
             </div>
         </div>
