@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+    .range-input {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 20px;              /* los dos en la misma línea */
+        background: none;
+        pointer-events: none;   /* desactiva clicks en la pista */
+    }
+
+    /* Solo los thumbs reciben eventos */
+    .range-input::-webkit-slider-thumb {
+        pointer-events: all;
+        position: relative;   /* clave */
+        z-index: 5;
+        position: relative;   /* clave */
+        z-index: 5;
+    }
+    .range-input::-moz-range-thumb {
+        pointer-events: all;
+    }
+
+    /* Pista común */
+    .range-track {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 28px;
+        height: 4px;
+        border-radius: 999px;
+        background: #dee2e6;
+        z-index: 1;
+    }
+
+    /* Relleno entre min y max usando variables CSS */
+    .mb-3.position-relative {
+        --minPercent: 20%;
+        --maxPercent: 80%;
+    }
+    .range-track::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        border-radius: 999px;
+        background: #0d6efd;
+        left: var(--minPercent);
+        right: calc(100% - var(--maxPercent));
+    }
+
+    </style>
+</head>
+<body>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-7">
+                <ul class="nav nav-pills nav-fill p-1 small bg-secondary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">
+                            Coche (4)
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">
+                            Pieza (20)
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <p class="d-inline-flex gap-1">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Elige un rango de precio
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <!-- Rango de precio -->
+        <div class="mb-3 position-relative price-range-wrapper" style="max-width:400px;">
+            <label class="form-label">Rango de precio</label>
+
+            <!-- Track común de fondo -->
+            <div class="range-track"></div>
+
+            <!-- Slider mínimo -->
+            <input
+                type="range"
+                class="form-range range-input range-min"
+                id="minRange"
+                min="0"
+                max="100000"
+                value="0"
+            />
+
+            <!-- Slider máximo -->
+            <input
+                type="range"
+                class="form-range range-input range-max"
+                id="maxRange"
+                min="0"
+                max="100000"
+                value="100000"
+            />
+
+            <div class="d-flex justify-content-between mt-3">
+                <span>Mín: <strong id="minValue">0</strong> €</span>
+                <span>Máx: <strong id="maxValue">100000</strong> €</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-8 d-flex justify-content-between flex-wrap">
+            <div class="card shadow-lg mt-5" style="width: 18rem;">
+                <img src="download.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">Ford</h5>
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Fiesta</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Precio
+                            <span class="badge text-bg-warning rounded-pill">5000 $</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Año
+                            <span class="badge text-bg-warning rounded-pill">1999</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Kilometros
+                            <span class="badge text-bg-warning rounded-pill">200000 Km</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary mt-2"><i class="bi bi-box-arrow-up-right"></i> Ver</a>
+                </div>
+            </div>
+            <div class="card shadow-lg mt-5" style="width: 18rem;">
+                <img src="download (1).jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Ford</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Fiesta</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Precio
+                            <span class="badge text-bg-warning rounded-pill">5000 $</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Año
+                            <span class="badge text-bg-warning rounded-pill">1999</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Kilometros
+                            <span class="badge text-bg-warning rounded-pill">200000 Km</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary mt-2">Ver</a>
+                </div>
+            </div>
+            <div class="card shadow-lg mt-5" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Ford</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Fiesta</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Precio
+                            <span class="badge text-bg-warning rounded-pill">5000 $</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Año
+                            <span class="badge text-bg-warning rounded-pill">1999</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Kilometros
+                            <span class="badge text-bg-warning rounded-pill">200000 Km</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary mt-2">Ver</a>
+                </div>
+            </div>
+            <div class="card shadow-lg mt-5" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Ford</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Fiesta</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Precio
+                            <span class="badge text-bg-warning rounded-pill">5000 $</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Año
+                            <span class="badge text-bg-warning rounded-pill">1999</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Kilometros
+                            <span class="badge text-bg-warning rounded-pill">200000 Km</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary mt-2">Ver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center pt-4">
+        <nav class="col-1" aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <i class="bi bi-arrow-left-short"></i>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+    const wrap = document.querySelector('.price-range-wrapper'); // div contenedor
+        const minRange = document.getElementById('minRange');
+        const maxRange = document.getElementById('maxRange');
+        const minValue = document.getElementById('minValue');
+        const maxValue = document.getElementById('maxValue');
+        const minGap = 10;
+
+        function update() {
+        let min = parseInt(minRange.value);
+        let max = parseInt(maxRange.value);
+
+        if (max - min < minGap) {
+            if (document.activeElement === minRange) {
+            min = max - minGap;
+            minRange.value = min;
+            } else {
+            max = min + minGap;
+            maxRange.value = max;
+            }
+        }
+
+        const range = maxRange.max - minRange.min;
+        const minPercent = ((min - minRange.min) / range) * 100;
+        const maxPercent = ((max - minRange.min) / range) * 100;
+
+        // Actualiza las variables CSS usadas por .range-track::before
+        wrap.style.setProperty('--minPercent', `${minPercent}%`);
+        wrap.style.setProperty('--maxPercent', `${maxPercent}%`);
+
+        minValue.textContent = min;
+        maxValue.textContent = max;
+        }
+
+        minRange.addEventListener('input', update);
+        maxRange.addEventListener('input', update);
+
+        // Inicializar al cargar
+        update();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

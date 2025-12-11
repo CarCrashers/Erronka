@@ -1,0 +1,55 @@
+/* Altura de la barra */
+.multi-range-track,
+.multi-range-range {
+  position: absolute;
+  height: 8px;             /* altura de la barra */
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: orange !important;
+}
+
+/* Inputs superpuestos */
+.multi-range-input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+/* Thumb WebKit (Chrome, Edge, Safari) */
+.multi-range-input::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;            /* tamaño del thumb */
+  width: 18px;
+  border-radius: 50%;
+  background: orangered;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+
+  /* centrado vertical: (trackHeight/2) - (thumbHeight/2) = (8/2) - (18/2) = 4 - 9 = -5px */
+  margin-top: -5px;
+}
+
+/* Thumb Firefox */
+.multi-range-input::-moz-range-thumb {
+  pointer-events: auto;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: orangered;
+  border: 2px solid #fff;
+}
+
+/* Quitar track nativo */
+.multi-range-input::-webkit-slider-runnable-track {
+  height: 0;
+}
+.multi-range-input::-moz-range-track {
+  height: 0;
+}
