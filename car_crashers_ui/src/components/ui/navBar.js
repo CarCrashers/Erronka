@@ -28,8 +28,7 @@ function navBar() {
                 </li>
 
                 <a className="nav-link px-4 fs-5" href="#">
-                    <i className="bi bi-buildings-fill"></i>
-                    &nbsp;&nbsp;Nor gara?
+                    <i className="bi bi-buildings-fill"></i><Link to={"/norGara"} className='text-decoration-none text-black'>&nbsp;&nbsp;Nor gara?</Link>
                 </a>
             </div>
             </div>

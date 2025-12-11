@@ -2,6 +2,7 @@ import Layout from "../components/layout/layout";
 import Forms from "../components/ui/forms/forms";
 import '../App.css';
 import FloatingInput from "../components/ui/floatingInput/floatingInput";
+import FloatingTextarea from "../components/ui/floatingTextArea/floatingTextArea";
 
 function saldu() {
   return (
@@ -55,6 +56,12 @@ function saldu() {
 
                 <div className="row g-3">
                   <div className="col-12 col-md-6">
+                    <FloatingInput required id="matrikula" name="matrikula" type="text" placeholder="ADB: 5555DBC" onchange="">
+                        Ibilgailu matrikula <span className="text-danger">*</span>
+                    </FloatingInput>
+                  </div>
+
+                  <div className="col-12 col-md-6">
                     <FloatingInput required id="marka" name="marka" type="text" placeholder="ADB: Opel" onchange="">
                         Ibilgailu marka <span className="text-danger">*</span>
                     </FloatingInput>
@@ -74,9 +81,17 @@ function saldu() {
 
                   <div className="col-12 col-md-6">
                     <FloatingInput required id="kilometro" name="kilometro" type="number" placeholder="ADB: Corsa" onchange="">
-                        Ibilgailu kilometroak <span className="text-danger">*</span>
+                        Ibilgailuaren kilometroak <span className="text-danger">*</span>
                     </FloatingInput>
                   </div>
+                  <br />
+                   <div className="col-12 col-md-6">
+                    {/*Text area*/}
+                    <FloatingTextarea required id="deskribapena" name="deskribapena" >
+                      Ibilgailuaren deskribapena <span className="text-danger">*</span>
+                    </FloatingTextarea>
+                  </div>
+
                 </div>
 
                 <div className="mt-3 d-flex flex-column flex-md-row gap-2">
@@ -111,32 +126,51 @@ function saldu() {
 function konprobatuFormularioa(e){
   e.preventDefault();
   const formularioa = e.target;
-  // mapa  name-balore
   const formData = new FormData(formularioa);
 
   const emaila     = formData.get("emaila");
   const izenAbizena = formData.get("izenAbizena");
   const telefonoa  = formData.get("telefonoa");
+  const matrikula  = formData.get("matrikula");
   const marka      = formData.get("marka");
   const modelo     = formData.get("modelo");
   const urtea      = formData.get("urtea");
   const kilometro  = formData.get("kilometro");
+  const deskribapena = formData.get("deskribapena");
   const dokumentua = formData.get("options-outlined");
   const argazkiak = formData.get("images");
 
-  console.log({ emaila, izenAbizena, telefonoa, marka, modelo, urtea, kilometro, dokumentua, argazkiak });
+  //Matrikula: 1234ABC
+  const matrikulaRegex = /^[0-9]{4}[A-Z]{3}$/;
+  const matrikulaBalidatu = matrikulaRegex.test(matrikula.toUpperCase());
 
-  if(emaila != null && izenAbizena != null && telefonoa != null && marka != null && modelo != null && urtea != null && kilometro != null && dokumentua != null && argazkiak != null)
+  //Deskribapena: 10 karaktere minimo
+  const deskribapenaBalidatu = deskribapena && deskribapena.length >= 10;
+
+  console.log({ emaila, izenAbizena, telefonoa, matrikula, marka, modelo, urtea, kilometro, deskribapena, dokumentua, argazkiak });
+
+  if(emaila && izenAbizena && telefonoa && matrikulaBalidatu && marka && modelo && urtea && kilometro && deskribapenaBalidatu && dokumentua && argazkiak)
   {
     console.log("OKEY!");
     //logica enseñar componente okey
   }
   else
   {
-    window.alert("mesedez, bete bestelako eremuak!");
-    //otra cosa
+    if(!matrikulaBalidatu) 
+    {
+      window.alert("Matrikula ez da baliozkoa. Formatu zuzena: 1234ABC");
+    } 
+    else if(!deskribapenaBalidatu) 
+    {
+      window.alert("Deskribapena gutxienez 10 karaktere behar ditu");
+    } 
+    else 
+    {
+      window.alert("mesedez, bete bestelako eremuak!");
+    }
   } 
 }
+
 
 
 export default saldu;
