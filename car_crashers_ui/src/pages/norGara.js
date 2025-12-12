@@ -23,9 +23,9 @@ function NorGara() {
   const emaila       = formData.get("emaila");
   const telefonoa    = formData.get("telefonoa");
   const gaia         = formData.get("gaia");
-  const deskribapena = formData.get("deskribapena");
+  const mezua = formData.get("mezua");
 
-  console.log({ izena, emaila, telefonoa, gaia, deskribapena });
+  console.log({ izena, emaila, telefonoa, gaia, mezua });
 
   setOndoMezua("");
 
@@ -36,7 +36,7 @@ function NorGara() {
   const emailOndo = emailRegex.test(emaila || "");
   const tlfOndo   = tlfRegex.test(telefonoa || "");
 
-  const denaOndo = izena && emailOndo && tlfOndo && gaia &&deskribapena && deskribapena.length >= 5;
+  const denaOndo = izena && emailOndo && tlfOndo && gaia &&mezua && mezua.length >= 5;
 
   if (denaOndo) {
     setOndoMezua("Kaixo, " + izena + "! Zure mezua ondo bidali da. Laster jarriko gara zurekin harremanetan.");
@@ -50,7 +50,7 @@ function NorGara() {
   return (
     <Layout>
       <div className="container-fluid">
-        <div className="row justify-content-center bg-secondary">
+        <div className="row justify-content-center bg-dark-subtle">
           <div className="py-5 col-8">
             <h1 className="text-body-emphasis">Nor gara</h1>
             <p className="lead">
@@ -169,8 +169,8 @@ function NorGara() {
                       </div>
 
                       <div className="col-12">
-                        <FloatingTextarea id="deskribapena" name="deskribapena" type="text" autocomplete="off" placeholder="">
-                          Deskribapena <span className="text-danger">*</span>
+                        <FloatingTextarea id="mezua" name="mezua" type="text" autocomplete="off" placeholder="">
+                          Mezua <span className="text-danger">*</span>
                         </FloatingTextarea>
                       </div>
 

@@ -137,7 +137,7 @@ function Saldu() {
   return (
     <Layout>
       <div className="container-fluid">
-        <div className="row justify-content-center bg-secondary">
+        <div className="row justify-content-center bg-dark-subtle">
           <div className="py-5 col-8">
             <h1 className="text-body-emphasis">Saldu</h1>
             <p className="lead">
