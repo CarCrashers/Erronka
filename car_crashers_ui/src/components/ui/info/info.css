@@ -19,3 +19,11 @@
   background-color: #9333ea;
 }
 
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.05) !important;
+    transform: translateY(-5px);
+}
