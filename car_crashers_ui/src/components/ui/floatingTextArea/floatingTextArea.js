@@ -9,6 +9,7 @@ function FloatingTextarea({
   required = false,
   name,
   rows = 3,
+  autocomplete,
 }) {
   return (
     <div className="form-floating">
@@ -22,6 +23,7 @@ function FloatingTextarea({
         required={required}
         name={name}
         rows={rows}
+        autocomplete = {autocomplete}
         className="form-control border-1 border-secondary"
       />
       <label htmlFor={id}>{children}</label>
