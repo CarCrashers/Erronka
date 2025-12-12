@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Card() {
   return (
-    <div className="card shadow-lg mt-5">
+    <div className="card shadow-lg">
         <img src={imgCar} className="card-img-top" alt="..." />
         <div className="card-body">
             <h5 className="card-title">Ford</h5>

@@ -29,7 +29,7 @@ function Erosi() {
           </div>
 
           <div class="row justify-content-start">
-            <div class="col-12 d-flex justify-content-lg-between justify-content-around flex-wrap">
+            <div class="col-12 mt-5 d-flex justify-content-lg-between justify-content-around flex-wrap gap-3">
                 <Card />
                 <Card />
                 <Card />
