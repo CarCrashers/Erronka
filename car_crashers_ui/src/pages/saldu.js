@@ -151,9 +151,7 @@ function Saldu() {
 
       <div className="container">
         <div className="row justify-content-center">
-
-
-          <div className="col-12 col-md-10 col-lg-8 rounded-3 shadow-lg border-black border my-4 p-4 p-md-5 divHandia">
+          <div className="col-12 col-md-10 col-lg-8 rounded-3 shadow-lg  my-4 p-4 p-md-5 ">
             {isSuccess ? ( <SuccessMessage onReset={berrabiarazi} /> ) : 
             (
               <>
@@ -290,7 +288,7 @@ function Saldu() {
                   )}
 
                   <div className="mt-4 d-flex justify-content-end">
-                    <button type="submit" className="btn orange">
+                    <button type="submit" className="btn-orange rounded-1">
                       Bidali
                     </button>
                   </div>
