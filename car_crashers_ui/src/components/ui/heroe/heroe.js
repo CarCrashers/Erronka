@@ -10,8 +10,26 @@ function heroe() {
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"> 
                 <button type="button" className="btn btn-primary btn-lg px-4 me-sm-3">Erosi</button> 
                 <button type="button" className="btn btn-outline-secondary btn-lg px-4">Saldu</button> 
-            </div> 
+            </div>
         </div> 
+        <div className="row mt-5">
+                
+                <div className="col-md-4 mb-3 mb-md-0">
+                    <div className="stat-number">500+</div>
+                    <div className="stat-label">Ibilgailu</div>
+                </div>
+
+                <div className="col-md-4 mb-3 mb-md-0">
+                     <div className="stat-number">5000+</div>
+                     <div className="stat-label">Pieza (Recambios)</div>
+                </div>
+
+                <div className="col-md-4">
+                     <div className="stat-number">98%</div>
+                     <div className="stat-label">Bermea</div>
+                </div>
+
+            </div>
         </div>
     </div>
   );

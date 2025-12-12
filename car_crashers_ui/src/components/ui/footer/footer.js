@@ -22,7 +22,7 @@ function footer() {
           </div>
 
           <div className="col-md-4 mb-4 mb-md-0">
-            <h5 className="text-uppercase mb-3 fw-bold">Enlaces Rápidos</h5>
+            <h5 className="text-uppercase mb-3 fw-bold">Web Gunea</h5>
             <ul className="list-unstyled">
               <li className="mb-2"><Link to="/" className="text-white text-decoration-none hover-grey">Home</Link></li>
               <li className="mb-2"><Link to="/Erosi" className="text-white text-decoration-none hover-grey">Erosi</Link></li>
@@ -32,11 +32,11 @@ function footer() {
           </div>
 
           <div className="col-md-4">
-            <h5 className="text-uppercase mb-3 fw-bold">Contacto</h5>
+            <h5 className="text-uppercase mb-3 fw-bold">Kontaktua</h5>
             <ul className="list-unstyled text-white">
               <li className="mb-2">Tel: +34 900 123 456</li>
-              <li className="mb-2">Email: info@carcrashers.com</li>
-              <li className="mb-2">Horario: L-V 9:00-19:00</li>
+              <li className="mb-2">Email-a: info@carcrashers.com</li>
+              <li className="mb-2">Ordutegia: L-V 9:00-19:00</li>
             </ul>
 
             <div className="d-flex mb-3">
