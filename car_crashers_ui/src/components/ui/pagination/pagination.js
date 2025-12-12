@@ -2,7 +2,7 @@ import './pagination.css';
 
 function Pagination() {
   return (
-    <nav className="d-flex justify-content-center" aria-label="Page navigation example">
+    <nav className="d-flex justify-content-center mt-5" aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
