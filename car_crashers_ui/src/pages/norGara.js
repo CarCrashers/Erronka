@@ -7,7 +7,24 @@ import luigi from "../assets/images/luigi.png";
 import mate from "../assets/images/Mate.png";
 import logo from "../assets/images/logo.jpg";
 
+
 function norGara() {
+
+
+  const konprobatuFormularioa = (e) => {
+    e.preventDefault();
+    const formularioa = e.target;
+    const formData = new FormData(formularioa);
+    const gaia = formData.get("gaia");
+    const deskribapena = formData.get("deskribapena");
+
+
+    console.log( { gaia, deskribapena});
+    //success mezua
+  };
+
+
+
   return (
     <Layout>
       <div className="container-fluid">
@@ -25,51 +42,60 @@ function norGara() {
         </div>
       </div>
 
+
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 col-md-10 rounded-3 shadow-lg border-black border my-4 p-4 p-md-5 divHandia">
             <div id="title" className="mb-3">
                 <h3>Fundatzaileak</h3>
             </div>
-            <div className="row">
-              <div class="col-lg-4">
-                <img src={mate} alt="Agoitz" className></img>
-                <h2 class="fw-normal">Agoitz Ezkerra</h2>
+
+            <div className="row text-center">
+              <div className="col-12 col-md-4 mb-4">
+                <img src={mate} alt="Agoitz" className="img-fluid  mb-3" />
+                <h2 className="fw-normal">Agoitz Ezkerra</h2>
                 <p>Si quieres grano Aitor, te dejaré mi tractor</p>
-                <p><a class="btn btn-secondary" href="#">Gurekin kontaktatu »</a></p>
+                <p><a className="btn btn-secondary" href="#">Gurekin kontaktatu »</a></p>
               </div>
 
-              <div class="col-lg-4">
-                <img src={guido} alt="Jon"></img>
-                <h2 class="fw-normal">Jon Nieto</h2>
+              <div className="col-12 col-md-4 mb-4">
+                <img src={guido} alt="Jon" className="img-fluid  mb-3" />
+                <h2 className="fw-normal">Jon Nieto</h2>
                 <p>
                   Gran jugador de Valorant, mejor finisher en mma.
                 </p>
-                <p><a class="btn btn-secondary" href="#">Gurekin kontaktatu »</a></p>
+                <p><a className="btn btn-secondary" href="#">Gurekin kontaktatu »</a></p>
               </div>
-              <div class="col-lg-4">
-                <img src={luigi} alt="Omar"></img>
-                <h2 class="fw-normal">Omar Akhamlich</h2>
+
+              <div className="col-12 col-md-4 mb-4">
+                <img src={luigi} alt="Omar" className="img-fluid  mb-3" />
+                <h2 className="fw-normal">Omar Akhamlich</h2>
                 <p>
                   Una cosa te voy a decir, dos escopetas tengo.
                 </p>
-                <p><a class="btn btn-secondary" href="#">Gurekin kontaktatu »</a></p>
+                <p><a className="btn btn-secondary" href="#">Gurekin kontaktatu »</a></p>
               </div>
             </div>
+
             <hr />
-            <div class="row featurette"> 
-              <div class="col-md-7"> 
-                <h2 class="featurette-heading fw-normal lh-1">
-                  First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span>
-                </h2> 
-                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p> 
-              </div> 
-              <div class="col-md-5">
-                <img src={logo} alt="logoa"/> 
-              </div> 
+
+            <div className="row featurette align-items-center">
+              <div className="col-12 col-md-7">
+                <h2 className="featurette-heading fw-normal lh-1">
+                  First featurette heading. <span className="text-body-secondary">It’ll blow your mind.</span>
+                </h2>
+                <p className="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+              </div>
+              <div className="col-12 col-md-5 text-center">
+                <img src={logo} alt="logoa" className="img-fluid" />
+              </div>
             </div>
-            <Forms>
+
+            <hr/>
+
+            <Forms name="kontaktatu" onSubmit={konprobatuFormularioa}>
               <h3>Gurekin kontaktatu</h3>
+              <br />
               <FloatingInput id="gaia" name="gaia" type="text">
                 Gaia
               </FloatingInput>
@@ -77,7 +103,8 @@ function norGara() {
               <FloatingInput id="deskribapena" name="deskribapena" type="text">
                 Deskribapena
               </FloatingInput>
-              <button type="submit" className="">Bidali</button>
+              <br />
+              <button type="submit" className="btn-orange">Bidali</button>
             </Forms>
           </div>
         </div>
@@ -85,5 +112,6 @@ function norGara() {
     </Layout>
   );
 }
+
 
 export default norGara;
