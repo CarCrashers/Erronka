@@ -8,13 +8,8 @@
 }
 
 .logo{
-    width: 40%;
-    height: auto;
-}
-
-img{
-    width: 40%;
-    height: auto;
+    width: 100px;
+    height: 120px;
 }
 
 .app-layout {

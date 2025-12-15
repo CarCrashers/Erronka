@@ -1,0 +1,30 @@
+
+@media (min-width: 992px) {
+  .custom-responsive-dropdown {
+    position: relative;
+  }
+
+  .custom-responsive-dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;          
+    left: 0;            
+    width: auto;
+    min-width: max-content;
+  }
+}
+
+
+@media (max-width: 991.98px) {
+  .custom-responsive-dropdown {
+    position: relative;
+  }
+
+  .custom-responsive-dropdown .dropdown-menu {
+    position: absolute;
+    top: -2.2rem;       
+    left: 12rem;       
+    right: auto;
+    width: auto;
+    min-width: max-content;
+  }
+}
