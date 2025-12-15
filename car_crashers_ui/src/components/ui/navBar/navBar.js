@@ -2,6 +2,7 @@ import '../../layout/layout.css';
 import './navBar.css';
 import { Link } from "react-router-dom";
 
+
 function navBar() {
   return (
     <nav className="navbar navbar-expand-lg rounded-5 h-25 w-100">
@@ -23,8 +24,7 @@ function navBar() {
                     <ul className="dropdown-menu w-auto">
                         <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i><Link to={"/saldu"} className='text-decoration-none text-black'>&nbsp;&nbsp;Saldu</Link></a></li>
-                        <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu</a></li>
-
+                        <li><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i><Link to="/Desguazatu" className='text-decoration-none text-dark'>&nbsp;&nbsp;Desguazatu</Link></a></li>
                     </ul>
                 </li>
 

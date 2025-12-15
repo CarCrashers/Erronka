@@ -3,7 +3,10 @@ import './App.css';
 import Home from './pages/home';
 import Saldu from './pages/saldu';
 import NorGara from './pages/norGara';
-
+import Desguazatu from "./pages/desguazatu";
+import Erosi from './pages/erosi';
+import Details from './pages/details';
+import Saskia from './pages/saskia';
 
 function App() {
   return (
@@ -12,6 +15,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/saldu" element={<Saldu />} />
         <Route path="/norGara" element={<NorGara />} />
+        <Route path="/Desguazatu" element={<Desguazatu />} />
+        <Route path="/erosi" element={<Erosi />} />
+        <Route path="/details" element={<Details />} />
+        <Route path="/saskia" element={<Saskia />} />
       </Routes>
     </BrowserRouter> 
   );

@@ -1,0 +1,22 @@
+.btn-outline-orange {
+  color: #fd7e14;          /* naranja similar al warning */
+  border-color: #fd7e14;
+  background-color: transparent;
+}
+
+.btn-outline-orange:hover,
+.btn-outline-orange:focus {
+  color: #fff;
+  background-color: #fd7e14;
+  border-color: #fd7e14;
+}
+
+.btn-outline-orange:active {
+  color: #fff;
+  background-color: #e96f0e;
+  border-color: #e96f0e;
+}
+
+.btn-outline-orange:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(253, 126, 20, 0.5);
+}
