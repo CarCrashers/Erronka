@@ -99,7 +99,7 @@ function NorGara() {
                   <div>
                     <img src={luigi} alt="Omar" className="img-fluid mb-3 object-fit-fill" style={{ width: "180px", height: "180px" }} />
                     <h2 className="fw-normal">Omar Akhamlich</h2>
-                    <p>Una cosa te voy a decir, dos escopetas tengo.</p>
+                    <p>1-1-2 2-3-2.</p>
                   </div>
                   <NorGaraButton href={"#kontaktatu-form"}>
                     Gurekin kontaktatu »

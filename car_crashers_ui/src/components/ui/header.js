@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../ui/navBar.js";
+import NavBar from "./navBar/navBar.js";
 import Logo from "../../assets/images/logo.jpg";
 import { Link } from "react-router-dom";
 
@@ -14,10 +14,8 @@ function header() {
           <h1>CarCrashers</h1>
         </Link>
       </div>
-    <React.StrictMode>
-      <NavBar />
-    </React.StrictMode>
-</header>
+      <button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>
+    </header>
   );
 }
 

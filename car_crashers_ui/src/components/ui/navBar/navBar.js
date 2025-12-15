@@ -1,25 +1,26 @@
-import '../layout/layout.css';
+import '../../layout/layout.css';
+import './navBar.css';
 import { Link } from "react-router-dom";
 
 function navBar() {
   return (
-    <nav className="navbar navbar-expand-lg rounded-5 h-25 w-50">
-        <div className="container d-flex flex-row justify-content-evenly align-items-center w-100 h-100">
+    <nav className="navbar navbar-expand-lg rounded-5 h-25 w-100">
+        <div className="container d-flex flex-row justify-content-lg-center justify-content-md-start align-items-center w-100 h-100">
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="collapse navbar-collapse justify-content-lg-center justify-content-md-start nav-collapse-narrow" id="navbarNavAltMarkup">
             <div className="navbar-nav">
                 <a className="nav-link d-flex d-row px-4 fs-5" href="/">
                     <i className="bi bi-house-door-fill text-black"></i>
                     &nbsp;&nbsp;Home
                 </a>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown custom-responsive-dropdown">
                     <a className="nav-link dropdown-toggle px-4 fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="bi bi-cart4"></i> 
                         &nbsp;&nbsp;Salerosketa
                     </a>
-                    <ul className="dropdown-menu">
+                    <ul className="dropdown-menu w-auto">
                         <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i><Link to={"/saldu"} className='text-decoration-none text-black'>&nbsp;&nbsp;Saldu</Link></a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu</a></li>
@@ -32,7 +33,6 @@ function navBar() {
                 </a>
             </div>
             </div>
-            <button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>
         </div>
     </nav>
   );

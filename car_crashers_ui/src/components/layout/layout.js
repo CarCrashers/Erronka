@@ -1,5 +1,6 @@
 import Header from "../ui/header";
 import Footer from "../ui/footer/footer";
+import NavBar from "../ui/navBar/navBar";
 import React from "react";
 import "./layout.css";
 
@@ -8,6 +9,7 @@ function Layout({ children }) {
     <div className="d-flex flex-column min-vh-100">
       <React.StrictMode>
           <Header />
+          <NavBar />
       </React.StrictMode>
 
       <main className="flex-fill">{children}</main>
