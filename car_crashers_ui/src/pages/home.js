@@ -3,6 +3,7 @@ import '../App.css';
 import Layout from '../components/layout/layout.js';
 import Heroe from '../components/ui/heroe/heroe.js';
 import Info from '../components/ui/info/info.js';
+import Iriziak from '../components/ui/iritziak/iritziak.js';
 
 
 function Home() {
@@ -10,7 +11,8 @@ function Home() {
     <React.StrictMode>
         <Layout>
           <Heroe />
-        <Info />
+          <Info />
+          <Iriziak />
         </Layout>
     </React.StrictMode>  
   );
