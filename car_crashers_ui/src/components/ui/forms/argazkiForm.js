@@ -2,7 +2,7 @@ import React from 'react';
 
 const ArgazkiForm = ({ handleFileChange, fotos = [] }) => {
   return (
-    <div className="card border-0 mt-4">
+    <div className="border-0 mt-4">
       <div className="card-body p-0">
         <h3 className="mb-3">Ibilgailuaren argazkiak</h3>
         

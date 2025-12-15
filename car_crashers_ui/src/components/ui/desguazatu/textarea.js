@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Textarea = ({ label, name, placeholder, value, onChange, rows = 4, className = '' }) => {
   return (
     <div className={`mb-3 ${className}`}>

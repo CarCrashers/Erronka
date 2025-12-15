@@ -1,4 +1,3 @@
-import React from 'react';
 import Input from '../desguazatu/input.js';
 import Select from '../desguazatu/select.js';
 import Textarea from '../desguazatu/textarea.js';
@@ -12,7 +11,7 @@ const vehicleStates = [
 
 const KotxeForm = ({ formData, handleChange, handleCheckboxChange }) => {
   return (
-    <div className="card border-0 mt-3 card-body p-0">
+    <div className="border-0 mt-3 card-body p-0">
         <h3 className="mb-3">Kotxearen datuak</h3>
         
         <div className="row">

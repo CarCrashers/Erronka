@@ -1,9 +1,8 @@
-import React from 'react';
 import Input from '../desguazatu/input.js'; 
 
 const KontaktuForm = ({ formData, handleChange }) => {
   return (
-    <div className="card border-0">
+    <div className="border-0">
         <div className="card-body p-0">
             <h3 className="section-title mb-3">Kontaktu Datuak</h3>
             

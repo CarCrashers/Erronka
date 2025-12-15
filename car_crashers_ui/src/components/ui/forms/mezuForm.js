@@ -1,8 +1,6 @@
-import React from 'react';
-
 const MezuForm = ({ onReset }) => {
   return (
-    <div className="card border-0 shadow-sm p-5 text-center">
+    <div className="border-0 shadow-sm p-5 text-center">
         <div className="mb-4">
             <div className="success-icon-container">✓</div>
         </div>
