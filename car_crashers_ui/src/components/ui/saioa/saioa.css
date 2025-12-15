@@ -17,3 +17,20 @@
 .input-group .form-control:focus {
     box-shadow: none;
 }
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.border-danger {
+    border-color: #dc3545 !important;
+}
+
+.text-danger {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
