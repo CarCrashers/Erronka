@@ -39,7 +39,7 @@ export default function Iritziak() {
                 <i className="bi bi-star-fill me-1"></i>
               </div>
 
-              <p className="text-muted testimonial-quote mb-4">"Behar nuen pieza prezio ezin hobean aurkitu nuen. Kalitatea bikaina da eta egoera ezin hobean iritsi zen."</p>
+              <p className="text-muted testimonial-quote mb-4">"Behar nuen pieza prezio ezin hobean aurkitu nuen. Kalitate bikainekoa eta egoera ezin hobean iritsi zen."</p>
               <h5 className="fw-bold text-dark mb-0">Juan Pérez</h5>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function Iritziak() {
                 <i className="bi bi-star-fill me-1"></i>
               </div>
 
-              <p className="text-muted testimonial-quote mb-4">"Zerbitzu profesionala eta lehen mailako bezeroarentzako arreta. Zalantzarik gabe, berriro erosiko dut hemen."</p>
+              <p className="text-muted testimonial-quote mb-4">"Zerbitzu profesionala eta lehen mailako bezero arreta. Zalantzarik gabe, berriro erosiko dut hemen."</p>
               <h5 className="fw-bold text-dark mb-0">Laura Martínez</h5>
             </div>
           </div>

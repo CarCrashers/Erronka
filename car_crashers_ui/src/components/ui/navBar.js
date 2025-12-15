@@ -38,7 +38,6 @@ function navBar() {
             <button className="btn btn-outline-dark bg-orange" type="button" data-bs-toggle="modal" data-bs-target="#saioa">
                 <i className="bi bi-person-circle"></i> Hasi Saioa
             </button>
-            {/*<button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>*/}
         </div>
     </nav>
     <Saioa />
