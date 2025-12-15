@@ -1,0 +1,19 @@
+.input-group-text {
+    background-color: #f8f9fa !important;
+    border-color: #dee2e6;
+}
+
+.input-group .form-control {
+    background-color: #f8f9fa !important;
+    border-color: #dee2e6;
+}
+
+.input-group:focus-within .input-group-text,
+.input-group:focus-within .form-control {
+    border-color: #86b7fe;
+    box-shadow: none;
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+}

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './heroe.css';
 
 function heroe() {
@@ -7,11 +8,33 @@ function heroe() {
         <h1 className="display-4 fw-bold text-white">Ongi Etorri <span className="heroeText">CarCrashers</span>-era</h1> 
         <div className="col-lg-6 mx-auto"> 
             <p className="lead mb-4">CarCrashers-en, autoak aukera bihurtzen ditugu. Txatartegi moderno eta eraginkorra gara, baina gure egitekoa harago doa. Zure ibilgailua errepidean mantentzeko jatorrizko ordezko pieza bermatuen bila bazabiltza, edo eskuko bigarren auto bat bidezko prezioan erosteko interesa baduzu, leku egokian zaude!</p> 
-            <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"> 
-                <button type="button" className="btn btn-primary btn-lg px-4 me-sm-3">Erosi</button> 
-                <button type="button" className="btn btn-outline-secondary btn-lg px-4">Saldu</button> 
-            </div> 
+            <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
+              <Link to="/Erosi" className="btn-hero btn-hero-transparent">
+                <i class="bi bi-cart"></i>Erosi</Link>  
+              <Link to="/Saldu" className="btn-hero btn-hero-transparent">
+                <i class="bi bi-currency-dollar"></i>Saldu</Link>
+              <Link to="/Desguazatu" className="btn-hero btn-hero-transparent">
+                <i class="bi bi-car-front"></i>Desguazatu</Link>
+            </div>
         </div> 
+        <div className="row mt-5">
+                
+                <div className="col-md-4 mb-3 mb-md-0">
+                    <div className="stat-number">500+</div>
+                    <div className="stat-label">Ibilgailu</div>
+                </div>
+
+                <div className="col-md-4 mb-3 mb-md-0">
+                     <div className="stat-number">5000+</div>
+                     <div className="stat-label">Pieza (Recambios)</div>
+                </div>
+
+                <div className="col-md-4">
+                     <div className="stat-number">98%</div>
+                     <div className="stat-label">Bermea</div>
+                </div>
+
+            </div>
         </div>
     </div>
   );

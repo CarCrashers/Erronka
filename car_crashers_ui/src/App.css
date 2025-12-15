@@ -40,3 +40,54 @@
 .heroeText{
   color: #f97316;
 }
+
+.btn-orange {
+  background-color: #ff6600;
+  border-color: #ff6600;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-orange:hover, 
+.btn-orange:focus {
+  background-color: #e65c00;
+  border-color: #e65c00;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.upload-area-label {
+  border: 2px dashed #ccc !important;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 200px;
+}
+
+.upload-area-label:hover {
+  background-color: #e9ecef;
+  border-color: #ff6600 !important;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.success-icon-container {
+  width: 80px;
+  height: 80px;
+  background-color: #e6f4ea;
+  color: #1e8e3e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 40px;
+}

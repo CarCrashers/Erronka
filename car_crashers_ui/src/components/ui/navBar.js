@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
 import '../layout/layout.css';
+import Saioa from './saioa/saioa.js';
 
 function navBar() {
   return (
+    <>
     <nav className="navbar navbar-expand-lg rounded-5 h-25 w-50">
         <div className="container d-flex flex-row justify-content-evenly align-items-center w-100 h-100">
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +24,7 @@ function navBar() {
                     <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Saldu</a></li>
-                        <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu</a></li>
+                        <li><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i><Link to="/Desguazatu" className='text-decoration-none text-dark'>&nbsp;&nbsp;Desguazatu</Link></a></li>
 
                     </ul>
                 </li>
@@ -32,9 +35,14 @@ function navBar() {
                 </a>
             </div>
             </div>
-            <button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>
+            <button className="btn btn-outline-dark bg-orange" type="button" data-bs-toggle="modal" data-bs-target="#saioa">
+                <i className="bi bi-person-circle"></i> Hasi Saioa
+            </button>
+            {/*<button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>*/}
         </div>
     </nav>
+    <Saioa />
+    </>
   );
 }
 
