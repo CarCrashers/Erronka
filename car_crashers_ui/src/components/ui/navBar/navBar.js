@@ -22,7 +22,7 @@ function navBar() {
                         &nbsp;&nbsp;Salerosketa
                     </a>
                     <ul className="dropdown-menu w-auto">
-                        <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i>&nbsp;&nbsp;Erosi</a></li>
+                        <li><a className="dropdown-item" href="#"><i class="bi bi-basket2-fill"></i><Link to={"/erosi"}>&nbsp;&nbsp;Erosi</Link></a></li>
                         <li><a className="dropdown-item" href="#"><i class="bi bi-box-seam-fill"></i><Link to={"/saldu"} className='text-decoration-none text-black'>&nbsp;&nbsp;Saldu</Link></a></li>
                         <li><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i><Link to="/Desguazatu" className='text-decoration-none text-dark'>&nbsp;&nbsp;Desguazatu</Link></a></li>
                     </ul>
