@@ -10,7 +10,7 @@ function footer() {
           
           <div className="col-md-4 mb-4 mb-md-0">
             <Link to="/" className="text-decoration-none mb-3 d-block">
-                <img className="h-50" src={Logo} alt="Logo"/>
+                <img className="w-50" src={Logo} alt="Logo"/>
             </Link>
             <p className="text-white">
               Zure auto desguazatzaile fidagarria. Kalitatezko ibilgailuak eta ordezko piezak saltzen ditugu.
