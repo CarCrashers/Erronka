@@ -1,10 +1,11 @@
-import React from "react";
-import NavBar from "./navBar/navBar.js";
 import Logo from "../../assets/images/logo.jpg";
 import { Link } from "react-router-dom";
+import Saioa from "./saioa/saioa.js";
+import Obrak from "../../assets/images/cartel-obras.png";
 
 function header() {
   return (
+    <>
     <header className="p-3 px-5 header-orange d-flex flex-row justify-content-between align-items-center">
       <div className="d-flex flex-row align-items-center">
         <Link to="/" className="d-inline-block w-auto">
@@ -14,8 +15,18 @@ function header() {
           <h1>CarCrashers</h1>
         </Link>
       </div>
-      <button className="btn btn-outline-dark bg-orange" type="submit"><i className="bi bi-person-circle"></i> Hasi Saioa</button>
+      <div className="d-flex align-items-center gap-3">
+        <Link to="/error" className="d-inline-block w-auto">
+        <img className="logo d-block mw-100 h-auto" src={Obrak} alt="Obrak" />
+        </Link>
+        <i class="bi bi-cart obrak"></i>
+        <button className="btn btn-outline-dark bg-orange" type="button" data-bs-toggle="modal" data-bs-target="#saioa">
+          <i className="bi bi-person-circle"></i> Hasi Saioa
+        </button>
+      </div>
     </header>
+    <Saioa />
+    </>
   );
 }
 

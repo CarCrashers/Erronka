@@ -101,3 +101,10 @@
   font-size: 40px;
 }
 
+.obrak {
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+  color: black;
+  transition: color 0.2s ease;
+}
