@@ -12,23 +12,22 @@ function navBar() {
             </button>
             <div className="collapse navbar-collapse justify-content-lg-center justify-content-md-start nav-collapse-narrow" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-                <a className="nav-link d-flex d-row px-4 fs-5" href="/">
-                    <i className="bi bi-house-door-fill text-black"></i>
-                    &nbsp;&nbsp;Home
+                <a className="nav-link d-flex d-row px-4 fs-5">
+                    <i className="bi bi-house-door-fill text-black"></i><Link to={"/"} className='text-decoration-none text-black'>&nbsp;&nbsp;Home</Link>
                 </a>
                 <li className="nav-item dropdown custom-responsive-dropdown">
-                    <a className="nav-link dropdown-toggle px-4 fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a className="nav-link dropdown-toggle px-4 fs-5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="bi bi-cart4"></i> 
                         &nbsp;&nbsp;Salerosketa
                     </a>
                     <ul className="dropdown-menu w-auto">
-                        <li><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i><Link to={"/erosi"} className='text-decoration-none text-black'>&nbsp;&nbsp;Erosi</Link></a></li>
-                        <li><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i><Link to={"/saldu"} className='text-decoration-none text-black'>&nbsp;&nbsp;Saldu</Link></a></li>
-                        <li><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i><Link to="/Desguazatu" className='text-decoration-none text-dark'>&nbsp;&nbsp;Desguazatu</Link></a></li>
+                        <li><Link to={"/erosi"} className='text-decoration-none text-black'><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Erosi</a></Link></li>
+                        <li><Link to={"/saldu"} className='text-decoration-none text-black'><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Saldu</a></Link></li>
+                        <li><Link to="/Desguazatu" className='text-decoration-none text-dark'><a className="dropdown-item"><i class="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu</a></Link></li>
                     </ul>
                 </li>
 
-                <a className="nav-link px-4 fs-5" href="#">
+                <a className="nav-link px-4 fs-5">
                     <i className="bi bi-buildings-fill"></i><Link to={"/norGara"} className='text-decoration-none text-black'>&nbsp;&nbsp;Nor gara?</Link>
                 </a>
             </div>
