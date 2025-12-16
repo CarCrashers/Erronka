@@ -9,6 +9,7 @@ import luigi from "../assets/images/luigi.png";
 import mate from "../assets/images/Mate.png";
 import logo from "../assets/images/logo.jpg";
 import NorGaraButton from "../components/ui/buttons/norgaraButton";
+import Goikoa from "../components/ui/goikoa/goikoa.js";
 
 function NorGara() {
 
@@ -49,22 +50,16 @@ function NorGara() {
 
   return (
     <Layout>
-      <div className="container-fluid">
-        <div className="row justify-content-center bg-dark-subtle">
-          <div className="py-5 col-8">
-            <h1 className="text-body-emphasis">Nor gara</h1>
-            <p className="lead">
-              Euskal Herrian kokatutako kotxeak desguazatzen dituen enpresa bat
-              gara, CarCrashers izenekoa. Kotxeen zein kotxeko piezen
-              salerosketa dugu jarduera nagusi bezala. Sedea Donostian izanda,
-              beste 3 sukurtsal ditugu: Bilbo, Gasteiz eta Iruñan, Irun-eko
-              hirian beste sukurtsal bat irekitzeko planarekin.{" "}
-            </p>
-          </div>
-        </div>
-      </div>
+      <Goikoa>
+        <h1>Nor gara</h1>
+        <p>Euskal Herrian kokatutako kotxeak desguazatzen dituen enpresa bat
+            gara, CarCrashers izenekoa. Kotxeen zein kotxeko piezen
+            salerosketa dugu jarduera nagusi bezala. Sedea Donostian izanda,
+            beste 3 sukurtsal ditugu: Bilbo, Gasteiz eta Iruñan, Irun-eko
+            hirian beste sukurtsal bat irekitzeko planarekin.{" "}</p>
+      </Goikoa>
 
-      <div className="container">
+      <div className="container py-5">
         <div className="row justify-content-center">
           <div className="col-12 col-md-10 rounded-3 shadow-lg my-4 p-4 p-md-5">
             <div id="title" className="mb-3">
