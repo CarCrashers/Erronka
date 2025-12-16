@@ -78,7 +78,8 @@ const Desguazatu = () => {
           </Goikoa>
           <div className="container py-5">
             <div className="row justify-content-center">
-                <div className="col-lg-8">
+              <div className="col-12 col-md-10 col-lg-8 rounded-3 shadow-lg  my-4 p-4 p-md-5 ">
+              {/*<div className="col-lg-8">*/}
                     
                     {isSubmitted ? (
                         <MezuForm onReset={handleReset} />

@@ -7,18 +7,27 @@ import FloatingTextarea from "../components/ui/floatingTextArea/floatingTextArea
 import ErrorMessage from "../components/ui/errorMessage/errorMessage";
 import SuccessMessage from "../components/ui/successMessage/successMessage";
 import Goikoa from '../components/ui/goikoa/goikoa.js';
+import ArgazkiForm from '../components/ui/forms/argazkiForm';
 
 function Saldu() {
   const [errorea, setErrorea] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const [fotos, setFotos] = useState([]);
+  const [formKey, setFormKey] = useState(0);
+
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+        const filesArray = Array.from(e.target.files);
+        setFotos(filesArray);
+    }
+  };
 
   const konprobatuFormularioa = (e) => {
     e.preventDefault();
     const formularioa = e.target;
     const formData = new FormData(formularioa);
     const currentYear = new Date().getFullYear();
-
 
     //Baloreak lortu formulariotik FormData erabiliz
     const emaila       = formData.get("emaila");
@@ -29,15 +38,13 @@ function Saldu() {
     const modelo       = formData.get("modelo");
     const urtea        = formData.get("urtea");
     const kilometro    = formData.get("kilometro");
-    const deskribapena = formData.get("deskribapena");
+    // const deskribapena = formData.get("deskribapena"); // No es obligatorio para validación
     const dokumentua   = formData.get("options-outlined");
-    const argazkiak    = formData.get("images");
     const egoera       = formData.get("egoera");
-
 
     // RegEx
     const matrikulaRegex = /^[0-9]{4}[A-Z]{3}$/;
-    const matrikulaBalidatu = matrikulaRegex.test(matrikula.toUpperCase());
+    const matrikulaBalidatu = matrikulaRegex.test(matrikula ? matrikula.toUpperCase() : "");
 
     const kilometroRegEx = /^[0-9]+$/;
     const kilometroBalidatu = kilometroRegEx.test(kilometro);
@@ -45,82 +52,40 @@ function Saldu() {
     const urteaRegEx = /^[0-9]{4}$/;
     const urteaBalidatu = urteaRegEx.test(urtea);
 
-
     //Urtea integer bihurtu
-    const urteaInt = parseInt(urtea,10);
-
-
-    console.log({ emaila, izenAbizena, telefonoa, matrikula, marka, modelo, urtea, kilometro, deskribapena, dokumentua, argazkiak, egoera });
-
+    const urteaInt = parseInt(urtea, 10);
 
     setErrorea("");
     setIsSuccess(false);
 
-
     const eremuakFalta = [];
 
+    if(!emaila) eremuakFalta.push("Emaila");
+    if(!izenAbizena) eremuakFalta.push("Izen Abizena");
+    if(!telefonoa) eremuakFalta.push("Telefonoa");
+    if(!matrikulaBalidatu) eremuakFalta.push("Matrikula ( 0000 ABC )");
+    if(!marka) eremuakFalta.push("Marka");
+    if(!modelo) eremuakFalta.push("Modelo");
+    if(!kilometroBalidatu) eremuakFalta.push("Kilometroak");
+    if(!egoera || egoera === "null") eremuakFalta.push("Egoera");
+    if(!urteaBalidatu || urteaInt > currentYear) eremuakFalta.push("Urtea");
+    if(!dokumentua) eremuakFalta.push("Dokumentazioa");
 
-    if(!emaila)
-    {
-      eremuakFalta.push("Emaila");
-    }
-
-    if(!izenAbizena)
-    {
-      eremuakFalta.push("Izen Abizena");
-    }
-
-    if(!telefonoa)
-    {
-      eremuakFalta.push("Telefonoa");
-    }
-
-    if (!matrikulaBalidatu) 
-    {
-      eremuakFalta.push("Matrikula ( 0000 ABC )");
-    }
-
-    if(!marka)
-    {
-      eremuakFalta.push("Marka");
-    }
-
-    if(!modelo)
-    {
-      eremuakFalta.push("Modelo");
-    }
-
-    if(!kilometroBalidatu)
-    {
-      eremuakFalta.push("Kilometroak");
-    }
-        
-    if (!egoera || egoera === "null")
-    {
-      eremuakFalta.push("Egoera");
-    }
-
-    if(!urteaBalidatu || urteaInt > currentYear)
-    {
-      eremuakFalta.push("Urtea");
-    }
-
-    if(!dokumentua)
-    {
-      eremuakFalta.push("Dokumentazioa");
-    }
-
-    if(!argazkiak)
-    {
+    if(fotos.length === 0) {
       eremuakFalta.push("Argazkiak");
     }
 
-
     if (eremuakFalta.length === 0) 
     {
-      console.log("OKEY!");
+      console.log("Datuak zuzenak. Bidaltzen...");
+      // Aquí podrías añadir las fotos al objeto final si vas a enviarlo al backend
+      console.log("Fotos seleccionadas:", fotos);
+      
       setIsSuccess(true);
       formularioa.reset();
+      
+      setFotos([]);
+      setFormKey(prev => prev + 1);
     } 
     else 
     {
@@ -128,12 +93,11 @@ function Saldu() {
     }
   };
 
-
   const berrabiarazi = () => {
     setIsSuccess(false);
     setErrorea("");
+    setFotos([]);
   };
-
 
   return (
     <Layout>
@@ -142,7 +106,6 @@ function Saldu() {
         <p>Ongi etorri salmenta atalera! Jarraian duzun formularioa bete, guk zure
             kotxea peritatzeko aukera izateko.</p>
       </Goikoa>
-
 
       <div className="container">
         <div className="row justify-content-center">
@@ -159,77 +122,66 @@ function Saldu() {
                   <div id="kontaktua" className="mb-4">
                     <h5>Kontaktu datuak</h5>
 
-
                     <div className="row g-3">
                       <div className="col-12">
-                        <FloatingInput required id="emaila" name="emaila" type="email" value="Emaila sesiotik hartu" onchange="" placeholder="Ez da ikusten" readOnly="false">
+                        <FloatingInput required id="emaila" name="emaila" type="email" value="Emaila sesiotik hartu" placeholder="Ez da ikusten" readOnly={true}>
                           Email-a <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="izenAbizena" name="izenAbizena" type="text" value="Izena sesiotik hartu" onchange="" placeholder="Ez da ikusten" readOnly="true">
+                        <FloatingInput required id="izenAbizena" name="izenAbizena" type="text" value="Izena sesiotik hartu" placeholder="Ez da ikusten" readOnly={true}>
                             Izen Abizenak <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="telefonoa" name="telefonoa" type="text" value="+34 600 000 000" onchange="" placeholder="Ez da ikusten" readOnly="true">
+                        <FloatingInput required id="telefonoa" name="telefonoa" type="text" value="+34 600 000 000" placeholder="Ez da ikusten" readOnly={true}>
                             Telefono zenbakia <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
                     </div>
                   </div>
 
-
                   <hr />
-
 
                   <div id="ibilgailua" className="mb-4">
                     <h5>Ibilgailuaren Datuak</h5>
 
-
                     <div className="row g-3">
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="matrikula" name="matrikula" type="text" placeholder="ADB: 5555DBC" onchange="">
+                        <FloatingInput required id="matrikula" name="matrikula" type="text" placeholder="ADB: 5555DBC">
                             Ibilgailu matrikula <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="marka" name="marka" type="text" placeholder="ADB: Opel" onchange="">
+                        <FloatingInput required id="marka" name="marka" type="text" placeholder="ADB: Opel">
                             Ibilgailu marka <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="modelo" name="modelo" type="text" placeholder="ADB: Corsa" onchange="">
+                        <FloatingInput required id="modelo" name="modelo" type="text" placeholder="ADB: Corsa">
                             Ibilgailu modelo <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="urtea" name="urtea" type="number" placeholder="ADB: 2015"onchange="">
+                        <FloatingInput required id="urtea" name="urtea" type="number" placeholder="ADB: 2015">
                             Ibilgailu urtea <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="kilometro" name="kilometro" type="number" placeholder="ADB: 120000" onchange="">
+                        <FloatingInput required id="kilometro" name="kilometro" type="number" placeholder="ADB: 120000">
                           Ibilgailuaren kilometroak <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
 
-
                       <div className="col-12 col-md-6">
                         <div className="form-floating">
-                          <select className="form-select border-1 border-secondary" id="egoera" name="egoera" required >
+                          <select className="form-select border-1 border-secondary" id="egoera" name="egoera" required defaultValue="null">
                             <option value="null" disabled>Aukeratu egoera...</option>
                             <option value="bikaina">Bikaina</option>
                             <option value="ongi">Ongi</option>
@@ -241,7 +193,6 @@ function Saldu() {
                         </div>
                       </div>
 
-
                       <br />
                       <div className="col-12">
                         <FloatingTextarea id="deskribapena" name="deskribapena" className="">
@@ -249,7 +200,6 @@ function Saldu() {
                         </FloatingTextarea>
                       </div>
                     </div>
-
 
                     <div className="mt-3 d-flex flex-column flex-md-row gap-2">
                       <div>
@@ -259,7 +209,6 @@ function Saldu() {
                         </label>
                       </div>
 
-
                       <div>
                         <input type="radio" className="btn-check" name="options-outlined" id="danger-outlined" value="false" autoComplete="off" />
                         <label className="btn btn-outline-danger w-100" htmlFor="danger-outlined">
@@ -267,25 +216,17 @@ function Saldu() {
                         </label>
                       </div>
                     </div>
-
-
                     <br />
-                    <div className="mb-3">
-                      <label htmlFor="formFileMultiple" className="form-label">
-                        <strong>Igo ibilgailuaren argazkiak:</strong>
-                      </label>
-                      <input className="form-control" type="file" id="formFileMultiple" name="images" multiple/>
-                    </div>
                   </div>
+
+                  <ArgazkiForm key={formKey} handleFileChange={handleFileChange} fotos={fotos}/>
 
                   {!!errorea && (
                     <ErrorMessage message={errorea}/>
                   )}
 
-                  <div className="mt-4 d-flex justify-content-end">
-                    <button type="submit" className="btn-orange rounded-1">
-                      Bidali
-                    </button>
+                  <div className="text-center mt-4">
+                    <button type="submit" className="btn btn-orange w-100 py-2">Bidali</button>
                   </div>
                 </Forms>
               </>
@@ -296,6 +237,5 @@ function Saldu() {
     </Layout>
   );
 }
-
 
 export default Saldu;
