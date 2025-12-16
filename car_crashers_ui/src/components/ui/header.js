@@ -19,7 +19,9 @@ function header() {
         <Link to="/error" className="d-inline-block w-auto">
         <img className="logo d-block mw-100 h-auto" src={Obrak} alt="Obrak" />
         </Link>
+        <Link to="/saskia" className="d-inline-block w-auto">
         <i class="bi bi-cart obrak"></i>
+        </Link>
         <button className="btn btn-outline-dark bg-orange" type="button" data-bs-toggle="modal" data-bs-target="#saioa">
           <i className="bi bi-person-circle"></i> Hasi Saioa
         </button>
