@@ -20,7 +20,7 @@ function App() {
         <Route path="/erosi" element={<Erosi />} />
         <Route path="/details" element={<Details />} />
         <Route path="/saskia" element={<Saskia />} />
-        <Route path="/error" element={<Error />} />
+        <Route path="/error" element={<Error />} />"
       </Routes>
     </BrowserRouter> 
   );

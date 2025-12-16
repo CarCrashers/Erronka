@@ -5,6 +5,7 @@ import KontaktuForm from '../components/ui/forms/kontaktuForm';
 import KotxeForm from '../components/ui/forms/kotxeForm';
 import ArgazkiForm from '../components/ui/forms/argazkiForm';
 import MezuForm from '../components/ui/forms/mezuForm';
+import Goikoa from '../components/ui/goikoa/goikoa.js';
 
 const initialState = {
     nombreCompleto: '',
@@ -71,6 +72,10 @@ const Desguazatu = () => {
   return (
     <React.StrictMode>
         <Layout>
+          <Goikoa>
+            <h1>Kotxea Desguazatu</h1>
+            <p>Zure kotxea desguazatu hemen. Informazioa eta argazkiak igorri.</p>
+          </Goikoa>
           <div className="container py-5">
             <div className="row justify-content-center">
                 <div className="col-lg-8">

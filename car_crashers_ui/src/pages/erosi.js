@@ -5,19 +5,16 @@ import Search from '../components/ui/search/search.js';
 import ProducToggle from '../components/ui/buttons/producToggle/productToggle.js';
 import Card from '../components/ui/card/card.js';
 import Pagination from '../components/ui/pagination/pagination.js';
+import Goikoa from '../components/ui/goikoa/goikoa.js';
 
 function Erosi() {
   return (
     <React.StrictMode>
       <Layout>
-        <div className="container-fluid">
-          <div className="row justify-content-center bg-secondary text-white">
-            <div className="col-12 col-md-8 py-5 text-center text-md-start">
-              <h1>Catálogo de Productos</h1>
-              <p>Encuentra el vehículo o pieza que necesitas</p>
-            </div>
-          </div>
-        </div>
+        <Goikoa>
+          <h1>Produktu Katalogoa</h1>
+          <p>Produktu katalogo honetan, zure beharretara egokitutako ibilgailuak aurki ditzakezu.</p>
+        </Goikoa>
 
         <div className="container my-4">
           <div className="row justify-content-center">

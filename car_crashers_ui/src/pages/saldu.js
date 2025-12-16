@@ -6,6 +6,7 @@ import FloatingInput from "../components/ui/floatingInput/floatingInput";
 import FloatingTextarea from "../components/ui/floatingTextArea/floatingTextArea";
 import ErrorMessage from "../components/ui/errorMessage/errorMessage";
 import SuccessMessage from "../components/ui/successMessage/successMessage";
+import Goikoa from '../components/ui/goikoa/goikoa.js';
 
 function Saldu() {
   const [errorea, setErrorea] = useState("");
@@ -136,17 +137,11 @@ function Saldu() {
 
   return (
     <Layout>
-      <div className="container-fluid">
-        <div className="row justify-content-center bg-dark-subtle">
-          <div className="py-5 col-8">
-            <h1 className="text-body-emphasis">Saldu</h1>
-            <p className="lead">
-              Ongi etorri salmenta atalera! Jarraian duzun formularioa bete, guk zure
-              kotxea peritatzeko aukera izateko.
-            </p>
-          </div>
-        </div>
-      </div>
+      <Goikoa>
+        <h1>Saldu</h1>
+        <p>Ongi etorri salmenta atalera! Jarraian duzun formularioa bete, guk zure
+            kotxea peritatzeko aukera izateko.</p>
+      </Goikoa>
 
 
       <div className="container">
