@@ -18,7 +18,7 @@ function ProducToggle() {
               role="tab"
               aria-selected="true"
             >
-              <i className="bi bi-car-front-fill"></i> Coche (4)
+              <i className="bi bi-car-front-fill"></i> Kotxea (4)
             </button>
           </li>
           <li className="nav-item" role="presentation">

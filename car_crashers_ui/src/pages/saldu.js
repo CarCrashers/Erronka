@@ -226,6 +226,7 @@ function Saldu() {
                   )}
 
                   <div className="text-center mt-4">
+                    <p className="small text-muted mb-3">Inprimaki hau bidalita, onartzen duzu zure ibilgailua ebaluatzeko zurekin harremanetan jar gaitezkeela. Gure taldeak ebaluatuko du eta 24-48 orduko epean zurekin harremanetan jarriko gara eskaintza batekin.</p>
                     <button type="submit" className="btn btn-orange w-100 py-2">Bidali</button>
                   </div>
                 </Forms>

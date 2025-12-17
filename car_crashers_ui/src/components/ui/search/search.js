@@ -26,7 +26,7 @@ function Search() {
                 <input
                   type="text"
                   className="form-control border-start-0"
-                  placeholder="Buscar..."
+                  placeholder="Bilatu..."
                 />
               </div>
             </div>
@@ -34,10 +34,10 @@ function Search() {
             {/* Estado */}
             <div className="col-12 col-md-6 col-lg-3">
               <select className="form-select form-select-sm">
-                <option defaultValue>Estado</option>
-                <option>Estado 1</option>
-                <option>Estado 2</option>
-                <option>Estado 3</option>
+                <option defaultValue>Egoera</option>
+                <option>Egoera 1</option>
+                <option>Egoera 2</option>
+                <option>Egoera 3</option>
               </select>
             </div>
 
@@ -49,7 +49,7 @@ function Search() {
                   type="number"
                   name="min"
                   className="form-control"
-                  placeholder="Mín"
+                  placeholder="Min"
                   min="0"
                   value={priceRange.min}
                   onChange={handlePriceChange}
@@ -59,7 +59,7 @@ function Search() {
                   type="number"
                   name="max"
                   className="form-control"
-                  placeholder="Máx"
+                  placeholder="Max"
                   min="0"
                   value={priceRange.max}
                   onChange={handlePriceChange}

@@ -11,20 +11,20 @@ function Card() {
             <h6 className="card-subtitle mb-2 text-body-secondary">Fiesta</h6>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Precio
-                    <span className="badge text-bg-warning rounded-pill">5000 $</span>
+                    Prezioa
+                    <span className="badge text-bg-warning rounded-pill">5000 €</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Año
+                    Urtea
                     <span className="badge text-bg-warning rounded-pill">1999</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                    Kilometros
+                    Kilometroak
                     <span className="badge text-bg-warning rounded-pill">200000 Km</span>
                 </li>
             </ul>
             <Link to='/details'>
-                <a href="#" className="btn btn-secondary mt-2">Ver <i className="bi bi-box-arrow-up-right"></i></a>
+                <a href="#" className="btn btn-secondary mt-2">Ikusi <i className="bi bi-box-arrow-up-right"></i></a>
             </Link>
         </div>
     </div> 
