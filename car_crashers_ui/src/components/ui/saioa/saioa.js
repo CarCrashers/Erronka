@@ -64,7 +64,7 @@ const Saioa = () => {
           </form>
 
           <div className="d-flex justify-content-between mt-4 text-sm">
-            <a href="#" className="text-decoration-none text-muted small">Pasahitza ahztu zaizu?</a>
+            <a href="#" className="text-decoration-none text-muted small">Pasahitza ahaztu zaizu?</a>
             <p className="text-muted small mb-0">Kontu bat behar? <a href="#" className="text-dark fw-bold text-decoration-none">Sign up</a></p>
           </div>
         </div>
