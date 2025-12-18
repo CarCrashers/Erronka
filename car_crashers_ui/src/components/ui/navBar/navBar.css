@@ -13,11 +13,11 @@
   }
 }
 
-
-
-.navBg{
-    color: rgb(187, 187, 187);
+.navBar-hover:hover{
+  color: rgb(0,0,0,0.65);
 }
+
+
 
 @media (max-width: 991.98px) {
   .custom-responsive-dropdown {
@@ -32,4 +32,17 @@
     width: auto;
     min-width: max-content;
   }
+}
+
+
+/* Hover para todos los elementos del navbar */
+.navBar-link:hover,
+.navBar-link-inner:hover {
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+/* Si quieres que cambien también los iconos dentro */
+.navBar-link:hover i,
+.navBar-link-inner:hover i {
+  color: rgba(0, 0, 0, 1) !important;
 }
