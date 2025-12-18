@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Erronka/static/css/main.cdda1035.css",
-    "main.js": "/Erronka/static/js/main.9b6cfc90.js",
+    "main.js": "/Erronka/static/js/main.3c9c9a5b.js",
     "static/js/453.ed51accd.chunk.js": "/Erronka/static/js/453.ed51accd.chunk.js",
     "static/media/cartel-obras.png": "/Erronka/static/media/cartel-obras.428078a4cf6ad8849fd7.png",
     "static/media/logo.jpg": "/Erronka/static/media/logo.23517dd5d4236695bb1f.jpg",
@@ -14,11 +14,11 @@
     "static/media/guido.png": "/Erronka/static/media/guido.6c9389218430a5f6117a.png",
     "index.html": "/Erronka/index.html",
     "main.cdda1035.css.map": "/Erronka/static/css/main.cdda1035.css.map",
-    "main.9b6cfc90.js.map": "/Erronka/static/js/main.9b6cfc90.js.map",
+    "main.3c9c9a5b.js.map": "/Erronka/static/js/main.3c9c9a5b.js.map",
     "453.ed51accd.chunk.js.map": "/Erronka/static/js/453.ed51accd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cdda1035.css",
-    "static/js/main.9b6cfc90.js"
+    "static/js/main.3c9c9a5b.js"
   ]
 }
