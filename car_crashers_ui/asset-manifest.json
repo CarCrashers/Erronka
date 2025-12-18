@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Erronka/static/css/main.cdda1035.css",
+    "main.js": "/Erronka/static/js/main.9b6cfc90.js",
+    "static/js/453.ed51accd.chunk.js": "/Erronka/static/js/453.ed51accd.chunk.js",
+    "static/media/cartel-obras.png": "/Erronka/static/media/cartel-obras.428078a4cf6ad8849fd7.png",
+    "static/media/logo.jpg": "/Erronka/static/media/logo.23517dd5d4236695bb1f.jpg",
+    "static/media/bootstrap-icons.woff?": "/Erronka/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
+    "static/media/heroeBackground.jpeg": "/Erronka/static/media/heroeBackground.b9c7a9dadaf321d8124f.jpeg",
+    "static/media/bootstrap-icons.woff2?": "/Erronka/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
+    "static/media/logo_b.png": "/Erronka/static/media/logo_b.871d664e21bcfd5e2fc6.png",
+    "static/media/Mate.png": "/Erronka/static/media/Mate.9a7a291161605e5b46ce.png",
+    "static/media/luigi.png": "/Erronka/static/media/luigi.4e6c136d0b6c8795ba86.png",
+    "static/media/guido.png": "/Erronka/static/media/guido.6c9389218430a5f6117a.png",
+    "index.html": "/Erronka/index.html",
+    "main.cdda1035.css.map": "/Erronka/static/css/main.cdda1035.css.map",
+    "main.9b6cfc90.js.map": "/Erronka/static/js/main.9b6cfc90.js.map",
+    "453.ed51accd.chunk.js.map": "/Erronka/static/js/453.ed51accd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cdda1035.css",
+    "static/js/main.9b6cfc90.js"
+  ]
+}
