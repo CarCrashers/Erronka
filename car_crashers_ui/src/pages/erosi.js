@@ -16,7 +16,7 @@ function Erosi() {
           <p>Produktu katalogo honetan, zure beharretara egokitutako ibilgailuak aurki ditzakezu.</p>
         </Goikoa>
 
-        <div className="container my-4">
+        <div className="container my-4 py-5">
           <div className="row justify-content-center">
             <div className="col-12">
               <Search />

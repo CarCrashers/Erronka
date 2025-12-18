@@ -2,21 +2,17 @@ import React from 'react';
 import '../App.css';
 import Layout from '../components/layout/layout.js';
 import SaskiProduktua from '../components/ui/card/saskiProduktu/saskiProduktu.js';
+import Goikoa from '../components/ui/goikoa/goikoa.js';
 
 function Saskia() {
   return (
     <React.StrictMode>
       <Layout>
-        <div className="container-fluid">
-          <div className="row justify-content-center bg-secondary text-white">
-            <div className="col-12 col-md-8 py-5 text-center text-md-start">
-              <h1>Zure saskia</h1>
-              <p>Hauek dira gordetako produktuak</p>
-            </div>
-          </div>
-        </div>
-
-        <div className='container pt-3'>
+        <Goikoa>
+          <h1>Zure saskia</h1>
+          <p>Hauek dira gordetako produktuak</p>
+        </Goikoa>
+        <div className='container py-5'>
             <div className="row gy-4">
                 <div className="col-12 col-md-8 d-flex flex-column gap-3">
                     <SaskiProduktua />
