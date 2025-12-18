@@ -14,6 +14,11 @@
 }
 
 
+
+.navBg{
+    color: rgb(187, 187, 187);
+}
+
 @media (max-width: 991.98px) {
   .custom-responsive-dropdown {
     position: relative;
