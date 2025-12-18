@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from './pages/home';
 import Saldu from './pages/saldu';
@@ -11,7 +11,7 @@ import Error from './components/ui/error';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/saldu" element={<Saldu />} />
@@ -22,7 +22,7 @@ function App() {
         <Route path="/saskia" element={<Saskia />} />
         <Route path="/error" element={<Error />} />"
       </Routes>
-    </BrowserRouter> 
+    </HashRouter> 
   );
 }
 
