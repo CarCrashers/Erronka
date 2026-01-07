@@ -38,7 +38,6 @@ function Saldu() {
     const modelo       = formData.get("modelo");
     const urtea        = formData.get("urtea");
     const kilometro    = formData.get("kilometro");
-    // const deskribapena = formData.get("deskribapena"); // No es obligatorio para validación
     const dokumentua   = formData.get("options-outlined");
     const egoera       = formData.get("egoera");
 
@@ -78,8 +77,7 @@ function Saldu() {
     if (eremuakFalta.length === 0) 
     {
       console.log("Datuak zuzenak. Bidaltzen...");
-      // Aquí podrías añadir las fotos al objeto final si vas a enviarlo al backend
-      console.log("Fotos seleccionadas:", fotos);
+      console.log("Aukeratutako argazkiak¡:", fotos);
       
       setIsSuccess(true);
       formularioa.reset();
