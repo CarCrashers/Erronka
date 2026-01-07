@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/App.css';
 import Layout from '../components/layout/layout.jsx';
 import SaskiProduktua from '../components/ui/card/saskiProduktu/saskiProduktu.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';

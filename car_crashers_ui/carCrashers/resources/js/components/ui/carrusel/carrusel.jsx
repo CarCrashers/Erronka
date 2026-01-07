@@ -1,4 +1,4 @@
-import imgCar from '../../../assets/images/carExample.jpeg';
+import imgCar from '@assets/images/carExample.jpeg';
 
 function Carrusel() {
   return (

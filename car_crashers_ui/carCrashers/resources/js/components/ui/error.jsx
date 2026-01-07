@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './error.css'; // Importamos el CSS
+import './error.css';
 
 const Error = () => {
 

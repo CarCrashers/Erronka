@@ -9,11 +9,11 @@ function heroe() {
         <div className="col-lg-6 mx-auto"> 
             <p className="lead mb-4">CarCrashers-en, autoak aukera bihurtzen ditugu. Txatartegi moderno eta eraginkorra gara, baina gure egitekoa harago doa. Zure ibilgailua errepidean mantentzeko jatorrizko ordezko pieza bermatuen bila bazabiltza, edo eskuko bigarren auto bat bidezko prezioan erosteko interesa baduzu, leku egokian zaude!</p> 
             <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
-              <a href="/Erosi" className="btn-hero btn-hero-transparent">
+              <a href="/erosi" className="btn-hero btn-hero-transparent">
                 <i class="bi bi-cart"></i>Erosi</a>  
-              <a href="/Saldu" className="btn-hero btn-hero-transparent">
+              <a href="/saldu" className="btn-hero btn-hero-transparent">
                 <i class="bi bi-currency-dollar"></i>Saldu</a>
-              <a href="/Desguazatu" className="btn-hero btn-hero-transparent">
+              <a href="/desguazatu" className="btn-hero btn-hero-transparent">
                 <i class="bi bi-car-front"></i>Desguazatu</a>
             </div>
         </div> 

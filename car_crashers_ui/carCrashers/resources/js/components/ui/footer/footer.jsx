@@ -1,4 +1,4 @@
-import Logo from "../../../../assets/images/logo_b.png";
+import Logo from "@assets/images/logo_b.png";
 // import { Link } from "react-router-dom";
 import "./footer.css";
 
@@ -25,9 +25,9 @@ function footer() {
             <h5 className="text-uppercase mb-3 fw-bold">Web Gunea</h5>
             <ul className="list-unstyled">
               <li className="mb-2"><a href="/" className="text-white text-decoration-none hover-grey">Home</a></li>
-              <li className="mb-2"><a href="/Erosi" className="text-white text-decoration-none hover-grey">Erosi</a></li>
-              <li className="mb-2"><a href="/Saldu" className="text-white text-decoration-none hover-grey">Saldu</a></li>
-              <li className="mb-2"><a href="/Desguazatu" className="text-white text-decoration-none hover-grey">Desguazatu</a></li>
+              <li className="mb-2"><a href="/erosi" className="text-white text-decoration-none hover-grey">Erosi</a></li>
+              <li className="mb-2"><a href="/saldu" className="text-white text-decoration-none hover-grey">Saldu</a></li>
+              <li className="mb-2"><a href="/desguazatu" className="text-white text-decoration-none hover-grey">Desguazatu</a></li>
             </ul>
           </div>
 

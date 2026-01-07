@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/App.css';
 import Layout from '../components/layout/layout.jsx';
 import Search from '../components/ui/search/search.jsx';
 import ProducToggle from '../components/ui/buttons/producToggle/productToggle.jsx';

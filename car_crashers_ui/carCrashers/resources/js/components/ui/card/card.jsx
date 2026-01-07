@@ -1,6 +1,6 @@
 import './card.css';
-import imgCar from '../../../assets/images/carExample.jpeg';
-import { Link } from 'react-router-dom';
+import imgCar from '@assets/images/carExample.jpeg';
+import { Link } from '@inertiajs/react';
 
 function Card() {
   return (

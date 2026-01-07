@@ -22,7 +22,6 @@ function navBar() {
           id="navbarNavAltMarkup"
         >
           <div className="navbar-nav">
-            {/* Home */}
             <a
               href="/"
               className="nav-link d-flex d-row px-4 fs-5 navBar-link text-decoration-none text-secondary navBar-link-inner"
@@ -30,7 +29,6 @@ function navBar() {
               <i className="bi bi-house-door-fill"></i>&nbsp;&nbsp;Home
             </a>
 
-            {/* Salerosketa dropdown */}
             <li className="nav-item dropdown custom-responsive-dropdown">
               <a
                 className="nav-link dropdown-toggle px-4 fs-5 navBar-link"
@@ -62,7 +60,7 @@ function navBar() {
 
                 <li>
                   <a
-                    href="/Desguazatu"
+                    href="/desguazatu"
                     className="dropdown-item navBar-link text-decoration-none text-dark navBar-link-inner"
                   >
                     <i className="bi bi-box-seam-fill"></i>&nbsp;&nbsp;Desguazatu
@@ -71,7 +69,6 @@ function navBar() {
               </ul>
             </li>
 
-            {/* Nor gara */}
             <a
               href="/norGara"
               className="nav-link px-4 fs-5 navBar-link text-decoration-none text-secondary navBar-link-inner"

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Layout from "../components/layout/layout";
 import Forms from "../components/ui/forms/forms";
-import "../css/App.css";
 import FloatingInput from "../components/ui/floatingInput/floatingInput";
 import FloatingTextarea from "../components/ui/floatingTextArea/floatingTextArea";
 import ErrorMessage from "../components/ui/errorMessage/errorMessage";

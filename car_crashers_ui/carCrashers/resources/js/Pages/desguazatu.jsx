@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import '../css/App.css';
-import Layout from '../components/layout/layout.jsx';
-import KontaktuForm from '../components/ui/forms/kontaktuForm';
-import KotxeForm from '../components/ui/forms/kotxeForm';
-import ArgazkiForm from '../components/ui/forms/argazkiForm';
-import MezuForm from '../components/ui/forms/mezuForm';
-import Goikoa from '../components/ui/goikoa/goikoa.jsx';
+import Layout from '@components/layout/layout.jsx';
+import KontaktuForm from '@components/ui/forms/kontaktuForm';
+import KotxeForm from '@components/ui/forms/kotxeForm';
+import ArgazkiForm from '@components/ui/forms/argazkiForm';
+import MezuForm from '@components/ui/forms/mezuForm';
+import Goikoa from '@components/ui/goikoa/goikoa';
 
 const initialState = {
     nombreCompleto: '',

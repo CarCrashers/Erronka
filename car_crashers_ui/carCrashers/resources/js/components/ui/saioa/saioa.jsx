@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../../../../assets/images/logo.jpg';
+import Logo from '@assets/images/logo.jpg';
 import './saioa.css';
 
 const Saioa = () => {

@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Layout from "../components/layout/layout";
 import Forms from "../components/ui/forms/forms";
-import "../css/App.css";
 import FloatingInput from "../components/ui/floatingInput/floatingInput";
 import FloatingTextarea from "../components/ui/floatingTextArea/floatingTextArea";
-import guido from "../assets/images/guido.png";
-import luigi from "../assets/images/luigi.png";
-import mate from "../assets/images/Mate.png";
-import logo from "../assets/images/logo.jpg";
+import guido from "@assets/images/guido.png";
+import luigi from "@assets/images/luigi.png";
+import mate from "@assets/images/Mate.png";
+import logo from "@assets/images/logo.jpg";
 import NorGaraButton from "../components/ui/buttons/norgaraButton";
 import Goikoa from "../components/ui/goikoa/goikoa.jsx";
 

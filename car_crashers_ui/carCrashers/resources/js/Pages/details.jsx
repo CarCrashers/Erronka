@@ -1,6 +1,4 @@
 import React from 'react';
-import '../css/App.css';
-import '../css/index.css';
 import Layout from '../components/layout/layout.jsx';
 import ReturnBack from '../components/ui/buttons/returnBack/returnBack.jsx';
 import Carrusel from '../components/ui/carrusel/carrusel.jsx';
