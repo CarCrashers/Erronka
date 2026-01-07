@@ -4,11 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
+
 Route::get('/', function () {
-    return Inertia::render('welcome', [
-        'canRegister' => Features::enabled(Features::registration()),
-    ]);
-})->name('home');
+    return Inertia::render('home'); 
+});
+
+
+Route::get('/carcrashers', function () {
+    return Inertia::render('home'); // tu Home.jsx
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
