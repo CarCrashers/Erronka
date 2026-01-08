@@ -43,6 +43,11 @@ Route::get('/error', function () {
     return Inertia::render('ObrasEnMantenimiento');
 })->name('error');
 
+
+Route::get('/login', function () {
+    return Inertia::render('login');
+})->name('login');
+
 /*Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
