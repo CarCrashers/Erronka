@@ -23,10 +23,10 @@ function Header() {
           <button onClick={handleObraClick} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
             <img className="logo d-block mw-100 h-auto" src={Obrak} alt="Obrak" />
           </button>
-          <Link href="/saskia" className="d-inline-block w-auto text-decoration-none">
-            <i className="bi bi-cart"></i>
+          <Link href="/saskia" className="d-inline-block w-auto">
+            <i className="bi bi-cart obrak"></i>
           </Link>
-          <button className="btn btn-orange" type="button" data-bs-toggle="modal" data-bs-target="#saioa">
+          <button className="btn btn-outline-dark bg-orange" type="button" data-bs-toggle="modal" data-bs-target="#saioa">
             <i className="bi bi-person-circle"></i> Hasi Saioa
           </button>
         </div>

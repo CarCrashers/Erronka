@@ -3,19 +3,17 @@ import Layout from '../components/layout/layout.jsx';
 import ReturnBack from '../components/ui/buttons/returnBack/returnBack.jsx';
 import Carrusel from '../components/ui/carrusel/carrusel.jsx';
 import Card from '../components/ui/card/card.jsx';
+import Goikoa from '../components/ui/goikoa/goikoa.jsx';
 
-function Erosi() {
+
+function Details() {
   return (
     <React.StrictMode>
       <Layout>
-        <div className="container-fluid">
-          <div className="row justify-content-center bg-secondary text-white">
-            <div className="col-12 col-md-8 py-5 text-center text-md-start">
-              <h1>Produktuaren informazioa</h1>
-              <p>Behar duzun kotxea edo pieza aurkitu</p>
-            </div>
-          </div>
-        </div>
+        <Goikoa>
+            <h1>Produktuaren informazioa</h1>
+            <p>Behar duzun kotxea edo pieza aurkitu</p>
+        </Goikoa>
 
         <div className='container'>
             <div className='row ms-2'>
@@ -87,4 +85,4 @@ function Erosi() {
   );
 }
 
-export default Erosi;
+export default Details;

@@ -23,8 +23,8 @@ function Card() {
                     <span className="badge text-bg-warning rounded-pill">200000 Km</span>
                 </li>
             </ul>
-            <a href='/details'>
-                <a href="#" className="btn btn-secondary mt-2">Ikusi <i className="bi bi-box-arrow-up-right"></i></a>
+            <a href="/details">
+                <Link href="/details" className="btn btn-secondary mt-2">Ikusi <i className="bi bi-box-arrow-up-right"></i></Link>
             </a>
         </div>
     </div> 
