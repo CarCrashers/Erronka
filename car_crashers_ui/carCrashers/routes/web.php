@@ -35,15 +35,19 @@ Route::get('/saskia', function () {
     return Inertia::render('saskia');
 })->name('saskia');
 
+Route::get('/dashboard', function () {
+    return Inertia::render('dashboard');
+})->name('dashboard');
+
 Route::get('/error', function () {
     return Inertia::render('ObrasEnMantenimiento');
 })->name('error');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+/*Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});
+});*/
 
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
