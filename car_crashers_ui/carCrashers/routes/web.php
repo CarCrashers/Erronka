@@ -4,6 +4,8 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return Inertia::render('home');
@@ -60,5 +62,24 @@ Route::post('/login',[LoginController::class,'login']);
 //Dashboard-etik --> home-ra
 
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+
+
+//emaila posta elektroniko bidez berrestea
+
+
+Route::get('/email/verify', function () {
+    return inertia('Auth/VerifyEmail'); 
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route('home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'verification-link-sent');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 require __DIR__.'/settings.php';
