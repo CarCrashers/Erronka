@@ -38,15 +38,9 @@ function Login() {
           </div>
 
           <div className="form-check text-start my-3">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value="remember-me"
-              id="checkDefault"
-            />
-            <label className="form-check-label text-white" htmlFor="checkDefault">
-              Remember me???
-            </label>
+            <FloatingInput type="checkbox" className="form-check-input" id="checkDefault" value="remember-me">
+              Gogoratu
+            </FloatingInput>
           </div>
 
           <button className="btn btn-primary w-100 py-2" type="submit">

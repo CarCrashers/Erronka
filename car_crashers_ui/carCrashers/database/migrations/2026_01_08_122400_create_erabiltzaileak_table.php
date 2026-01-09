@@ -21,7 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('zuzendari_id')->nullable(); // FK pendiente
             $table->timestamps();
 
-          
         });
     }
 

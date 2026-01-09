@@ -29,6 +29,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'confirmed' => 'boolean',
     ];
 
+
+
+    // Dashboard-eko sarbidea konprobatzeko 
+    public function isAdmin(): bool
+    {
+        return $this->mota === 'admin';
+    }
+    
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailNotification);

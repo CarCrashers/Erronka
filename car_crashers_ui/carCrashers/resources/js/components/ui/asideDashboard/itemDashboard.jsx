@@ -1,11 +1,11 @@
-function ItemDashboard({name, icon}) {  
+function ItemDashboard({name, icon, onclick}) {  
     return (
     
             <li className="nav-item">
-              <a className="nav-link d-flex align-items-center active gap-2" aria-current="page" href="#">
+              <button type="button" className="nav-link d-flex align-items-center active gap-2" aria-current="page" onClick={onclick}>
                 <i className={icon}></i>
                 {name}
-              </a>
+              </button>
             </li>
 
           

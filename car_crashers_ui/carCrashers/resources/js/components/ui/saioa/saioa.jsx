@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useForm, router } from '@inertiajs/react';
 import Logo from '@assets/images/logo.jpg';
+import { useForm } from '@inertiajs/react';
+import FloatingInput from '../floatingInput/floatingInput';
 import './saioa.css';
 
 const Saioa = () => {
@@ -71,8 +73,15 @@ const Saioa = () => {
     });
   };
 
+
   return (
-    <div className="modal fade" id="saioa" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div
+      className="modal fade"
+      id="saioa"
+      tabIndex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content p-4 rounded-4 shadow-lg border-0">
           <button type="button" className="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -93,7 +102,7 @@ const Saioa = () => {
 
           <div className="d-flex align-items-center my-3">
             <hr className="flex-grow-1" />
-            <span className="px-3 text-muted small">EDO</span>
+            <span className="text-muted small px-3">EDO</span>
             <hr className="flex-grow-1" />
           </div>
 
@@ -110,16 +119,30 @@ const Saioa = () => {
             )}
 
             <div className="mb-3">
-              <label className="form-label text-muted small fw-bold">Email</label>
               <div className="input-group">
-                <span className="input-group-text bg-light border-end-0 text-muted"><i className="bi bi-envelope"></i></span>
-                <input type="email" className={`form-control bg-light border-start-0 ps-0 ${errors.email ? 'border-danger' : ''}`} placeholder="juan@adibidea.com" value={data.email} onChange={(e) => setData('email', e.target.value)}/>
+                <span className="input-group-text bg-light border-end-0 text-muted">
+                  <i className="bi bi-envelope"></i>
+                </span>
+
+                <FloatingInput
+                  id="loginEmail"
+                  type="email"
+                  value={data.korreoa}
+                  onChange={(e) => setData('korreoa', e.target.value)}
+                  placeholder="juan@adibidea.com"
+                  required
+                  name="korreoa"
+                >
+                  Email
+                </FloatingInput>
               </div>
-              {errors.email && <div className="text-danger">{errors.email}</div>}
+              {errors.korreoa && (
+                <div className="text-danger mt-1">{errors.korreoa}</div>
+              )}
             </div>
 
+            {/* Pasahitza */}
             <div className="mb-3">
-              <label className="form-label text-muted small fw-bold">Pasahitza</label>
               <div className="input-group">
                 <span className="input-group-text bg-light border-end-0 text-muted"><i className="bi bi-lock"></i></span>
                 <input type="password" className={`form-control bg-light border-start-0 ps-0 ${errors.password ? 'border-danger' : ''}`} placeholder="••••••••" value={data.password} onChange={(e) => setData('password', e.target.value)}/>
