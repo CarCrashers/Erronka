@@ -8,7 +8,6 @@ import './saioa.css';
 
 const Saioa = () => {
   const [isLogin, setIsLogin] = useState(true);
-  
   const closeButtonRef = useRef(null);
 
   const { data, setData, post, processing, errors, reset, clearErrors } = useForm({
@@ -16,7 +15,6 @@ const Saioa = () => {
     email: '',
     password: '',
     password_confirmation: '',
-    remember: false
   });
 
   const toggleMode = (e) => {
@@ -86,10 +84,10 @@ const Saioa = () => {
           <div className="text-center mb-4">
             <img src={Logo} alt="Logo" className="mb-3 rounded-circle login-logo" />
             <h4 className="fw-bold text-dark">
-                {isLogin ? 'Ongi etorri CarCrashers' : 'Sortu kontua'}
+              {isLogin ? 'Ongi etorri CarCrashers' : 'Sortu kontua'}
             </h4>
             <p className="text-muted">
-                {isLogin ? 'Saioa hasi jarraitzeko.' : 'Bete datuak erregistratzeko.'}
+              {isLogin ? 'Saioa hasi jarraitzeko.' : 'Bete datuak erregistratzeko.'}
             </p>
           </div>
 
@@ -115,6 +113,7 @@ const Saioa = () => {
               </div>
             )}
 
+            {/* Email */}
             <div className="mb-3">
               <div className="input-group">
                 <span className="input-group-text bg-light border-end-0 text-muted">
@@ -126,21 +125,39 @@ const Saioa = () => {
             <div className="mb-3">
               <label className="form-label text-muted small fw-bold">Email</label>
               <div className="input-group">
-                <span className="input-group-text bg-light border-end-0 text-muted"><i className="bi bi-envelope"></i></span>
-                <input type="email" className={`form-control bg-light border-start-0 ps-0 ${errors.email ? 'border-danger' : ''}`} placeholder="juan@adibidea.com" value={data.email} onChange={(e) => setData('email', e.target.value)}/>
+                <span className="input-group-text bg-light border-end-0 text-muted">
+                  <i className="bi bi-envelope"></i>
+                </span>
+                <input
+                  type="email"
+                  className={`form-control bg-light border-start-0 ps-0 ${errors.email ? 'border-danger' : ''}`}
+                  placeholder="juan@adibidea.com"
+                  value={data.email}
+                  onChange={(e) => setData('email', e.target.value)}
+                />
               </div>
               {errors.email && <div className="text-danger">{errors.email}</div>}
             </div>
 
+            {/* Pasahitza */}
             <div className="mb-3">
               <label className="form-label text-muted small fw-bold">Pasahitza</label>
               <div className="input-group">
-                <span className="input-group-text bg-light border-end-0 text-muted"><i className="bi bi-lock"></i></span>
-                <input type="password" className={`form-control bg-light border-start-0 ps-0 ${errors.password ? 'border-danger' : ''}`} placeholder="••••••••" value={data.password} onChange={(e) => setData('password', e.target.value)}/>
+                <span className="input-group-text bg-light border-end-0 text-muted">
+                  <i className="bi bi-lock"></i>
+                </span>
+                <input
+                  type="password"
+                  className={`form-control bg-light border-start-0 ps-0 ${errors.password ? 'border-danger' : ''}`}
+                  placeholder="••••••••"
+                  value={data.password}
+                  onChange={(e) => setData('password', e.target.value)}
+                />
               </div>
               {errors.password && <div className="text-danger">{errors.password}</div>}
             </div>
 
+            {/* Confirmación – solo registro */}
             {!isLogin && (
               <div className="mb-3">
                 <label className="form-label text-muted small fw-bold">Pasahitza berretsi</label>
