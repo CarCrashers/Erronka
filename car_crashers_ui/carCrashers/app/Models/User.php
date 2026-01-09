@@ -18,11 +18,19 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+
+    protected $table = "erabiltzaileak";
+
+     protected $fillable = [
+        'izena',
+        'pasahitza',
+        'mota',
+        'telefono',
+        'korreoa',
+        'zuzendari_id',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -30,11 +38,21 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',
-        'two_factor_secret',
-        'two_factor_recovery_codes',
+        'pasahitza',
         'remember_token',
     ];
+
+
+    public function getAuthPassword()
+    {
+        return $this->pasahitza;
+    }
+
+    // Dashboard-eko sarbidea konprobatzeko 
+    public function isAdmin(): bool
+    {
+        return $this->mota === 'admin';
+    }
 
     /**
      * Get the attributes that should be cast.

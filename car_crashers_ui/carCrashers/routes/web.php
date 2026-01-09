@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -45,10 +46,19 @@ Route::get('/login', function () {
     return Inertia::render('login');
 })->name('login');
 
-/*Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('dashboard',  function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});*/
+});
+
+
+//LOGIN modaletik --> dashboard-era
+
+Route::post('/login',[LoginController::class,'login']);
+
+//Dashboard-etik --> home-ra
+
+Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 require __DIR__.'/settings.php';

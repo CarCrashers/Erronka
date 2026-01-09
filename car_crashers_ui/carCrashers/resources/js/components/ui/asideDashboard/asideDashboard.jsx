@@ -1,8 +1,12 @@
 import ItemDashboard from './itemDashboard';
+import { router } from '@inertiajs/react';
 
 function AsideDashboard() {
+  const handleLogout = (e) =>{
+    e.preventDefault();
+    router.post('/logout');
+  }
   return (
-    // contenedor siempre presente; el modo móvil lo controla offcanvas-md
     <div className="sidebar border-right col-md-3 col-lg-2 bg-body-tertiary border p-0">
       <div
         className="offcanvas-md offcanvas-end bg-body-tertiary"
@@ -10,7 +14,6 @@ function AsideDashboard() {
         id="sidebarMenu"
         aria-labelledby="sidebarMenuLabel"
       >
-        {/* cabecera solo en móvil */}
         <div className="offcanvas-header d-md-none">
           <h5 className="offcanvas-title" id="sidebarMenuLabel">
             Company name
@@ -20,8 +23,8 @@ function AsideDashboard() {
             className="btn-close"
             data-bs-dismiss="offcanvas"
             data-bs-target="#sidebarMenu"
-            aria-label="Close"
-          ></button>
+            aria-label="Close">
+          </button>
         </div>
 
         <div className="offcanvas-body d-md-flex flex-column pt-lg-3 overflow-y-auto p-0">
@@ -59,7 +62,7 @@ function AsideDashboard() {
           {/* logout */}
           <ul className="nav flex-column mb-auto">
             <ItemDashboard name="Settings" icon="bi bi-gear-wide-connected" />
-            <ItemDashboard name="Sign out" icon="bi bi-door-closed" />
+            <ItemDashboard name="Sign out" icon="bi bi-door-closed" onclick={handleLogout}/>
           </ul>
         </div>
       </div>
