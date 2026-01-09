@@ -1,5 +1,5 @@
 import Logo from "@assets/images/logo_b.png";
-// import { Link } from "react-router-dom";
+import { Link } from "@inertiajs/react";
 import "./footer.css";
 
 function footer() {
@@ -24,10 +24,10 @@ function footer() {
           <div className="col-md-4 mb-4 mb-md-0">
             <h5 className="text-uppercase mb-3 fw-bold">Web Gunea</h5>
             <ul className="list-unstyled">
-              <li className="mb-2"><a href="/" className="text-white text-decoration-none hover-grey">Home</a></li>
-              <li className="mb-2"><a href="/erosi" className="text-white text-decoration-none hover-grey">Erosi</a></li>
-              <li className="mb-2"><a href="/saldu" className="text-white text-decoration-none hover-grey">Saldu</a></li>
-              <li className="mb-2"><a href="/desguazatu" className="text-white text-decoration-none hover-grey">Desguazatu</a></li>
+              <li className="mb-2"><Link href="/" className="text-white text-decoration-none hover-grey">Home</Link></li>
+              <li className="mb-2"><Link href="/erosi" className="text-white text-decoration-none hover-grey">Erosi</Link></li>
+              <li className="mb-2"><Link href="/saldu" className="text-white text-decoration-none hover-grey">Saldu</Link></li>
+              <li className="mb-2"><Link href="/desguazatu" className="text-white text-decoration-none hover-grey">Desguazatu</Link></li>
             </ul>
           </div>
 
