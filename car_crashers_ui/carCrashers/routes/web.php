@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', function () {
     return Inertia::render('home');
@@ -42,4 +45,32 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-require __DIR__.'/settings.php';
+// Rutas de autenticación
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'show'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+    
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+});
+
+Route::middleware('auth')->group(function () {
+    // Email verification routes
+    Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
+        ->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verify'])
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
+
+    Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+// require __DIR__.'/settings.php'; // temporarily disabled while debugging missing controllers
+
+// Legacy confirmation route (confirmation_code style)
+Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->name('register.verify');

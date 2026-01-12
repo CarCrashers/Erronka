@@ -13,16 +13,15 @@ createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     resolve: (name) =>
         resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob('./Pages/**/*.jsx'),
+            // try TSX first, then JSX for backwards-compatibility
+            [`./Pages/${name}.tsx`, `./Pages/${name}.jsx`],
+            import.meta.glob('./Pages/**/*.{tsx,jsx}'),
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
 
         root.render(
-            <StrictMode>
-                <App {...props} />
-            </StrictMode>,
+            <App {...props} />
         );
     },
     progress: {

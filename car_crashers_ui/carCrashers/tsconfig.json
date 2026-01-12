@@ -113,5 +113,5 @@
         },
         "jsx": "react-jsx"
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.tsx", "resources/js/Pages/home.jsx", "resources/js/components/ui/heroe/heroe.jsx", "resources/js/components/layout/layout.jsx", "resources/js/components/ui/info/info.jsx"]
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.tsx", "resources/js/Pages/home.jsx", "resources/js/Pages/Auth/**/*.tsx", "resources/js/components/ui/heroe/heroe.jsx", "resources/js/components/layout/layout.jsx", "resources/js/components/ui/info/info.jsx", "resources/js/components/ui/RegisterLink.tsx"]
 }

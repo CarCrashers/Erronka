@@ -44,8 +44,9 @@
         {{-- Bootstrap Icons --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-        @viteReactRefresh
-        @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.js"])
+    @viteReactRefresh
+    {{-- Load the app entry and the current page chunk. Use .tsx to match compiled manifest keys when pages are TSX files. --}}
+    @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
         @inertiaHead
     </head>
     <body class="font-sans antialiased">

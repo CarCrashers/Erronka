@@ -114,29 +114,3 @@
   color: black;
   transition: color 0.2s ease;
 }
-
-/* Transiciones suaves para Inertia */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#app {
-  transition: opacity 0.2s ease-out;
-}
-
-/* Fade in/out para cambios de página */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-main {
-  animation: fadeIn 0.25s ease-out;
-  will-change: opacity;
-}
-
-
