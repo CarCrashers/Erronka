@@ -1,39 +1,38 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
     //
 
-    public function login(Request $request)
+   public function login(Request $request)
     {
-        //Balioztatzeko
-        $kredentzialak = $request -> validate([
-            'korreoa' => 'required|email',
-            'pasahitza' => 'required',
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        if(!Auth::attempt([
-            'korreoa' => $kredentzialak['korreoa'],
-            'password' => $kredentzialak['pasahitza'],]))
-        {
-            return back() ->withErrors(['korreoa' => 'Kredentzialak ez dira zuzenak.']) ->onlyInput('korreoa');
+        if (! Auth::attempt($credentials)) {
+            return back()
+                ->withErrors(['email' => 'Kredentzialak ez dira zuzenak.'])
+                ->onlyInput('email');
         }
 
         $request->session()->regenerate();
 
-        return redirect('/dashboard');
+        return redirect()->route('dashboard');
     }
 
-    public function destroy( Request $request)
+    public function destroy(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect() -> route('home');
+        return redirect()->route('home');
     }
 }
