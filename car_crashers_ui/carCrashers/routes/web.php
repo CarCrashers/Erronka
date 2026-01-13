@@ -30,9 +30,20 @@ Route::get('/desguazatu', function () {
     return Inertia::render('desguazatu');
 })->name('desguazatu');
 
-Route::get('/saldu', function () {
-    return Inertia::render('saldu');
-})->name('saldu');
+
+// saldu orria
+
+    Route::get('/saldu', function () {
+        return Inertia::render('saldu');
+    })->name('saldu');
+
+    //peritutza eskaera bidaltzen
+
+    Route::post('/saldu', [PeritutzaEskaeraController::class, 'store'])
+        ->middleware('auth')
+        ->name('saldu.store');
+
+//*********** 
 
 Route::get('/saskia', function () {
     return Inertia::render('saskia');
@@ -53,11 +64,11 @@ Route::get('/login', function () {
 
 
 // berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
-Route::middleware(['auth', 'verified'])->group(function () {
+/*Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard',  function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});
+});*/
 
 
 //LOGIN modaletik --> dashboard-era
