@@ -34,8 +34,8 @@
 
         <link rel="icon" href="{{ Vite::asset('resources/assets/images/logo.jpg') }}" sizes="any">
         <link rel="icon" href="{{ Vite::asset('resources/assets/images/logo.jpg') }}" type="image/jpeg">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
+        <link rel="apple-touch-icon" href="{{ Vite::asset('resources/assets/images/logo.jpg') }}">
+        
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
         
