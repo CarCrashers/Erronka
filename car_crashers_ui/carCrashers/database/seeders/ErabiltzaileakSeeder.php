@@ -13,17 +13,18 @@ class ErabiltzaileakSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('erabiltzaileak')->insert([
+        DB::table('users')->insert([
             [
-                'izena'        => 'Admin Proba',
-                'pasahitza'    => Hash::make('secret123'), // contraseña
-                'mota'         => 'admin',
-                'telefono'     => '600000000',
-                'korreoa'      => 'admin@carcrashers.test',
-                'zuzendari_id' => null,
-                'created_at'   => now(),
-                'updated_at'   => now(),
+                'name' => 'Admin Proba',
+                'email' => 'admin@carcrashers.test',
+                'password' => Hash::make('secret123'),
+                'mota' => 'admin',      
+                'telefono' => '600000000',  
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
+
+
     }
 }

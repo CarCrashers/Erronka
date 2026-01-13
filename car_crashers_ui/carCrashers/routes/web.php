@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -48,6 +49,8 @@ Route::get('/login', function () {
     return Inertia::render('login');
 })->name('login');
 
+
+// berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard',  function () {
         return Inertia::render('dashboard');
@@ -64,9 +67,11 @@ Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 
+//erregistratu
+//Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
 
 //emaila posta elektroniko bidez berrestea
-
 
 Route::get('/email/verify', function () {
     return inertia('Auth/VerifyEmail'); 
