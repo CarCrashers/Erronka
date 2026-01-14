@@ -6,6 +6,12 @@ function AsideDashboard() {
     e.preventDefault();
     router.post('/logout');
   }
+
+
+  const handleHasiera = (e) =>{
+    e.preventDefault();
+    router.get('/');
+  }
   return (
     <div className="sidebar border-right col-md-3 col-lg-2 bg-body-tertiary border p-0">
       <div
@@ -35,7 +41,6 @@ function AsideDashboard() {
             <ItemDashboard name="Kotxeak" icon="bi bi-car-front-fill" />
             <ItemDashboard name="Piezak" icon="bi bi-tools" />
             <ItemDashboard name="Reports" icon="bi bi-graph-up" />
-            <ItemDashboard name="Integrations" icon="bi bi-puzzle" />
           </ul>
 
           {/* bestelakoak */}
@@ -61,6 +66,7 @@ function AsideDashboard() {
 
           {/* logout */}
           <ul className="nav flex-column mb-auto">
+            <ItemDashboard name="Hasiera" icon="bi bi-house" onclick={handleHasiera} />
             <ItemDashboard name="Settings" icon="bi bi-gear-wide-connected" />
             <ItemDashboard name="Sign out" icon="bi bi-door-closed" onclick={handleLogout}/>
           </ul>

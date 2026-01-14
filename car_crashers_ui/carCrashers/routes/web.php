@@ -49,9 +49,9 @@ Route::get('/saskia', function () {
     return Inertia::render('saskia');
 })->name('saskia');
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return Inertia::render('dashboard');
-})->name('dashboard');
+})->name('dashboard');*/
 
 Route::get('/error', function () {
     return Inertia::render('ObrasEnMantenimiento');
@@ -64,11 +64,11 @@ Route::get('/login', function () {
 
 
 // berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
-/*Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard',  function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});*/
+});
 
 
 //LOGIN modaletik --> dashboard-era
@@ -82,7 +82,7 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');
-    Route::post('/login', [LoginController::class, 'store']);
+    Route::post('/login', [LoginController::class, 'login']);
     
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);

@@ -5,7 +5,6 @@ import './saioa.css';
 
 const Saioa = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const closeButtonRef = useRef(null);
 
   const { data, setData, post, processing, errors, reset, clearErrors } = useForm({
     name: '',
@@ -63,7 +62,7 @@ const Saioa = () => {
         reset('password', 'password_confirmation');
 
         // client-side navigate to home (ensures view update)
-        try { router.visit('/'); } catch (err) {}
+        //try { router.visit('/'); } catch (err) {}
       },
       onError: () => {
         // validation errors are available in `errors`
