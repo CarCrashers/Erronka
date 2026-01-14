@@ -110,14 +110,6 @@ const Saioa = () => {
               </div>
             )}
 
-            {/* Email */}
-            <div className="mb-3">
-              <div className="input-group">
-                <span className="input-group-text bg-light border-end-0 text-muted">
-                  <i className="bi bi-envelope"></i>
-                </span>
-              </div>
-            </div>
 
             <div className="mb-3">
               <label className="form-label text-muted small fw-bold">Email</label>
