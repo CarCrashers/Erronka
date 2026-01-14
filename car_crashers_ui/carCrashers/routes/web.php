@@ -1,14 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+//use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
+//use Laravel\Fortify\Features;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LoginController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
+//use App\Http\Controllers\LoginController;
+//use Illuminate\Foundation\Auth\EmailVerificationRequest;
+//use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return Inertia::render('home');
