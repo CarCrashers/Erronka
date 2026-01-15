@@ -2,9 +2,6 @@ import { usePage } from "@inertiajs/react";
 
 
 function HeaderDashboard() {
-    const { props } = usePage();
-    const user = props.auth?.user;
-
   return (
     <header
       className="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow"
@@ -12,10 +9,9 @@ function HeaderDashboard() {
     >
       <a
         className="navbar-brand col-md-3 col-lg-2 fs-6 me-0 px-3 text-white"
-        href="#"
+        href="/"
       >
-        Kaixo, {user.name} !
-      
+        CarCrashers
       </a>
       <p> </p>
       {/* botones solo en móvil */}

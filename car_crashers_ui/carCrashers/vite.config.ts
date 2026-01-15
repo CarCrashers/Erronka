@@ -17,6 +17,14 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+            host: '10.14.1.54',
+            port: 5173,
+        },
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './resources/js'),
