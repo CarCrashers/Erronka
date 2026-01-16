@@ -1,14 +1,23 @@
-function ItemDashboard({name, icon, onclick}) {  
-    return (
-    
-            <li className="nav-item">
-              <button type="button" className="nav-link d-flex align-items-center active gap-2" aria-current="page" onClick={onclick}>
-                <i className={icon}></i>
-                {name}
-              </button>
-            </li>
+import { Link } from '@inertiajs/react';
 
-          
+function ItemDashboard({ name, icon, href = '#', onclick = null, className = '' }) {
+  const handleClick = (e) => {
+    if (onclick) {
+      onclick(e);
+    }
+  };
+
+  return (
+    <li className="nav-item">
+      <Link
+        href={href || '#'}
+        className={`nav-link ${className}`}
+        onClick={handleClick}
+      >
+        <i className={`${icon} me-2`}></i>
+        <span>{name}</span>
+      </Link>
+    </li>
   );
 }
 
