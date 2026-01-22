@@ -10,32 +10,30 @@ function heroe() {
             <p className="lead mb-4">CarCrashers-en, autoak aukera bihurtzen ditugu. Txatartegi moderno eta eraginkorra gara, baina gure egitekoa harago doa. Zure ibilgailua errepidean mantentzeko jatorrizko ordezko pieza bermatuen bila bazabiltza, edo eskuko bigarren auto bat bidezko prezioan erosteko interesa baduzu, leku egokian zaude!</p> 
             <div className="d-flex flex-column flex-md-row justify-content-center gap-3">
               <a href="/erosi" className="btn-hero btn-hero-transparent">
-                <i class="bi bi-cart"></i>Erosi</a>  
+                <i className="bi bi-cart"></i>Erosi</a>  
               <a href="/saldu" className="btn-hero btn-hero-transparent">
-                <i class="bi bi-currency-dollar"></i>Saldu</a>
+                <i className="bi bi-currency-dollar"></i>Saldu</a>
               <a href="/desguazatu" className="btn-hero btn-hero-transparent">
-                <i class="bi bi-car-front"></i>Desguazatu</a>
+                <i className="bi bi-car-front"></i>Desguazatu</a>
+              <a href="/login" className="btn-hero btn-hero-transparent">
+                <i className="bi bi-box-arrow-in-right"></i>Saioa hasi</a>
             </div>
         </div> 
         <div className="row mt-5">
-                
-                <div className="col-md-4 mb-3 mb-md-0">
-                    <div className="stat-number">500+</div>
-                    <div className="stat-label">Ibilgailu</div>
-                </div>
-
-                <div className="col-md-4 mb-3 mb-md-0">
-                     <div className="stat-number">5000+</div>
-                     <div className="stat-label">Pieza (Recambios)</div>
-                </div>
-
-                <div className="col-md-4">
-                     <div className="stat-number">98%</div>
-                     <div className="stat-label">Bermea</div>
-                </div>
-
+            <div className="col-md-4 mb-3 mb-md-0">
+                <div className="stat-number">500+</div>
+                <div className="stat-label">Ibilgailu</div>
+            </div>
+            <div className="col-md-4 mb-3 mb-md-0">
+                <div className="stat-number">5000+</div>
+                <div className="stat-label">Pieza (Recambios)</div>
+            </div>
+            <div className="col-md-4">
+                <div className="stat-number">98%</div>
+                <div className="stat-label">Bermea</div>
             </div>
         </div>
+    </div>
     </div>
   );
 }
