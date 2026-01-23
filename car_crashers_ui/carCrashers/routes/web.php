@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeritutzaEskaeraController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Kotxea;
+use App\Models\Pieza;
 
 Route::get('/', function () {
     return Inertia::render('home');
@@ -55,11 +57,11 @@ Route::get('/login', function () {
 })->name('login');
 
 // berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
-Route::middleware(['auth', 'verified'])->group(function () {
+/*Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});
+});*/
 
 // Dashboard-etik --> home-ra
 
@@ -91,6 +93,15 @@ Route::middleware('auth')->group(function () {
 // Legacy confirmation route (confirmation_code style)
 Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->name('register.verify');
 
+Route::get('/dashboard', function () {
+    return Inertia::render('dashboard', [
+        'kotxeak' => Kotxea::latest()->get(),
+        'piezak'  => Pieza::latest()->get(),
+    ]);
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+//Pruebas Agoitz para comprobar el email de verificación desde el exterior
 use App\Models\User;
 use App\Notifications\VerifyEmailNotification;
 

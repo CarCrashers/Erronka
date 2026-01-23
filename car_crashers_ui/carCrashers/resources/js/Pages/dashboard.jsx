@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderDashboard from '../components/ui/headerDashboard/headerDashboard.jsx';
-import AsideDashboard from '../components/ui/asideDashboard/asideDashboard';
+import AsideDashboard from '../components/ui/asideDashboard/asideDashboard.jsx';
 import MainDashboard from '../components/ui/mainDashboard/mainDashboard.jsx';
 
 

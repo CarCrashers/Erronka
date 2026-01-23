@@ -1,19 +1,10 @@
 import { Link } from '@inertiajs/react';
 
-function ItemDashboard({ name, icon, href = '#', onclick = null, className = '' }) {
-  const handleClick = (e) => {
-    if (onclick) {
-      onclick(e);
-    }
-  };
-
+function ItemDashboard({ name, icon, href = '#', method = 'get', className = '' }) {
+  
   return (
     <li className="nav-item">
-      <Link
-        href={href || '#'}
-        className={`nav-link ${className}`}
-        onClick={handleClick}
-      >
+      <Link href={href} method={method} as="a" className={`nav-link ${className}`}>
         <i className={`${icon} me-2`}></i>
         <span>{name}</span>
       </Link>
