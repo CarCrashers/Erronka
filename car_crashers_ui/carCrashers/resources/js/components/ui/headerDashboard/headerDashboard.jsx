@@ -3,6 +3,8 @@ import { useState } from "react";
 import './headerDashboard.css';
 import Logo from "@assets/images/logo.jpg";
 import { Link, usePage } from "@inertiajs/react";
+import ItemDashboard from '../asideDashboard/itemDashboard';
+
 
 function HeaderDashboard() {
   const { props } = usePage();
@@ -90,7 +92,8 @@ function HeaderDashboard() {
             </button>
             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
               <li><h6 className="dropdown-header">{user?.email}</h6></li>
-              <li><a className="dropdown-item text-danger" onclick={handleLogout} href="#"><i className="bi bi-door-closed me-2"></i>Cerrar sesión</a></li>
+              <li>{/*<ItemDashboard name="Saioa itxi" icon="bi bi-door-closed" onclick={handleLogout} href="#" className="text-danger" /></li>*/}
+              <ItemDashboard name="Saioa itxi" icon="bi bi-door-closed" href="/logout" method="post" className="text-danger" /></li>
             </ul>
           </div>
         </div>
