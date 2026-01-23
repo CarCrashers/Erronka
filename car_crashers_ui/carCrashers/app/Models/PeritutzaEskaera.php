@@ -19,6 +19,7 @@ class PeritutzaEskaera extends Model
         'marka',
         'modelo',
         'urtea',
+        'argazkiak',
         'egoera_kotxe',
         'desk',
         'prezioa',
@@ -30,6 +31,7 @@ class PeritutzaEskaera extends Model
     protected $casts = [
         'desguazatzeko' => 'boolean',
         'prezioa'       => 'decimal:2',
+        'argazkiak' => 'array',
     ];
 
     public function erabiltzailea()

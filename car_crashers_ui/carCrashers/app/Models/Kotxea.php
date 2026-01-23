@@ -17,9 +17,21 @@ class Kotxea extends Model
     protected $fillable = [
         'matrikula',
         'marka',
-        'modeloa',
+        'modeloa',      
         'urtea',
+        'kilometroak',  
+        'egoera',       
+        'deskribapena', 
+        'dokumentua',  
         'desguazea_id',
+        'argazkiak'
+    ];
+
+    protected $casts = [
+        'kilometroak' => 'integer',
+        'urtea' => 'integer',
+        'argazkiak' => 'array',
+        'dokumentua' => 'boolean',
     ];
 
     public function desguazea()

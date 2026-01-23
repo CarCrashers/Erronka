@@ -66,19 +66,27 @@ class frogaSeeder extends Seeder
 
         // 4. Kotxeak
         $kotxe1 = Kotxea::create([
-            'matrikula'    => '1234ABC',
-            'marka'        => 'Opel',
-            'modeloa'      => 'Corsa',
-            'urtea'        => 2015,
-            'desguazea_id' => $desguazea->id,
+            'matrikula'     => '1234ABC',
+            'marka'         => 'Opel',
+            'modeloa'       => 'Corsa',
+            'urtea'         => 2015,
+            'kilometroak'   => 120000,
+            'egoera'        => 'ongi',
+            'deskribapena'  => 'Egoera onean dagoen Opel Corsa.',
+            'dokumentua'    => true,
+            'desguazea_id'  => $desguazea->id,
         ]);
 
         $kotxe2 = Kotxea::create([
-            'matrikula'    => '5678DEF',
-            'marka'        => 'Ford',
-            'modeloa'      => 'Focus',
-            'urtea'        => 2018,
-            'desguazea_id' => $desguazea->id,
+            'matrikula'     => '5678DEF',
+            'marka'         => 'Ford',
+            'modeloa'       => 'Focus',
+            'urtea'         => 2018,
+            'kilometroak'   => 85000,
+            'egoera'        => 'bikaina',
+            'deskribapena'  => 'Ford Focus berria, kilometro gutxiekin.',
+            'dokumentua'    => true,
+            'desguazea_id'  => $desguazea->id,
         ]);
 
         // 5. Piezak
