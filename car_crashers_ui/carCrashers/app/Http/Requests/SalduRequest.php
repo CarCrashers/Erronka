@@ -16,9 +16,17 @@ class SalduRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation. 
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'options-outlined' => filter_var($this->input('options-outlined'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? false,
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -38,15 +46,15 @@ class SalduRequest extends FormRequest
             'kilometro' => ['required', 'integer', 'min:0'],
             'egoera'    => ['required', 'in:bikaina,ongi,nahikoa'],
 
-            // deskribapena aukerakoa
+            // deskribapena
             'deskribapena' => ['nullable', 'string'],
 
-            // dokumentazioa (radio true/false)
-            'options-outlined' => ['required', 'boolean'],
-
-            // argazkiak: gutxienez 1 fitxategi, JPG/PNG, tamaina max.
-            'fotos'   => ['required', 'array', 'min:1'],
-            'fotos.*' => ['file', 'image', 'mimes:jpg,jpeg,png', 'max:4096'],
+            // dokumentazioa
+            'options-outlined' => ['required', 'boolean'], 
+            
+            //argazkiak
+            'argazkiak'   => ['required', 'array', 'min:1'],
+            'argazkiak.*' => ['file', 'image', 'mimes:jpg,jpeg,png', 'max:4096'],
         ];
     }
 
@@ -58,8 +66,8 @@ class SalduRequest extends FormRequest
             'egoera.in'       => 'Egoera aukeratu behar duzu.',
             'options-outlined.required' => 'Dokumentazioa adierazi behar duzu.',
             'options-outlined.boolean'  => 'Dokumentazio balioa ez da zuzena.',
-            'fotos.required'  => 'Gutxienez argazki bat bidali behar duzu.',
-            'fotos.*.image'   => 'Argazkiak irudi motako fitxategiak izan behar dira.',
+            'argazkiak.required'  => 'Gutxienez argazki bat bidali behar duzu.',
+            'argazkiak.*.image'   => 'Argazkiak irudi motako fitxategiak izan behar dira.',
         ];
     }
 }

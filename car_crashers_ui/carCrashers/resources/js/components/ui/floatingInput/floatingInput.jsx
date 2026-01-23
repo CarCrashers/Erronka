@@ -11,6 +11,7 @@ function floatingInput({
     disabled = false,
     required = false,
     name,
+    
 }){
     return( 
         <div className="form-floating">

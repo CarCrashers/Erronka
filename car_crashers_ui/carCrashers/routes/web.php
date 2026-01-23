@@ -21,22 +21,17 @@ Route::get('/erosi', function () {
 Route::get('/details', function () {
     return Inertia::render('details');
 })->name('details');
-
+ 
 Route::get('/desguazatu', function () {
     return Inertia::render('desguazatu');
 })->name('desguazatu');
 
 // saldu orria
 
-Route::get('/saldu', function () {
-    return Inertia::render('saldu');
-})->name('saldu');
-
-// peritutza eskaera bidaltzen
-
-Route::post('/saldu', [PeritutzaEskaeraController::class, 'store'])
-    ->middleware('auth')
-    ->name('saldu.store');
+Route::middleware('auth')->group(function () {
+    Route::get('/saldu', [PeritutzaEskaeraController::class, 'create'])->name('saldu');
+    Route::post('/saldu', [PeritutzaEskaeraController::class, 'store'])->name('saldu.store');
+});
 
 Route::get('/saskia', function () {
     return Inertia::render('saskia');

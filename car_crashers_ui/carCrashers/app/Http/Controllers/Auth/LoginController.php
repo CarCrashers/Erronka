@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     //
+    public function show()
+    {
+        return redirect() -> route('home');
+    }
 
    public function login(Request $request)
     {

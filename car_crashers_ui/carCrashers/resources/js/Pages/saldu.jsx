@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { router } from '@inertiajs/react';
 import Layout from "../components/layout/layout";
 import Forms from "../components/ui/forms/forms";
 import FloatingInput from "../components/ui/floatingInput/floatingInput";
@@ -7,18 +8,21 @@ import ErrorMessage from "../components/ui/errorMessage/errorMessage";
 import SuccessMessage from "../components/ui/successMessage/successMessage";
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
 import ArgazkiForm from '../components/ui/forms/argazkiForm';
+import { usePage } from "@inertiajs/react";
 
 function Saldu() {
   const [errorea, setErrorea] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
-
+  const [sending, setSending] = useState(false);
   const [fotos, setFotos] = useState([]);
   const [formKey, setFormKey] = useState(0);
 
+  const { erabiltzailea } = usePage().props;
+
   const handleFileChange = (e) => {
     if (e.target.files) {
-        const filesArray = Array.from(e.target.files);
-        setFotos(filesArray);
+      const filesArray = Array.from(e.target.files);
+      setFotos(filesArray);
     }
   };
 
@@ -28,64 +32,84 @@ function Saldu() {
     const formData = new FormData(formularioa);
     const currentYear = new Date().getFullYear();
 
-    //Baloreak lortu formulariotik FormData erabiliz
-    const emaila       = formData.get("emaila");
-    const izenAbizena  = formData.get("izenAbizena");
-    const telefonoa    = formData.get("telefonoa");
-    const matrikula    = formData.get("matrikula");
-    const marka        = formData.get("marka");
-    const modelo       = formData.get("modelo");
-    const urtea        = formData.get("urtea");
-    const kilometro    = formData.get("kilometro");
-    const dokumentua   = formData.get("options-outlined");
-    const egoera       = formData.get("egoera");
+    // Baloreak lortu formulariotik
+    const emaila = formData.get("emaila")?.trim();
+    const izenAbizena = formData.get("izenAbizena")?.trim();
+    const telefonoa = formData.get("telefonoa")?.trim();
+    const matrikula = formData.get("matrikula")?.trim();
+    const marka = formData.get("marka")?.trim();
+    const modelo = formData.get("modelo")?.trim();
+    const urtea = formData.get("urtea")?.trim();
+    const kilometro = formData.get("kilometro")?.trim();
+    const dokumentuaRaw = formData.get("options-outlined");
+    const dokumentua = dokumentuaRaw === '1';
+    const egoera = formData.get("egoera");
 
-    // RegEx
+    // RegEx balidazioak
     const matrikulaRegex = /^[0-9]{4}[A-Z]{3}$/;
-    const matrikulaBalidatu = matrikulaRegex.test(matrikula ? matrikula.toUpperCase() : "");
+    const matrikulaBalidatu = matrikula ? matrikulaRegex.test(matrikula.toUpperCase()) : false;
 
     const kilometroRegEx = /^[0-9]+$/;
-    const kilometroBalidatu = kilometroRegEx.test(kilometro);
+    const kilometroBalidatu = kilometro ? kilometroRegEx.test(kilometro) : false;
 
     const urteaRegEx = /^[0-9]{4}$/;
-    const urteaBalidatu = urteaRegEx.test(urtea);
-
-    //Urtea integer bihurtu
-    const urteaInt = parseInt(urtea, 10);
+    const urteaBalidatu = urtea ? urteaRegEx.test(urtea) : false;
+    const urteaInt = urtea ? parseInt(urtea, 10) : 0;
 
     setErrorea("");
     setIsSuccess(false);
 
     const eremuakFalta = [];
 
-    if(!emaila) eremuakFalta.push("Emaila");
-    if(!izenAbizena) eremuakFalta.push("Izen Abizena");
-    if(!telefonoa) eremuakFalta.push("Telefonoa");
-    if(!matrikulaBalidatu) eremuakFalta.push("Matrikula ( 0000 ABC )");
-    if(!marka) eremuakFalta.push("Marka");
-    if(!modelo) eremuakFalta.push("Modelo");
-    if(!kilometroBalidatu) eremuakFalta.push("Kilometroak");
-    if(!egoera || egoera === "null") eremuakFalta.push("Egoera");
-    if(!urteaBalidatu || urteaInt > currentYear) eremuakFalta.push("Urtea");
-    if(!dokumentua) eremuakFalta.push("Dokumentazioa");
+    if (!emaila) eremuakFalta.push("Emaila");
+    if (!izenAbizena) eremuakFalta.push("Izen Abizena");
+    if (!telefonoa) eremuakFalta.push("Telefonoa");
+    if (!matrikulaBalidatu) eremuakFalta.push("Matrikula (0000 ABC)");
+    if (!marka) eremuakFalta.push("Marka");
+    if (!modelo) eremuakFalta.push("Modelo");
+    if (!kilometroBalidatu) eremuakFalta.push("Kilometroak");
+    if (!egoera || egoera === "null") eremuakFalta.push("Egoera");
+    if (!urteaBalidatu || urteaInt > currentYear || urteaInt < 1900) eremuakFalta.push("Urtea");
+    if (!dokumentua && dokumentua !== false) eremuakFalta.push("Dokumentazioa");
 
-    if(fotos.length === 0) {
+    if (fotos.length === 0) {
       eremuakFalta.push("Argazkiak");
     }
 
-    if (eremuakFalta.length === 0) 
-    {
+    if (eremuakFalta.length === 0) {
       console.log("Datuak zuzenak. Bidaltzen...");
-      console.log("Aukeratutako argazkiak¡:", fotos);
+      console.log("Aukeratutako argazkiak:", fotos);
       
-      setIsSuccess(true);
-      formularioa.reset();
+      setSending(true);
       
-      setFotos([]);
-      setFormKey(prev => prev + 1);
-    } 
-    else 
-    {
+      // Fotos FormData gehitu
+      fotos.forEach((foto, index) => {
+        formData.append(`argazkiak[${index}]`, foto);
+      });
+
+      router.post('/saldu', formData, {
+        onSuccess: () => {
+          setIsSuccess(true);
+          formularioa.reset();
+          setFotos([]);
+          setFormKey(prev => prev + 1);
+          setSending(false);
+        },
+        onError: (errors) => {
+          setErrorea('Errore bat gertatu da. Berriz saiatu.');
+          setSending(false);
+         
+          console.error('Laravel errors:', errors); 
+          const errorMsg = Object.values(errors).flat().join(', ');
+          setErrorea(errorMsg || 'Errore bat gertatu da.');
+          setSending(false);
+          
+        },
+        onFinish: () => {
+          setSending(false);
+        }
+      });
+    } else {
       setErrorea(`${eremuakFalta.join(", ")} eremua(k) zuzendu!`);
     }
   };
@@ -106,9 +130,10 @@ function Saldu() {
 
       <div className="container py-5">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-10 col-lg-8 rounded-3 shadow-lg  my-4 p-4 p-md-5 ">
-            {isSuccess ? ( <SuccessMessage onReset={berrabiarazi} /> ) : 
-            (
+          <div className="col-12 col-md-10 col-lg-8 rounded-3 shadow-lg my-4 p-4 p-md-5">
+            {isSuccess ? (
+              <SuccessMessage onReset={berrabiarazi} />
+            ) : (
               <>
                 <div id="title" className="mb-3">
                   <h1 className="text-black text-primary">Salmenta formularioa</h1>
@@ -118,23 +143,44 @@ function Saldu() {
                 <Forms name="peritatu" onSubmit={konprobatuFormularioa}>
                   <div id="kontaktua" className="mb-4">
                     <h5>Kontaktu datuak</h5>
-
                     <div className="row g-3">
                       <div className="col-12">
-                        <FloatingInput required id="emaila" name="emaila" type="email" value="Emaila sesiotik hartu" placeholder="Ez da ikusten" readOnly={true}>
+                        <FloatingInput 
+                          required 
+                          id="emaila" 
+                          name="emaila" 
+                          type="email" 
+                          value={erabiltzailea?.emaila ?? ""} 
+                          placeholder="Emaila sesiotik hartu" 
+                          readOnly={true}
+                        >
                           Email-a <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="izenAbizena" name="izenAbizena" type="text" value="Izena sesiotik hartu" placeholder="Ez da ikusten" readOnly={true}>
-                            Izen Abizenak <span className="text-danger">*</span>
+                        <FloatingInput 
+                          required 
+                          id="izenAbizena" 
+                          name="izenAbizena" 
+                          type="text" 
+                          value={erabiltzailea?.izenAbizena ?? ""} 
+                          placeholder="Izena sesiotik hartu" 
+                          readOnly={true}
+                        >
+                          Izen Abizenak <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="telefonoa" name="telefonoa" type="text" value="+34 600 000 000" placeholder="Ez da ikusten" readOnly={true}>
-                            Telefono zenbakia <span className="text-danger">*</span>
+                        <FloatingInput 
+                          required 
+                          id="telefonoa" 
+                          name="telefonoa" 
+                          type="text" 
+                          value={erabiltzailea?.telefonoa ?? ""} 
+                          placeholder="Telefonoa sesiotik hartu" 
+                          readOnly={true}
+                        >
+                          Telefono zenbakia <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
                     </div>
@@ -144,41 +190,71 @@ function Saldu() {
 
                   <div id="ibilgailua" className="mb-4">
                     <h5>Ibilgailuaren Datuak</h5>
-
                     <div className="row g-3">
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="matrikula" name="matrikula" type="text" placeholder="ADB: 5555DBC">
-                            Ibilgailu matrikula <span className="text-danger">*</span>
+                        <FloatingInput 
+                          required 
+                          id="matrikula" 
+                          name="matrikula" 
+                          type="text" 
+                          placeholder="0000 ABC"
+                        >
+                          Ibilgailu matrikula <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="marka" name="marka" type="text" placeholder="ADB: Opel">
-                            Ibilgailu marka <span className="text-danger">*</span>
+                        <FloatingInput 
+                          required 
+                          id="marka" 
+                          name="marka" 
+                          type="text" 
+                          placeholder="Opel"
+                        >
+                          Ibilgailu marka <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="modelo" name="modelo" type="text" placeholder="ADB: Corsa">
-                            Ibilgailu modelo <span className="text-danger">*</span>
+                        <FloatingInput 
+                          required 
+                          id="modelo" 
+                          name="modelo" 
+                          type="text" 
+                          placeholder="Corsa"
+                        >
+                          Ibilgailu modelo <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="urtea" name="urtea" type="number" placeholder="ADB: 2015">
-                            Ibilgailu urtea <span className="text-danger">*</span>
+                        <FloatingInput 
+                          required 
+                          id="urtea" 
+                          name="urtea" 
+                          type="number" 
+                          placeholder="2015"
+                        >
+                          Ibilgailu urtea <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
-                        <FloatingInput required id="kilometro" name="kilometro" type="number" placeholder="ADB: 120000">
+                        <FloatingInput 
+                          required 
+                          id="kilometro" 
+                          name="kilometro" 
+                          type="number" 
+                          placeholder="120000"
+                        >
                           Ibilgailuaren kilometroak <span className="text-danger">*</span>
                         </FloatingInput>
                       </div>
-
                       <div className="col-12 col-md-6">
                         <div className="form-floating">
-                          <select className="form-select border-1 border-secondary" id="egoera" name="egoera" required defaultValue="null">
+                          <select 
+                            className="form-select border-1 border-secondary" 
+                            id="egoera" 
+                            name="egoera" 
+                            required 
+                            defaultValue="null"
+                          >
                             <option value="null" disabled>Aukeratu egoera...</option>
                             <option value="bikaina">Bikaina</option>
                             <option value="ongi">Ongi</option>
@@ -189,10 +265,8 @@ function Saldu() {
                           </label>
                         </div>
                       </div>
-
-                      <br />
-                      <div className="col-12">
-                        <FloatingTextarea id="deskribapena" name="deskribapena" className="">
+                      <div className="col-12 mt-3">
+                        <FloatingTextarea id="deskribapena" name="deskribapena">
                           Ibilgailuaren deskribapena
                         </FloatingTextarea>
                       </div>
@@ -200,31 +274,56 @@ function Saldu() {
 
                     <div className="mt-3 d-flex flex-column flex-md-row gap-2">
                       <div>
-                        <input type="radio" className="btn-check" name="options-outlined" id="success-outlined" value="true" autoComplete="off" defaultChecked />
-                        <label className="btn btn-outline-success w-100" htmlFor="success-outlined" >
+                        <input 
+                          type="radio" 
+                          className="btn-check" 
+                          name="options-outlined" 
+                          id="success-outlined" 
+                          value="1"
+                          autoComplete="off"  
+                        />
+                        <label 
+                          className="btn btn-outline-success w-100" 
+                          htmlFor="success-outlined"
+                        >
                           Ibilgailuak dokumentazio guztia eguneratuta dauka.
                         </label>
                       </div>
-
                       <div>
-                        <input type="radio" className="btn-check" name="options-outlined" id="danger-outlined" value="false" autoComplete="off" />
-                        <label className="btn btn-outline-danger w-100" htmlFor="danger-outlined">
-                            Ibilgailuak ez dauka dokumentazio guztia eguneratuta.
+                        <input 
+                          type="radio" 
+                          className="btn-check" 
+                          name="options-outlined" 
+                          id="danger-outlined" 
+                          value="0"
+                          autoComplete="off" 
+                        />
+                        <label 
+                          className="btn btn-outline-danger w-100" 
+                          htmlFor="danger-outlined"
+                        >
+                          Ibilgailuak ez dauka dokumentazio guztia eguneratuta.
                         </label>
                       </div>
                     </div>
-                    <br />
                   </div>
 
                   <ArgazkiForm key={formKey} handleFileChange={handleFileChange} fotos={fotos}/>
 
-                  {!!errorea && (
-                    <ErrorMessage message={errorea}/>
-                  )}
+                  {errorea && <ErrorMessage message={errorea} />}
 
                   <div className="text-center mt-4">
-                    <p className="small text-muted mb-3">Inprimaki hau bidalita, onartzen duzu zure ibilgailua ebaluatzeko zurekin harremanetan jar gaitezkeela. Gure taldeak ebaluatuko du eta 24-48 orduko epean zurekin harremanetan jarriko gara eskaintza batekin.</p>
-                    <button type="submit" className="btn btn-orange w-100 py-2">Bidali</button>
+                    <p className="small text-muted mb-3">
+                      Inprimaki hau bidalita, onartzen duzu zure ibilgailua ebaluatzeko zurekin harremanetan jar gaitezkeela. 
+                      Gure taldeak ebaluatuko du eta 24-48 orduko epean zurekin harremanetan jarriko gara eskaintza batekin.
+                    </p>
+                    <button 
+                      type="submit" 
+                      className="btn btn-orange w-100 py-2" 
+                      disabled={sending}
+                    >
+                      {sending ? 'Bidaltzen...' : 'Bidali'}
+                    </button>                  
                   </div>
                 </Forms>
               </>
