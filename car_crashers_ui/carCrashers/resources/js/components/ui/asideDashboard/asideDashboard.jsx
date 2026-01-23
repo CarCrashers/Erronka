@@ -56,7 +56,8 @@ function AsideDashboard() {
           </nav>
 
           <nav className="navbar-nav flex-column p-3 border-top">
-            <ItemDashboard name="Hasiera" icon="bi bi-house" href="/" />
+            <ItemDashboard name="Hasiera" icon="bi bi-house" onclick={handleHasiera} href="/" />
+            {/*<ItemDashboard name="Saioa itxi" icon="bi bi-door-closed" onclick={handleLogout} href="#" className="text-danger" />*/}
             <ItemDashboard name="Saioa itxi" icon="bi bi-door-closed" href="/logout" method="post" className="text-danger" />
           </nav>
         </div>
