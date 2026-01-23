@@ -26,6 +26,10 @@ Route::get('/desguazatu', function () {
     return Inertia::render('desguazatu');
 })->name('desguazatu');
 
+
+Route::post('/desguazatu', [DesguazatuController::class, 'store'])
+    ->name('desguazatu.store');
+
 // saldu orria
 
 Route::middleware('auth')->group(function () {
