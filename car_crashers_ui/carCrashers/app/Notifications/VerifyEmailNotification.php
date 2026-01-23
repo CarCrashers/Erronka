@@ -17,6 +17,7 @@ class VerifyEmailNotification extends VerifyEmail
             ->line('Mesedez, egin klik beheko botoian zure posta elektronikoko helbidea egiaztatzeko.')
             ->action('Egiaztatu e-posta', $verificationUrl)
             ->line('Ez baduzu konturik sortu, ez duzu ezer egin behar.')
-            ->line('Esteka hau 60 minutu barru iraungiko da.');
+            ->line('Esteka hau 60 minutu barru iraungiko da.')
+            ->salutation("Ondo izan,\nCarCrashers Taldea");
     }
 }

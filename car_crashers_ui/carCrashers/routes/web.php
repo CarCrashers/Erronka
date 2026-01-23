@@ -90,3 +90,18 @@ Route::middleware('auth')->group(function () {
 
 // Legacy confirmation route (confirmation_code style)
 Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->name('register.verify');
+
+use App\Models\User;
+use App\Notifications\VerifyEmailNotification;
+
+Route::get('/test-email', function () {
+    // 1. Buscamos un usuario cualquiera para la prueba
+    // (Si no tienes usuarios en la base de datos, crea uno falso en memoria)
+    $user = User::first() ?? new User(['name' => 'Agoitz', 'email' => 'test@example.com', 'id' => 1]);
+
+    // 2. Iniciamos tu notificación
+    $notification = new VerifyEmailNotification();
+
+    // 3. Renderizamos el correo en el navegador
+    return $notification->toMail($user);
+});
