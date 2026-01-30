@@ -10,5 +10,5 @@ class DesguazatuController extends Controller
     {
         
     }
-
+    
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeritutzaEskaeraController;
+use App\Http\Controllers\DesguazatuController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
