@@ -25,7 +25,7 @@ function floatingInput({
                 disabled={disabled}
                 required={required}
                 name = {name} 
-                className="form-control border-1 border-secondary" />
+                className="form-control border-1 border-secondary"/>
             <label htmlFor={id}>{children}</label>
         </div>
     )

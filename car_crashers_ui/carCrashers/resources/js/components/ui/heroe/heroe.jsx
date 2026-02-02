@@ -64,7 +64,7 @@ function heroe() {
             <div className="col-md-4">
                 <div className="stat-number">98%</div>
                 <div className="stat-label">Bermea</div>
-            </div>
+            </div>  
         </div>
     </div>
     </div>

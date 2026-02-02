@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { router } from '@inertiajs/react';
 import Layout from "../components/layout/layout";
 import Forms from "../components/ui/forms/forms";
@@ -120,6 +120,14 @@ function Saldu() {
     setFotos([]);
   };
 
+  useEffect(() => {
+    // Tooltip
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  }, []);
+
   return (
     <Layout>
       <Goikoa>
@@ -143,6 +151,19 @@ function Saldu() {
                 <Forms name="peritatu" onSubmit={konprobatuFormularioa}>
                   <div id="kontaktua" className="mb-4">
                     <h5>Kontaktu datuak</h5>
+                    {/* TOOLTIP */}
+                      <div className="d-flex align-items-center gap-1 mb-3 small text-muted">
+                        <span>Erabiltzaile profiletik hartutako datuak</span>
+                        <span 
+                          className="position-relative"
+                          style={{ cursor: 'help' }}
+                          data-bs-toggle="tooltip" 
+                          data-bs-placement="top"
+                          title="Datu hauek aldatzeko, Erabiltzaile panelean modifikatu."
+                        >
+                          <i className="bi bi-question-circle-fill text-info fs-6"></i>
+                        </span>
+                      </div>
                     <div className="row g-3">
                       <div className="col-12">
                         <FloatingInput 
@@ -153,6 +174,7 @@ function Saldu() {
                           value={erabiltzailea?.emaila ?? ""} 
                           placeholder="Emaila sesiotik hartu" 
                           readOnly={true}
+                          className="bg-black border-gray-300 text-gray-500"
                         >
                           Email-a <span className="text-danger">*</span>
                         </FloatingInput>
@@ -166,6 +188,8 @@ function Saldu() {
                           value={erabiltzailea?.izenAbizena ?? ""} 
                           placeholder="Izena sesiotik hartu" 
                           readOnly={true}
+                          className="bg-gray-100 border-gray-300 text-gray-500"
+
                         >
                           Izen Abizenak <span className="text-danger">*</span>
                         </FloatingInput>
@@ -179,6 +203,7 @@ function Saldu() {
                           value={erabiltzailea?.telefonoa ?? ""} 
                           placeholder="Telefonoa sesiotik hartu" 
                           readOnly={true}
+                          className="bg-gray-100 border-gray-300 text-gray-500"
                         >
                           Telefono zenbakia <span className="text-danger">*</span>
                         </FloatingInput>

@@ -42,7 +42,7 @@ function Saskia({ saskia, items, total })
               {items && items.map(item => (
                 <div key={item.id} className="d-flex justify-content-between">
                   <p className="mb-0">{item.produktua?.izena || 'Produktua'}</p>
-                  <p className="mb-0">{item.prezioa || 0} €</p>
+                  <p className="mb-0">{item.produktua?.prezioa || 0} €</p>
                 </div>
               ))}
               
