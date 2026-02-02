@@ -1,8 +1,12 @@
 //import { Link } from 'react-router-dom';
 import { router } from '@inertiajs/react';
 import './heroe.css';
+import { usePage } from '@inertiajs/react';
 
 function heroe() {
+
+  const { auth } = usePage().props;
+  const isLoggedIn = auth.user !== null;  
 
   const openLoginModal = (e) => {
     e.preventDefault();
@@ -41,8 +45,11 @@ function heroe() {
                 <i className="bi bi-currency-dollar"></i>Saldu</a>
               <a href="/desguazatu" className="btn-hero btn-hero-transparent">
                 <i className="bi bi-car-front"></i>Desguazatu</a>
+              {!isLoggedIn && (
               <button onClick={openLoginModal} type="button" className="btn-hero btn-hero-transparent">
-                <i className="bi bi-box-arrow-in-right"></i>Saioa hasi</button>
+                <i className="bi bi-box-arrow-in-right"></i>Saioa hasi
+              </button>
+            )}
             </div>
         </div> 
         <div className="row mt-5">
