@@ -1,7 +1,33 @@
 //import { Link } from 'react-router-dom';
+import { router } from '@inertiajs/react';
 import './heroe.css';
 
 function heroe() {
+
+  const openLoginModal = (e) => {
+    e.preventDefault();
+    
+    //call to action-ettik deitu
+    router.visit('/login', {
+      method: 'get',
+      preserveState: true,
+      preserveScroll: true,
+      only: ['*'],
+      onSuccess: () => {
+        setTimeout(() => {
+          const modal = document.getElementById('saioa');
+          if (modal) {
+            const bootstrap = window.bootstrap || window.bootstrap.Modal;
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+          }
+        }, 100);
+      }
+    });
+  };
+
+
+
   return (
     <div className="px-4 pt-4 text-center back-image text-white d-flex flex-column justify-content-center align-items-center">
         <div className="heroe-glass">
@@ -15,8 +41,8 @@ function heroe() {
                 <i className="bi bi-currency-dollar"></i>Saldu</a>
               <a href="/desguazatu" className="btn-hero btn-hero-transparent">
                 <i className="bi bi-car-front"></i>Desguazatu</a>
-              <a href="/login" className="btn-hero btn-hero-transparent">
-                <i className="bi bi-box-arrow-in-right"></i>Saioa hasi</a>
+              <button onClick={openLoginModal} type="button" className="btn-hero btn-hero-transparent">
+                <i className="bi bi-box-arrow-in-right"></i>Saioa hasi</button>
             </div>
         </div> 
         <div className="row mt-5">

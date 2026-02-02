@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PeritutzaEskaeraController;
 use App\Http\Controllers\DesguazatuController;
+use App\Http\Controllers\SaskiaController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,15 +33,18 @@ Route::post('/desguazatu', [DesguazatuController::class, 'store'])
     ->name('desguazatu.store');
 
 // saldu orria
-
 Route::middleware('auth')->group(function () {
     Route::get('/saldu', [PeritutzaEskaeraController::class, 'create'])->name('saldu');
     Route::post('/saldu', [PeritutzaEskaeraController::class, 'store'])->name('saldu.store');
+
+
+    // SASKIA RUTAS
+    Route::get('/saskia/datos', [SaskiaController::class, 'index'])->name('saskia.datos');
+    Route::delete('/saskia/item/{itemId}', [SaskiaController::class, 'destroyItem'])->name('saskia.item.ezabatu');
+    Route::get('/saskia', [SaskiaController::class, 'index'])->name('saskia');
 });
 
-Route::get('/saskia', function () {
-    return Inertia::render('saskia');
-})->name('saskia');
+
 
 /*Route::get('/dashboard', function () {
     return Inertia::render('dashboard');
@@ -51,7 +55,7 @@ Route::get('/error', function () {
 })->name('error');
 
 Route::get('/login', function () {
-    return Inertia::render('login');
+    return Inertia::render('saioa');
 })->name('login');
 
 // berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
@@ -65,7 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-// Rutas de autenticación
+// Autentikazio rutak
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);

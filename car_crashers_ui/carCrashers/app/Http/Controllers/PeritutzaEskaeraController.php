@@ -63,7 +63,7 @@ class PeritutzaEskaeraController extends Controller
             'modelo'           => $data['modelo'],
             'urtea'            => $data['urtea'],
             'egoera_kotxe'     => $data['egoera'],
-            'desk'             => $data['deskribapena'] ?? 'Deskribapenik ez.', // Default testua
+            'desk'             => $data['deskribapena'] ?? 'Deskribapenik ez.',
             'argazkiak'        => $argazkiPaths,
             'prezioa'          => null,           // Perituak jarriko du
             'eskaera_egoera'   => 'zain',         // Hasierako egoera: zain
