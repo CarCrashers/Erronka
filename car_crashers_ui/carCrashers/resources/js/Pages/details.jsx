@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/layout/layout.jsx';
 import ReturnBack from '../components/ui/buttons/returnBack/returnBack.jsx';
 import Carrusel from '../components/ui/carrusel/carrusel.jsx';
-import Card from '../components/ui/card/card.jsx';
+import Card from '../components/ui/cards/kotxeak/kotxeak.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
 
 

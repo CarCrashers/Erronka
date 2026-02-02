@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\PeritutzaEskaeraController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,9 +15,10 @@ Route::get('/norGara', function () {
     return Inertia::render('norGara');
 })->name('norGara');
 
-Route::get('/erosi', function () {
-    return Inertia::render('erosi');
-})->name('erosi');
+Route::get('/erosi', [CarController::class, 'index'])->name('cars.index');
+// Route::get('/erosi', function () {
+//     return Inertia::render('erosi');
+// })->name('erosi');
 
 Route::get('/details', function () {
     return Inertia::render('details');

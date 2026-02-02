@@ -1,6 +1,6 @@
 import './productToggle.css';
 
-function ProducToggle() {
+function ProducToggle({ mota, onMotaChange, kotxeakCount, piezakCount }) {
   return (
     <div className="d-flex justify-content-xxl-start justify-content-center">
       <div className="col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4">
@@ -11,26 +11,28 @@ function ProducToggle() {
         >
           <li className="nav-item" role="presentation">
             <button
-              className="nav-link active rounded-5"
+              className={`nav-link rounded-5 ${mota === 0 ? 'active' : ''}`}
               id="home-tab2"
               data-bs-toggle="tab"
               type="button"
               role="tab"
               aria-selected="true"
+              onClick={() => onMotaChange(0)}
             >
-              <i className="bi bi-car-front-fill"></i> Kotxea (4)
+              <i className="bi bi-car-front-fill"></i> Kotxea ({kotxeakCount})
             </button>
           </li>
           <li className="nav-item" role="presentation">
             <button
-              className="nav-link rounded-5"
+              className={`nav-link rounded-5 ${mota === 1 ? 'active' : ''}`}
               id="profile-tab2"
               data-bs-toggle="tab"
               type="button"
               role="tab"
               aria-selected="false"
+              onClick={() => onMotaChange(1)}
             >
-              <i className="bi bi-tools"></i> Pieza (20)
+              <i className="bi bi-tools"></i> Pieza ({piezakCount})
             </button>
           </li>
         </ul>
