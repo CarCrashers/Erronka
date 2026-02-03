@@ -6,6 +6,9 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\PeritutzaEskaeraController;
 use App\Http\Controllers\DesguazatuController;
 use App\Http\Controllers\SaskiaController;
+use App\Http\Controllers\KotxeaController;
+use App\Http\Controllers\PiezaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Kotxea;
@@ -83,7 +86,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    // Email verification routes
     Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
         ->name('verification.notice');
 
@@ -96,15 +98,32 @@ Route::middleware('auth')->group(function () {
         ->name('verification.send');
 });
 
-// Legacy confirmation route (confirmation_code style)
 Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->name('register.verify');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('dashboard', [
-        'kotxeak' => Kotxea::latest()->get(),
-        'piezak'  => Pieza::latest()->get(),
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('dashboard', [ 
+            'kotxeakCount' => Kotxea::count(),
+            'piezakCount' => Pieza::count(),
+        ]);
+    })->name('dashboard');
+
+    Route::get('/kotxeak', [KotxeaController::class, 'index'])->name('kotxeak');
+    Route::post('/kotxeak', [KotxeaController::class, 'store'])->name('kotxeak.store');
+    Route::put('/kotxeak/{matrikula}', [KotxeaController::class, 'update'])->name('kotxeak.update');
+    Route::delete('/kotxeak/{matrikula}', [KotxeaController::class, 'destroy'])->name('kotxeak.destroy');
+
+    Route::get('/piezak', [PiezaController::class, 'index'])->name('piezak');
+    Route::post('/piezak', [PiezaController::class, 'store'])->name('piezak.store');
+    Route::put('/piezak/{id}', [PiezaController::class, 'update'])->name('piezak.update');
+    Route::delete('/piezak/{id}', [PiezaController::class, 'destroy'])->name('piezak.destroy');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 
 //Pruebas Agoitz para comprobar el email de verificación desde el exterior

@@ -2,26 +2,29 @@
     background-color: #f97316;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
-.navbar-dashboard .navbar-brand {
-  font-size: 1.25rem;
-  color: #ffffff;
-  letter-spacing: -0.5px;
-  transition: all 0.3s ease;
+.navbar-dashboard .logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-.navbar-dashboard .navbar-brand:hover {
-  transform: translateX(2px);
-  opacity: 0.9;
+.navbar-dashboard .container-fluid {
+  align-items: center;
+  display: flex;
 }
 
-.navbar-dashboard .navbar-brand i {
+.navbar-dashboard h1 {
+  margin: 0;
   font-size: 1.5rem;
+  color: #000000;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-/* Buscador */
 .navbar-search {
   flex-grow: 1 !important;
 }
@@ -45,7 +48,6 @@
   box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25);
 }
 
-/* Acciones */
 .navbar-actions {
   margin-left: auto;
 }
@@ -60,7 +62,6 @@
   transform: scale(1.1);
 }
 
-/* Badge Contador */
 .badge-counter {
   font-size: 0.625rem;
   padding: 0.25rem 0.4rem;
@@ -69,14 +70,12 @@
   top: -5px;
 }
 
-/* Avatar */
 .avatar-small {
   background: linear-gradient(135deg, #38bdf8 0%, #0d6efd 100%);
   font-weight: bold;
   font-size: 0.875rem;
 }
 
-/* Dropdown Menu */
 .dropdown-menu-dark {
   background-color: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -114,7 +113,6 @@
   color: #38bdf8;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .navbar-dashboard {
     padding: 0.75rem 0;
