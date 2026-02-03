@@ -9,33 +9,41 @@ function Weather() {
 
     const fetchWeather = async () => {
       try {
-        console.log('Iniciando fetch de clima...');
+        console.log('Fetching weather from wttr.in...');
         
-        // Usando Open-Meteo que es completamente libre
+        // Using wttr.in API which doesn't require authentication
         const response = await fetch(
-          'https://api.open-meteo.com/v1/forecast?latitude=43.3183&longitude=-1.9761&current=temperature_2m,weather_code&timezone=Europe/Madrid'
+          'https://wttr.in/Donostia?format=j1',
+          {
+            headers: {
+              'Accept': 'application/json',
+              'User-Agent': 'Mozilla/5.0'
+            }
+          }
         );
         
-        console.log('Response status:', response.status);
+        console.log('Response status:', response.status, response.statusText);
         
         if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
+          throw new Error(`API Error: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log('Datos del clima:', data);
+        console.log('Weather data received:', data);
         
-        if (isMounted && data && data.current) {
-          const current = data.current;
+        if (isMounted && data && data.current_condition && data.current_condition[0]) {
+          const current = data.current_condition[0];
           setWeather({
-            temp: Math.round(current.temperature_2m),
-            code: current.weather_code,
-            icon: getWeatherIcon(current.weather_code)
+            temp: Math.round(current.temp_C),
+            description: current.weatherDesc[0].value,
+            icon: getWeatherIconFromDescription(current.weatherDesc[0].value)
           });
-          console.log('Estado del clima actualizado');
+          console.log('Weather state updated successfully');
+        } else {
+          console.warn('Missing required weather data fields');
         }
       } catch (error) {
-        console.error('Error al obtener el clima:', error);
+        console.error('Weather fetch error:', error);
       }
     };
 
@@ -61,37 +69,25 @@ function Weather() {
   }
 
   return (
-    <div className="weather-widget" title={`Temperatura: ${weather.temp}°C`}>
+    <div className="weather-widget" title={`${weather.description} - ${weather.temp}°C`}>
       <i className={`bi ${weather.icon}`}></i>
       <span className="temp">{weather.temp}°</span>
     </div>
   );
 }
 
-function getWeatherIcon(code) {
-  // WMO Weather interpretation codes
-  // 0 = Clear sky
-  // 1,2 = Mostly clear, partly cloudy
-  // 3 = Overcast
-  // 45,48 = Foggy
-  // 51,53,55 = Drizzle
-  // 61,63,65 = Rain
-  // 71,73,75 = Snow
-  // 77 = Snow grains
-  // 80,81,82 = Rain showers
-  // 85,86 = Snow showers
-  // 95,96,99 = Thunderstorm
+function getWeatherIconFromDescription(description) {
+  const desc = description.toLowerCase();
   
-  if (code === 0) return 'bi-sun-fill';
-  if (code === 1 || code === 2) return 'bi-cloud-sun';
-  if (code === 3) return 'bi-clouds';
-  if (code === 45 || code === 48) return 'bi-cloud-haze';
-  if (code >= 51 && code <= 55) return 'bi-cloud-rain';
-  if (code >= 61 && code <= 67) return 'bi-cloud-rain-fill';
-  if (code >= 71 && code <= 77) return 'bi-snow';
-  if (code >= 80 && code <= 82) return 'bi-cloud-rain-fill';
-  if (code >= 85 && code <= 86) return 'bi-snow';
-  if (code >= 95 && code <= 99) return 'bi-cloud-lightning-rain';
+  if (desc.includes('sunny') || desc.includes('clear')) return 'bi-sun-fill';
+  if (desc.includes('cloud')) return 'bi-cloud';
+  if (desc.includes('rain') || desc.includes('drizzle')) return 'bi-cloud-rain-fill';
+  if (desc.includes('thunder') || desc.includes('storm')) return 'bi-cloud-lightning-rain';
+  if (desc.includes('snow')) return 'bi-snow';
+  if (desc.includes('fog') || desc.includes('mist')) return 'bi-cloud-haze';
+  if (desc.includes('overcast')) return 'bi-clouds';
+  if (desc.includes('partly')) return 'bi-cloud-sun';
+  if (desc.includes('night')) return 'bi-moon-fill';
   
   return 'bi-cloud-question';
 }

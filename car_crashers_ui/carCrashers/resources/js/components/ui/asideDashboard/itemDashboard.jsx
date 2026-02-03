@@ -5,7 +5,7 @@ function ItemDashboard({ name, icon, href = '#', method = 'get', className = '' 
   return (
     <li className="nav-item">
 
-      <Link href={href} method={method} as="a" className={`nav-link ${className}`}>
+      <Link href={href} method={method} className={`nav-link ${className}`}>
         <i className={`${icon} me-2`}></i>
         <span>{name}</span>
       </Link>
