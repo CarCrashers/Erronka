@@ -1,7 +1,7 @@
 import React from 'react';
 import { router } from '@inertiajs/react';
 import Layout from '../components/layout/layout.jsx';
-import SaskiProduktua from '../components/ui/card/saskiProduktu/saskiProduktu.jsx';
+import SaskiProduktua from '../components/ui/cards/saskiProduktu/saskiProduktu.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
 
 function Saskia({ saskia, items, total }) 
