@@ -65,7 +65,7 @@ function Erosi() {
           </div>
 
           <div class="row justify-content-start">
-            <div class="col-12 mt-5 d-flex justify-content-lg-between justify-content-around flex-wrap gap-3">
+            <div class="col-12 mt-5 d-flex justify-content-around flex-wrap gap-3">
               {/* Mostrar aquí los coches o piezas depende el ProducToggle */}
               {renderContent()}
             </div>
