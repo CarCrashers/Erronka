@@ -20,14 +20,15 @@ function HeaderDashboard() {
     <header
       className="navbar navbar-expand-md sticky-top navbar-dashboard"
       data-bs-theme="dark"
+      style={{ minHeight: '70px' }}
     >
-      <div className="container-fluid px-4">
+      <div className="container-fluid px-4" style={{ alignItems: 'center' }}>
         {/* Logo */}
-        <Link href="/" className="d-inline-block w-auto text-decoration-none">
-          <img className="logo d-block mw-50 h-auto" src={Logo} alt="Logo" />
+        <Link href="/" className="d-inline-block text-decoration-none" style={{ marginRight: '0.75rem' }}>
+          <img className="logo" src={Logo} alt="Logo" />
         </Link>
-        <Link href="/" className="text-black text-decoration-none ms-3">
-          <h1>CarCrashers</h1>
+        <Link href="/" className="text-black text-decoration-none">
+          <h1 style={{ margin: 0 }}>CarCrashers</h1>
         </Link>
 
         {/* Buscador Desktop 
