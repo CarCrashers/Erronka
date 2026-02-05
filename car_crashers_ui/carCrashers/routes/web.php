@@ -14,67 +14,122 @@ use Inertia\Inertia;
 use App\Models\Kotxea;
 use App\Models\Pieza;
 
+/*
+* HASIERA ORRIA
+*/
+
 Route::get('/', function () {
     return Inertia::render('home');
 })->name('home');
+
+/* ********************************** */
+
+
+/*
+* NOR GARA ORRIA
+*/
 
 Route::get('/norGara', function () {
     return Inertia::render('norGara');
 })->name('norGara');
 
+/* ********************************** */
+
+/*
+* EROSI ORRIA
+*/
+
 Route::get('/erosi', [CarController::class, 'index'])->name('cars.index');
-// Route::get('/erosi', function () {
-//     return Inertia::render('erosi');
-// })->name('erosi');
+
+/* ********************************** */
+
+/*
+* PRODUKTU XEHETASUNAK
+*/
 
 Route::get('/details', function () {
     return Inertia::render('details');
 })->name('details');
  
+/* ********************************** */
+
+
+/*
+* DESGUAZATU ORRIA
+*/
+
 Route::get('/desguazatu', function () {
     return Inertia::render('desguazatu');
 })->name('desguazatu');
 
+/* ********************************** */
+
+
+/*
+* DESGUAZATU ESKAERA
+*/
 
 Route::post('/desguazatu', [DesguazatuController::class, 'store'])
     ->name('desguazatu.store');
 
-// saldu orria
-Route::middleware('auth')->group(function () {
+/* ********************************** */
+
+
+/*
+* AUTH BEHARRA DUTEN ORRIAK / ESKAERAK 
+*/
+
+Route::middleware('auth')->group(function () 
+{
+    // SALDU ORRIA
     Route::get('/saldu', [PeritutzaEskaeraController::class, 'create'])->name('saldu');
+    /* ************* */
+
+    // SALDU ESKAERA
     Route::post('/saldu', [PeritutzaEskaeraController::class, 'store'])->name('saldu.store');
+    /* ************* */
 
-
-    // SASKIA RUTAS
-    Route::get('/saskia/datos', [SaskiaController::class, 'index'])->name('saskia.datos');
-    Route::delete('/saskia/item/{itemId}', [SaskiaController::class, 'destroyItem'])->name('saskia.item.ezabatu');
+    // SASKIA ORRIA
     Route::get('/saskia', [SaskiaController::class, 'index'])->name('saskia');
+
+    // SASKIA ITEM EZABATU
+    Route::delete('/saskia/item/{itemId}', [SaskiaController::class, 'destroyItem'])->name('saskia.item.ezabatu');
+
 });
 
+/* ********************************** */
 
 
-/*Route::get('/dashboard', function () {
-    return Inertia::render('dashboard');
-})->name('dashboard');*/
 
-Route::get('/error', function () {
-    return Inertia::render('ObrasEnMantenimiento');
-})->name('error');
+/*
+* MODAL-A IREKITZEKO
+*/
 
 Route::get('/login', function () {
     return Inertia::render('saioa');
 })->name('login');
 
-// berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
-/*Route::middleware(['auth', 'verified'])->group(function () {
+/* ********************************** */
+
+
+/*
+* DASHBOARD ORRIA (Auth erabilita)
+*/
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-});*/
+});
 
-// Dashboard-etik --> home-ra
+
+/*
+* LOGOUT (Home-era bueltatzen du )
+*/
 
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+/* ********************************** */
+
 
 // Autentikazio rutak
 Route::middleware('guest')->group(function () {
@@ -141,3 +196,12 @@ Route::get('/test-email', function () {
     // 3. Renderizamos el correo en el navegador
     return $notification->toMail($user);
 });
+
+
+
+
+
+//obras
+Route::get('/error', function () {
+    return Inertia::render('ObrasEnMantenimiento');
+})->name('error');

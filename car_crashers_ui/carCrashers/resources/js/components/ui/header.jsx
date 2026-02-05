@@ -2,6 +2,7 @@ import Logo from "@assets/images/logo.jpg";
 import { Link, usePage } from "@inertiajs/react";
 import Saioa from "./saioa/saioa.jsx";
 import Weather from "./weather/weather.jsx";
+import BerifikatuBanner from './berifikatuBanner/berifikatuBanner.jsx';
 import Obrak from "@assets/images/cartel-obras.png";
 
 function Header() {
@@ -55,9 +56,9 @@ function Header() {
             </button>
           )}
         </div>
+        <Saioa />
       </header>
-
-      <Saioa />
+      <BerifikatuBanner />
     </>
   );
 }
