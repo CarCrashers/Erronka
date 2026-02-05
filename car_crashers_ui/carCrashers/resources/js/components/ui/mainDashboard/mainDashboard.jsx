@@ -56,7 +56,7 @@ function MainDashboard() {
     content = (
       <div className="p-5">
         <div className="dashboard-header mb-5">
-          <h1 className="mb-1">Kaixo, {user.name}! 👋</h1>
+          <h1 className="mb-1">Kaixo, {user.name}! </h1>
           <p className="text-muted">Ongi etorri zure espazio pertsonalera.</p>
         </div>
 

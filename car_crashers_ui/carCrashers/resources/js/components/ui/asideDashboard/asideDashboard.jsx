@@ -48,7 +48,9 @@ function AsideDashboard() {
                 
                 <div className="mt-4 pt-3 border-top">
                   <h6 className="sidebar-heading text-muted text-uppercase px-0 mb-3 small">Laguntza</h6>
+                  <ItemDashboard name="Zure datuak" icon="bi bi-person-circle" href="/profile" />
                   <ItemDashboard name="Kontaktua" icon="bi bi-envelope" href="/contact" />
+                  
                 </div>
               </>
             )}

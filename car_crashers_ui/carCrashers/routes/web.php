@@ -119,8 +119,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
+    
 });
 
+
+Route::get('/profile', function() {
+        return Inertia::render('profilaDashboard');
+}); 
 
 /*
 * LOGOUT (Home-era bueltatzen du )
