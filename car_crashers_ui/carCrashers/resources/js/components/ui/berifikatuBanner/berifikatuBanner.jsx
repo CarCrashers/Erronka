@@ -7,8 +7,7 @@ function berifikatuBanner() {
     const user = props.auth?.user;
 
 
-    
-
+    //Email censurado
     const emailCen = (email) => {
 
         const zatiak = email.split('@');
@@ -33,7 +32,6 @@ function berifikatuBanner() {
                       user.email_verified_at !== false;
     
     if (!user || isVerified) {
-        console.log('Berifikatuta:', isVerified);
         return null;
     }
 
