@@ -134,11 +134,13 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 // Autentikazio rutak
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/login', action: [LoginController::class, 'login']);
 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
 });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
@@ -153,7 +155,15 @@ Route::middleware('auth')->group(function () {
         ->name('verification.send');
 });
 
+
+/*
+* BERIFIKATZE RUTA
+*/
+
 Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->name('register.verify');
+
+/* ********************************** */
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
