@@ -120,8 +120,8 @@ function MainDashboard() {
             </div>
           </div>
         </div>
-      </div>
-    );
+    </div>
+  );
   }
 
   return (
