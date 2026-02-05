@@ -12,35 +12,57 @@ import { usePage } from '@inertiajs/react';
 function Erosi() {
   const { kotxeak, piezak } = usePage().props;
   const [mota, setMota] = useState(0);
+  const [text, setText] = useState("");
+  const [status, setStatus] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState("");
 
   const handleMotaChange = (newMota) => setMota(newMota);
+  
+  function handleTextChange(e) {
+    setText(e.target.value);
+  }
+
+  function handleStatusChange(e) {
+    setStatus(e.target.value);
+  }
+
+  function handleMaxPriceChange(e) {
+    setMaxPrice(e.target.value);
+  }
+
+  function handleMinPriceChange(e) {
+    setMinPrice(e.target.value);
+  }
 
   const kotxeakCount = kotxeak?.length || 0;
   const piezakCount = piezak?.length || 0;
 
   const renderContent = () => {
-    if (mota === 0) {
-      return (
-        <>
-          {kotxeak?.map((kotxea) => (
-            <div key={kotxea.matrikula} className="col-lg-3 col-md-6 mb-4">
-              <KotxeakCard kotxea={kotxea} />
-            </div>
-          ))}
-        </>
-      );
-    } else {
-      return (
-        <>
-          {piezak?.map((pieza) => (
-            <div key={pieza.id} className="col-lg-3 col-md-6 mb-4">
-              <PiezakCard pieza={pieza} />
-            </div>
-          ))}
-        </>
-      );
-    }
+    const items = mota === 0 ? kotxeak : piezak;
+    
+    return items?.filter((item) => {
+        const textMatch = !text || 
+        item.matrikula?.toLowerCase().includes(text.toLowerCase()) ||
+        item.marka?.toLowerCase().includes(text.toLowerCase()) ||
+        item.modeloa?.toLowerCase().includes(text.toLowerCase()) ||
+        item.zatia?.toLowerCase().includes(text.toLowerCase());
+
+        const statusMatch = !status || item.produktuak?.[0]?.egoera === status;
+
+        const price = item.produktuak?.[0]?.prezioa || item.prezioa || 0;
+        const priceMatch = (!minPrice || price >= parseFloat(minPrice)) &&
+        (!maxPrice || price <= parseFloat(maxPrice));
+
+        return textMatch && statusMatch && priceMatch;
+      })
+      .map((item) => (
+        <div key={item.matrikula || item.id} className="col-lg-3 col-md-6 mb-4">
+          {mota === 0 ? <KotxeakCard kotxea={item} /> : <PiezakCard pieza={item} />}
+        </div>
+      )) || [];
   };
+
 
   return (
     <React.StrictMode>
@@ -53,7 +75,16 @@ function Erosi() {
         <div className="container my-4 py-5">
           <div className="row justify-content-center">
             <div className="col-12">
-              <Search />
+              <Search 
+                text={text}
+                status={status}
+                maxPrice={maxPrice}
+                minPrice={minPrice}
+                onTextChange={handleTextChange}
+                onStatusChange={handleStatusChange}
+                onMaxPriceChange={handleMaxPriceChange}
+                onMinPriceChange={handleMinPriceChange}
+              />
               <div className="py-2" />
               <ProducToggle 
                 mota={mota}
@@ -66,7 +97,6 @@ function Erosi() {
 
           <div class="row justify-content-start">
             <div class="col-12 mt-5 d-flex justify-content-around flex-wrap gap-3">
-              {/* Mostrar aquí los coches o piezas depende el ProducToggle */}
               {renderContent()}
             </div>
           </div>
