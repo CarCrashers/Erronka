@@ -12,7 +12,7 @@ class PiezaController extends Controller
     // Mostrar todas las piezas
     public function index()
     {
-        return Inertia::render('Piezak', [
+        return Inertia::render('piezak', [
             'piezak' => Pieza::latest()->get(),
             'kotxeak' => Kotxea::all(),
         ]);

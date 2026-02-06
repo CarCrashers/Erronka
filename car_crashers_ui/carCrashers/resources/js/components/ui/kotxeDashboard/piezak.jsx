@@ -8,11 +8,11 @@ function Piezak({ piezak, kotxeak = [] }) {
   const [selectedPieza, setSelectedPieza] = useState(null);
 
   const columns = [
-    {
+/*    {
       key: 'id',
       label: 'ID',
       render: (item) => `${item.id}`
-    },
+    },*/
     {
       key: 'zatia',
       label: 'Pieza',

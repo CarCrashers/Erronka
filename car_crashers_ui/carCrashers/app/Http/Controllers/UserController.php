@@ -12,7 +12,7 @@ class UserController extends Controller
     // Mostrar todos los usuarios
     public function index()
     {
-        return Inertia::render('Erabiltzaileak', [
+        return Inertia::render('erabiltzaileak', [
             'users' => User::latest()->get(),
         ]);
     }

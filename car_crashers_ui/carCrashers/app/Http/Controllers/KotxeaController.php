@@ -11,7 +11,7 @@ class KotxeaController extends Controller
     // Mostrar todos los kotxeak
     public function index()
     {
-        return Inertia::render('Kotxeak', [
+        return Inertia::render('kotxeak', [
             'kotxeak' => Kotxea::latest()->get(),
         ]);
     }

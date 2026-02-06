@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Kotxea;
 use App\Models\Pieza;
+use App\Models\PeritutzaEskaera;
 
 Route::get('/', function () {
     return Inertia::render('home');
@@ -123,6 +124,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/peritutza', [PeritutzaEskaeraController::class, 'index'])->name('peritutza.index');
+    Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update']);
+    Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update'])->name('peritutza.update');
+    Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
 });
 
 
