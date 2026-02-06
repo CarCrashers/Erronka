@@ -6,7 +6,8 @@ function Piezak({ pieza }) {
     const productua = pieza.produktuak?.[0] || {};
     const egoera = productua.egoera || kotxea.egoera || 'Unknown';
     const prezioa = productua.prezioa || 'Kontsultatu';
-    
+    const url = "details/"+productua.id;
+
     return(
         <div className="card shadow-lg">
             <div className="position-relative">
@@ -30,7 +31,7 @@ function Piezak({ pieza }) {
                 </div>
 
                 {/* Botón a ancho completo */}
-                <Link href="/details" className="btn btn-secondary w-100">
+                <Link href={url} className="btn btn-secondary w-100">
                 Ikusi <i className="bi bi-box-arrow-up-right"></i>
                 </Link>
             </div>

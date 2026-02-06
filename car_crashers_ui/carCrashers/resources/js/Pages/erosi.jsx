@@ -4,13 +4,14 @@ import Search from '../components/ui/search/search.jsx';
 import ProducToggle from '../components/ui/buttons/producToggle/productToggle.jsx';
 import KotxeakCard from '../components/ui/cards/kotxeak/kotxeak.jsx';
 import PiezakCard from '../components/ui/cards/piezak/piezak.jsx';
-import Pagination from '../components/ui/pagination/pagination.jsx';
+// import Pagination from '../components/ui/pagination/pagination.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 
 function Erosi() {
   const { kotxeak, piezak } = usePage().props;
+  //const { produktuak } = usePage().props;
   const [mota, setMota] = useState(0);
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
@@ -34,9 +35,6 @@ function Erosi() {
   function handleMinPriceChange(e) {
     setMinPrice(e.target.value);
   }
-
-  const kotxeakCount = kotxeak?.length || 0;
-  const piezakCount = piezak?.length || 0;
 
   const renderContent = () => {
     const items = mota === 0 ? kotxeak : piezak;
@@ -89,8 +87,6 @@ function Erosi() {
               <ProducToggle 
                 mota={mota}
                 onMotaChange={handleMotaChange}
-                kotxeakCount={kotxeakCount}
-                piezakCount={piezakCount}
               />
             </div>
           </div>
@@ -100,11 +96,15 @@ function Erosi() {
               {renderContent()}
             </div>
           </div>
-          <div className='row'>
+          {/* <div className="row">
             <div className="d-flex justify-content-center mt-3">
-                <Pagination />
+              {mota === 0 ? (
+                <Pagination links={kotxeak?.links} />
+              ) : (
+                <Pagination links={piezak?.links} />
+              )}
             </div>
-          </div>
+          </div> */}
         </div>
       </Layout>
     </React.StrictMode>

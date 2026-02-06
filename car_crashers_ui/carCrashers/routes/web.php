@@ -23,13 +23,10 @@ Route::get('/norGara', function () {
 })->name('norGara');
 
 Route::get('/erosi', [CarController::class, 'index'])->name('cars.index');
-// Route::get('/erosi', function () {
-//     return Inertia::render('erosi');
-// })->name('erosi');
 
-Route::get('/details', function () {
-    return Inertia::render('details');
-})->name('details');
+//Route::get('/details/{id}', [CarController::class, 'show'])->name('details');
+Route::get('/details/{matrikula}/{pieza_id}', [CarController::class, 'showPieza'])->name('details.pieza');
+Route::get('/details/{matrikula}', [CarController::class, 'showKotxea'])->name('details.kotxea');
  
 Route::get('/desguazatu', function () {
     return Inertia::render('desguazatu');
