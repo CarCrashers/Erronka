@@ -123,9 +123,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::get('/profile', function() {
-        return Inertia::render('profilaDashboard');
-}); 
+
 
 /*
 * LOGOUT (Home-era bueltatzen du )
@@ -193,6 +191,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    //Profila
+    Route::get('/profile', function() {
+        return Inertia::render('dashboard');
+}); 
 });
 
 

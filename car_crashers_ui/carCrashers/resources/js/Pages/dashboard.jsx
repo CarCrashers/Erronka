@@ -20,10 +20,14 @@ function Dashboard({ children }) {
           <AsideDashboard />
         </aside>
         <main className="flex-fill overflow-auto bg-light" style={{ padding: '2rem' }}>
-          {url === '/profile' ? <profilaDashboard /> : children}
-          {/* {url.startsWith('/dashboard') ? <MainDashboardContent {...props} /> : children} */}
-          {url === '/dashboard' ? <MainDashboardContent {...props} /> : children}
-        </main>
+        {url === '/profile' ? (
+          <ProfilaDashboard />
+        ) : url === '/dashboard' ? (
+          <MainDashboardContent {...props} />
+        ) : (
+          children
+        )}
+      </main>
       </div>
     </div>
   );
