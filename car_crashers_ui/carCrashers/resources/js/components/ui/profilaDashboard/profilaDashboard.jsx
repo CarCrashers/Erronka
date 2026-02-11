@@ -6,7 +6,7 @@ function ProfilaDashboard() {
     const { props } = usePage();
     const user = props.auth?.user;
 
-    // Estado para formulario de edición
+    // Editatzeko
     const [editing, setEditing] = useState(false);
     const [formData, setFormData] = useState({
         name: user?.name || '',
@@ -33,7 +33,7 @@ function ProfilaDashboard() {
         setSaving(true);
 
         // Enviar al backend
-        router.post('/user/profile', formData, {
+        router.post('/user/update', formData, {
             onSuccess: () => {
                 setEditing(false);
                 setSaving(false);
@@ -60,7 +60,7 @@ function ProfilaDashboard() {
         <div className="p-5">
             {/* Header */}
             <div className="dashboard-header mb-5">
-                <h1 className="mb-1">📋 Zure Profila</h1>
+                <h1 className="mb-1">Zure Profila</h1>
                 <p className="text-muted">Kudeatu zure kontuaren datuak</p>
             </div>
 
@@ -94,7 +94,7 @@ function ProfilaDashboard() {
 
                         <div className="card-body px-4 py-4">
                             {!editing ? (
-                                /* 👀 VISTA LECTURA */
+                                /*Bistaratu */
                                 <div className="row g-4">
                                     <div className="col-md-6">
                                         <label className="form-label fw-bold text-muted">Izena</label>
@@ -115,10 +115,10 @@ function ProfilaDashboard() {
                                     </div>
                                     <div className="col-md-6">
                                         <label className="form-label fw-bold text-muted">Telefonoa</label>
-                                        <p className="fs-5 fw-semibold text-dark">{formData.telefono || 'Gehitu telefonoa'}</p>
+                                        <p className="fs-6 text-muted">{formData.telefono || 'Telefonorik ez'}</p>
                                     </div>
                                     <div className="col-md-6">
-                                        <label className="form-label fw-bold text-muted">Rola</label>
+                                        <label className="form-label fw-bold text-muted">Rola</label><br />
                                         <span className={`badge fs-6 ${
                                             formData.mota === 'admin' ? 'bg-danger' : 
                                             formData.mota === 'langile' ? 'bg-info' : 'bg-success'
@@ -130,12 +130,12 @@ function ProfilaDashboard() {
                                     <div className="col-12">
                                         <label className="form-label fw-bold text-muted">Kontua sortua</label>
                                         <p className="fs-6 text-muted">
-                                            {new Date(user.created_at).toLocaleDateString('eu-ES')}
+                                            {new Date(user.created_at).toLocaleDateString('es-ES')}
                                         </p>
                                     </div>
                                 </div>
                             ) : (
-                                /* ✏️ MODO EDICIÓN */
+                                /* Editatzeko */
                                 <form onSubmit={handleSubmit}>
                                     <div className="row g-4">
                                         <div className="col-md-6">
