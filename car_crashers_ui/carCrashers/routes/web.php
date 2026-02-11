@@ -200,7 +200,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //Profila
     Route::get('/profile', function() {
         return Inertia::render('dashboard');
-}); 
+    });
+    //Editatzeko ruta 
+    Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
 });
 
 

@@ -56,7 +56,10 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user()
-                    ? $request->user()->only('id', 'name', 'email', 'email_verified_at' ,'mota')
+                    ? array_merge(
+                        $request->user()->only('id', 'name', 'email', 'email_verified_at' ,'mota'),
+                        ['created_at' => $request->user()->created_at?->toIso8601String()]
+                      )
                     : null,
             ],
         ]);
