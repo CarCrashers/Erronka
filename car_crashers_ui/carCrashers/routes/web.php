@@ -124,9 +124,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::get('/profile', function() {
-        return Inertia::render('profilaDashboard');
-}); 
+
 
 /*
 * LOGOUT (Home-era bueltatzen du )
@@ -199,6 +197,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update']);
     Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update'])->name('peritutza.update');
     Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
+    //Profila
+    Route::get('/profile', function() {
+        return Inertia::render('dashboard');
+}); 
 });
 
 
