@@ -200,8 +200,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
 
 
-    //user eskaerak
-    Route::get('/nire-eskaerak', [PeritutzaEskaeraController::class,'index']);
+    //user eskaerak ikusteko
+    Route::get('/nire-eskaerak', [PeritutzaEskaeraController::class,'index'])->name('eskaerak.index');
+
+    //user eskaerak ezabatzeko
+    Route::delete('/eskaerak/{eskaera}', [PeritutzaEskaeraController::class, 'destroy'])->name('eskaerak.destroy');
 
 });
 
