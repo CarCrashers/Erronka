@@ -3,6 +3,7 @@ import { usePage } from '@inertiajs/react';
 import HeaderDashboard from '../components/ui/headerDashboard/headerDashboard.jsx';
 import AsideDashboard from '../components/ui/asideDashboard/asideDashboard.jsx';
 import MainDashboardContent from '../components/ui/mainDashboard/mainDashboard.jsx';
+import EskaerakDashboard from '../components/ui/eskaerakDashboard/eskaerakDashboard.jsx';
 import ProfilaDashboard from '../components/ui/profilaDashboard/profilaDashboard.jsx';
 import '../components/ui/kotxeDashboard/kotxeak';
 
@@ -24,7 +25,11 @@ function Dashboard({ children }) {
           <ProfilaDashboard />
         ) : url === '/dashboard' ? (
           <MainDashboardContent {...props} />
-        ) : (
+        ) : url === '/nire-eskaerak' ?
+        ( 
+          <EskaerakDashboard />
+        )
+        : url == '/'(
           children
         )}
       </main>

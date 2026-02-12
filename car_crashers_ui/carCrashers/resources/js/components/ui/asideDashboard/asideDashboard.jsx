@@ -42,7 +42,7 @@ function AsideDashboard() {
               <>
                 <div className="small text-muted text-uppercase mb-2">Nire Gunea</div>
                 <ItemDashboard name="Nire Arbela" icon="bi bi-speedometer2" href="/dashboard" />
-                <ItemDashboard name="Nire Eskaerak" icon="bi bi-file-text" href="/my-requests" />
+                <ItemDashboard name="Nire Eskaerak" icon="bi bi-file-text" href="/nire-eskaerak" />
                 <ItemDashboard name="Nire Kotxeak" icon="bi bi-car-front" href="/my-cars" />
                 <ItemDashboard name="Fakturak" icon="bi bi-receipt" href="/invoices" />
                 

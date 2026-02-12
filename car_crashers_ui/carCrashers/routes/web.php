@@ -203,6 +203,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     //Editatzeko ruta 
     Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
+
+
+    //user eskaerak
+    Route::get('/nire-eskaerak', [PeritutzaEskaeraController::class,'index']);
+
 });
 
 

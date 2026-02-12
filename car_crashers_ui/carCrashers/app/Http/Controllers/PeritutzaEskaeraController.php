@@ -108,5 +108,16 @@ class PeritutzaEskaeraController extends Controller
     }
 
 
+    public function index()
+    {
+        $user = auth()->user();
+        
+        $eskaerak = PeritutzaEskaera::where('erab_id', $user->id)
+            ->where('eskaera_egoera', 'zain')  
+            ->with(['kotxea'])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
+        return Inertia::render('dashboard', ['eskaerak' => $eskaerak]);
+    }
 }
