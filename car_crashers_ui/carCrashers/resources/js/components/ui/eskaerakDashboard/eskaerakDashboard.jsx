@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePage } from '@inertiajs/react'; 
+import { usePage, router } from '@inertiajs/react'; 
 
 function EskaerakDashboard() {
   const { props } = usePage();
@@ -13,6 +13,13 @@ function EskaerakDashboard() {
   const getEgoeraTestua = (egoera_kotxe, eskaera_egoera) => {
     if (eskaera_egoera === 'zain') return 'Zain';
     return egoera_kotxe || 'Prozesatzen';
+  };
+
+  // Eliminar eskaera funtzioa
+  const eliminarEskaera = (id) => {
+    if (confirm('Ziur zaude eskaera hau ezabatu nahi duzula?')) {
+      router.delete(`/eskaerak/${id}`);
+    }
   };
 
   return (
@@ -40,15 +47,7 @@ function EskaerakDashboard() {
                 <tbody>
                   {eskaerak.map((eskaera) => (
                     <tr key={eskaera.id}>
-                      <td>
-                        <span className={`badge ${
-                          eskaera.desguazatzeko 
-                            ? 'bg-danger' 
-                            : 'bg-primary'
-                        }`}>
-                          {getEskaeraMota(eskaera.desguazatzeko)}
-                        </span>
-                      </td>
+                      <td>{getEskaeraMota(eskaera.desguazatzeko)}</td>
                       <td>
                         <strong>{eskaera.marka}</strong> {eskaera.modelo}<br/>
                         <small className="text-muted">{eskaera.matrikula}</small>
@@ -69,8 +68,11 @@ function EskaerakDashboard() {
                         <button className="btn btn-sm btn-outline-primary me-2">
                           Ikusi
                         </button>
-                        <button className="btn btn-sm btn-outline-secondary">
-                          Eguneratu
+                        <button 
+                          onClick={() => eliminarEskaera(eskaera.id)}
+                          className="btn btn-sm btn-danger"
+                        >
+                          Ezabatu
                         </button>
                       </td>
                     </tr>

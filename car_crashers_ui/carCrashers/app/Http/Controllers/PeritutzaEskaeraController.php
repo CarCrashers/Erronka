@@ -120,4 +120,16 @@ class PeritutzaEskaeraController extends Controller
 
         return Inertia::render('dashboard', ['eskaerak' => $eskaerak]);
     }
+
+
+    public function destroy(PeritutzaEskaera $eskaera)
+    {
+        //$this->authorize('delete', $eskaera); 
+        
+        $eskaera->delete();
+        
+        return redirect()->route('eskaerak.index')
+                    ->with('success', 'Eskaera ezabatu da arrakastaz!');
+    }
+
 }
