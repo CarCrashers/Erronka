@@ -5,6 +5,7 @@ import AsideDashboard from '../components/ui/asideDashboard/asideDashboard.jsx';
 import MainDashboardContent from '../components/ui/mainDashboard/mainDashboard.jsx';
 import EskaerakDashboard from '../components/ui/eskaerakDashboard/eskaerakDashboard.jsx';
 import ProfilaDashboard from '../components/ui/profilaDashboard/profilaDashboard.jsx';
+import KotxeakDashboard from '../components/ui/kotxeakDashboard/kotxeakDashboard.jsx';
 import '../components/ui/kotxeDashboard/kotxeak';
 
 function Dashboard({ children }) {
@@ -21,17 +22,17 @@ function Dashboard({ children }) {
           <AsideDashboard />
         </aside>
         <main className="flex-fill overflow-auto bg-light" style={{ padding: '2rem' }}>
-        {url === '/profile' ? (
-          <ProfilaDashboard />
-        ) : url === '/dashboard' ? (
-          <MainDashboardContent {...props} />
-        ) : url === '/nire-eskaerak' ?
-        ( 
-          <EskaerakDashboard />
-        )
-        : url == '/'(
-          children
-        )}
+         {url === '/profile' ? (
+            <ProfilaDashboard />
+          ) : url === '/dashboard' ? (
+            <MainDashboardContent {...props} />
+          ) : url === '/nire-eskaerak' ? (
+            <EskaerakDashboard />
+          ) : url === '/kotxeak' ? (
+            <KotxeakDashboard />
+          ) : (
+            children
+          )}
       </main>
       </div>
     </div>

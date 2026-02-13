@@ -101,7 +101,7 @@ class PeritutzaEskaeraController extends Controller
         ]);
 
         // argazkien kudeaketa
-
+        
 
 
         return back()->with('Ongi!', 'Eskaera ongi bidalia.');

@@ -25,7 +25,7 @@ class Produktua extends Model
     }
 
     public function pieza()
-    {
+    {   
         return $this->belongsTo(Pieza::class, 'pieza_id');
     }
 

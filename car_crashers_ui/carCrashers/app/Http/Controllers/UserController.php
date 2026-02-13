@@ -8,6 +8,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use App\Models\Kotxea;
+use App\Models\Produktua;
 
 
 
@@ -112,4 +114,53 @@ class UserController extends Controller
 
         return redirect()->route('users')->with('success', 'Erabiltzailea ezabatu da ondo.');
     }
+
+
+   public function lortuKotxeak(Request $request)  
+    {
+        $user = Auth::user();
+        
+        if ($user->mota !== 'admin' && $user->mota !== 'langile') {
+            abort(403, 'Sarbide debekatuta');
+        }
+        
+        $query = Kotxea::with(['produktuak', 'desguazea'])
+            ->select([
+                'matrikula', 'marka', 'modeloa', 'urtea', 'kilometroak',
+                'egoera', 'deskribapena', 'desguazea_id', 'argazkiak', 'created_at'  
+            ])
+            ->addSelect([
+                'min_preziotik' => Produktua::select('prezioa')
+                    ->whereColumn('matrikula', 'kotxeak.matrikula')
+                    ->limit(1),
+                'batez_besteko_preziua' => Produktua::selectRaw('AVG(prezioa)')
+                    ->whereColumn('matrikula', 'kotxeak.matrikula')
+            ]);
+
+        $tipo = $request->get('tipo');
+        if ($tipo === 'desguazado') {
+            $query->whereHas('produktuak', fn($q) => $q->whereNotNull('pieza_id'));
+        } elseif ($tipo === 'venta') {
+            $query->whereHas('produktuak', fn($q) => $q->whereNull('pieza_id'));
+        }
+
+        $kotxeak = $query->orderBy('created_at', 'desc')->get()
+            ->map(function ($kotxea) {
+                $kotxea->min_preziotik = $kotxea->produktuak->min('prezioa') ?? 0;
+                $kotxea->batez_besteko_preziua = $kotxea->produktuak->avg('prezioa') ?? 0;
+                $kotxea->desguaze_izena = $kotxea->desguazea?->izena ?? 'Ez asignatuta';
+                
+                $hasPiezak = $kotxea->produktuak->some(fn($p) => $p->pieza_id !== null);
+                $kotxea->tipo = $hasPiezak ? 'desguazado' : 'venta';
+                
+                return $kotxea;
+            });
+
+        return Inertia::render('dashboard', [
+            'kotxeak' => $kotxeak,
+            'rola' => [$user->mota],
+        ]);
+    }
+
+
 }

@@ -39,7 +39,7 @@ function EskaerakDashboard() {
                   <tr>
                     <th>Mota</th>
                     <th>Kotxea</th>
-                    <th>Egoera</th>
+                    <th>Eskaeraren egoera</th>
                     <th>Data</th>
                     <th>Ekintzak</th>
                   </tr>
