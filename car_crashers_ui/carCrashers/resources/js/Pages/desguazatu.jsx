@@ -19,6 +19,8 @@ function Desguazatu() {
 
   const { erabiltzailea } = usePage().props;
 
+  
+
   const handleFileChange = (e) => {
     if (e.target.files) {
       const filesArray = Array.from(e.target.files);

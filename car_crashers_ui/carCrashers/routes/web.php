@@ -79,7 +79,7 @@ Route::post('/desguazatu', [DesguazatuController::class, 'store'])
 * AUTH BEHARRA DUTEN ORRIAK / ESKAERAK 
 */
 
-Route::middleware('auth')->group(function () 
+Route::middleware(['auth', 'verified'])->group(function () 
 {
     // SALDU ORRIA
     Route::get('/saldu', [PeritutzaEskaeraController::class, 'create'])->name('saldu');
@@ -205,6 +205,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //user eskaerak ezabatzeko
     Route::delete('/eskaerak/{eskaera}', [PeritutzaEskaeraController::class, 'destroy'])->name('eskaerak.destroy');
+
+
+    //user kotxeak ikusteko
+    Route::get('/kotxeak',[UserController::class,'lortuKotxeak'])->name('kotxeak.index');
 
 });
 
