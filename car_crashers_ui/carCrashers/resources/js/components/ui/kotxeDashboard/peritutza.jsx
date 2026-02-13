@@ -1,76 +1,85 @@
 import React, { useState } from 'react';
 import { Link, router } from '@inertiajs/react';
 import PeritutzaModal from './peritutzaModal';
+import DashboardContent from './dashboardContent.jsx'; // Importamos el componente común
+import './dashboardContent.css'; // Importamos los estilos comunes
 
 const Peritutza = ({ peritutza }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedEskaera, setSelectedEskaera] = useState(null);
+
+    // Configuración de las columnas para DashboardContent
+    const columns = [
+        {
+            key: 'matrikula',
+            label: 'Matrikula',
+            className: 'fw-bold'
+        },
+        {
+            key: 'ibilgailua', // Clave inventada para el render combinado
+            label: 'Ibilgailua',
+            render: (item) => `${item.marka} ${item.modelo}`
+        },
+        {
+            key: 'urtea',
+            label: 'Urtea'
+        },
+        {
+            key: 'eskaera_egoera',
+            label: 'Egoera',
+            render: (item) => (
+                <span className={`badge rounded-pill ${
+                    item.eskaera_egoera === 'amaituta' ? 'bg-success' : 
+                    item.eskaera_egoera === 'prozesuan' ? 'bg-primary' : 
+                    'bg-warning text-dark' // 'zain' por defecto
+                }`}>
+                    {item.eskaera_egoera?.toUpperCase() || 'ZAIN'}
+                </span>
+            )
+        },
+        {
+            key: 'prezioa',
+            label: 'Prezioa',
+            render: (item) => item.prezioa ? `${item.prezioa} €` : <span className="text-muted small">---</span>
+        }
+    ];
 
     const handleEdit = (eskaera) => {
         setSelectedEskaera(eskaera);
         setShowModal(true);
     };
 
-    const handleDelete = (id) => {
-        if (confirm('Ziur zaude eskaera hau ezabatu nahi duzula?')) {
-            router.delete(`/peritutza/${id}`);
-        }
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedEskaera(null);
     };
 
     return (
-        <div className="container-fluid mt-4">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                <h2 className="h4 fw-bold text-dark">Peritutza Eskaerak</h2>
-                <Link href="/desguazatu" className="btn btn-primary shadow-sm">
-                    <i className="bi bi-plus-lg me-2"></i>Eskaera Berria
+        <>
+            <div className="mb-3 d-flex justify-content">
+                <Link href="/desguazatu" className="btn-dashboard-create text-decoration-none">
+                    <i className="bi bi-plus-circle me-2"></i>
+                    Eskaera Berria
                 </Link>
             </div>
 
-            <div className="card shadow-sm border-0">
-                <div className="card-body p-0 text-center">
-                    <div className="table-responsive">
-                        <table className="table table-hover align-middle mb-0">
-                            <tbody>
-                                {peritutza && peritutza.map((eskaera) => (
-                                    <tr key={eskaera.id}>
-                                        <td className="fw-bold ps-4">{eskaera.matrikula}</td>
-                                        <td>{eskaera.marka} {eskaera.modelo}</td>
-                                        <td>{eskaera.urtea}</td>
-                                        <td>
-                                            <span className={`badge rounded-pill ${
-                                                eskaera.eskaera_egoera === 'amaituta' ? 'bg-success' : 
-                                                eskaera.eskaera_egoera === 'prozesuan' ? 'bg-primary' : 
-                                                'bg-warning text-dark' // Por defecto (zain)
-                                            }`}>
-                                                {eskaera.eskaera_egoera?.toUpperCase() || 'ZAIN'}
-                                            </span>
-                                        </td>
-                                        <td>{eskaera.prezioa ? `${eskaera.prezioa} €` : <span className="text-muted small">---</span>}</td>
-                                        <td className="text-end pe-4">
-                                            <div className="btn-group">
-                                                <button onClick={() => handleEdit(eskaera)} className="btn btn-sm btn-outline-primary">
-                                                    <i className="bi bi-pencil-square"></i>
-                                                </button>
-                                                <button onClick={() => handleDelete(eskaera.id)} className="btn btn-sm btn-outline-danger">
-                                                    <i className="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <DashboardContent
+                data={peritutza}
+                title="Peritutza Eskaerak"
+                icon="bi bi-clipboard-data-fill"
+                columns={columns}
+                emptyMessage="Ez dago peritutza eskaerarik momentu honetan."
+                keyField="id"
+                onEdit={handleEdit}
+                deleteRoute={(id) => `/peritutza/${id}`} 
+            />
 
-            {/* Invocamos el modal separado */}
             <PeritutzaModal 
                 show={showModal} 
-                onClose={() => setShowModal(false)} 
+                onClose={handleCloseModal} 
                 eskaera={selectedEskaera} 
             />
-        </div>
+        </>
     );
 };
 

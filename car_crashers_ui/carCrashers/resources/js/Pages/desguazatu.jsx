@@ -148,9 +148,9 @@ function Desguazatu() {
                           id="emaila" 
                           name="emaila" 
                           type="email" 
-                          value={erabiltzailea?.emaila ?? ""} 
-                          placeholder="Emaila sesiotik hartu" 
-                          readOnly={true}
+                          //value={erabiltzailea?.emaila ?? ""} 
+                          //placeholder="Emaila sesiotik hartu" 
+                          //readOnly={true}
                         >
                           Email-a <span className="text-danger">*</span>
                         </FloatingInput>
@@ -161,9 +161,9 @@ function Desguazatu() {
                           id="izenAbizena" 
                           name="izenAbizena" 
                           type="text" 
-                          value={erabiltzailea?.izenAbizena ?? ""} 
-                          placeholder="Izena sesiotik hartu" 
-                          readOnly={true}
+                          //value={erabiltzailea?.izenAbizena ?? ""} 
+                          //placeholder="Izena sesiotik hartu" 
+                          //readOnly={true}
                         >
                           Izen Abizenak <span className="text-danger">*</span>
                         </FloatingInput>
@@ -174,9 +174,9 @@ function Desguazatu() {
                           id="telefonoa" 
                           name="telefonoa" 
                           type="text" 
-                          value={erabiltzailea?.telefonoa ?? ""} 
-                          placeholder="Telefonoa sesiotik hartu" 
-                          readOnly={true}
+                          //value={erabiltzailea?.telefonoa ?? ""} 
+                          //placeholder="Telefonoa sesiotik hartu" 
+                          //readOnly={true}
                         >
                           Telefono zenbakia <span className="text-danger">*</span>
                         </FloatingInput>

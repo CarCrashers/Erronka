@@ -4,45 +4,66 @@ import './weather.css';
 function Weather() {
   const [weather, setWeather] = useState(null);
 
+  const DEFAULT_LAT = 43.3183;
+  const DEFAULT_LON = -1.9761;
+
   useEffect(() => {
     let isMounted = true;
 
-    const fetchWeather = async () => {
+    const fetchWeather = async (lat, lon) => {
       try {
-        console.log('Iniciando fetch de clima...');
-        
-        // Usando Open-Meteo que es completamente libre
         const response = await fetch(
-          'https://api.open-meteo.com/v1/forecast?latitude=43.3183&longitude=-1.9761&current=temperature_2m,weather_code&timezone=Europe/Madrid'
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=Europe/Madrid`
         );
         
-        console.log('Response status:', response.status);
-        
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
         const data = await response.json();
-        console.log('Datos del clima:', data);
+
+        let cityName = "Donostia (Lehenetsia)";
+        try {
+            if (lat !== DEFAULT_LAT) {
+                const cityRes = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=eu`);
+                const cityData = await cityRes.json();
+                cityName = cityData.locality || cityData.city || "Zure Kokapena";
+            }
+        } catch (e) {
+            console.log("No se pudo obtener el nombre de la ciudad");
+        }
         
         if (isMounted && data && data.current) {
           const current = data.current;
           setWeather({
             temp: Math.round(current.temperature_2m),
             code: current.weather_code,
-            icon: getWeatherIcon(current.weather_code)
+            icon: getWeatherIcon(current.weather_code),
+            location: cityName
           });
-          console.log('Estado del clima actualizado');
         }
       } catch (error) {
         console.error('Error al obtener el clima:', error);
       }
     };
 
-    fetchWeather();
+    const initWeather = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    console.log("Ubicación detectada.");
+                    fetchWeather(position.coords.latitude, position.coords.longitude);
+                },
+                (error) => {
+                    console.warn("Ubicación denegada/error. Usando Donostia.");
+                    fetchWeather(DEFAULT_LAT, DEFAULT_LON);
+                }
+            );
+        } else {
+            fetchWeather(DEFAULT_LAT, DEFAULT_LON);
+        }
+    };
+
+    initWeather();
     
-    // Actualizar cada 10 minutos
-    const interval = setInterval(fetchWeather, 600000);
+    const interval = setInterval(initWeather, 600000);
     
     return () => {
       isMounted = false;
@@ -50,18 +71,17 @@ function Weather() {
     };
   }, []);
 
-  // Mostrar widget con datos o placeholder
   if (!weather) {
     return (
-      <div className="weather-widget" title="Cargando clima...">
-        <i className="bi bi-cloud"></i>
+      <div className="weather-widget" title="Kargatzen...">
+        <i className="bi bi-cloud-arrow-down"></i>
         <span className="temp">--°</span>
       </div>
     );
   }
 
   return (
-    <div className="weather-widget" title={`Temperatura: ${weather.temp}°C`}>
+    <div className="weather-widget" title={`Kokapena: ${weather.location} | Tenperatura: ${weather.temp}°C`}>
       <i className={`bi ${weather.icon}`}></i>
       <span className="temp">{weather.temp}°</span>
     </div>
@@ -69,19 +89,6 @@ function Weather() {
 }
 
 function getWeatherIcon(code) {
-  // WMO Weather interpretation codes
-  // 0 = Clear sky
-  // 1,2 = Mostly clear, partly cloudy
-  // 3 = Overcast
-  // 45,48 = Foggy
-  // 51,53,55 = Drizzle
-  // 61,63,65 = Rain
-  // 71,73,75 = Snow
-  // 77 = Snow grains
-  // 80,81,82 = Rain showers
-  // 85,86 = Snow showers
-  // 95,96,99 = Thunderstorm
-  
   if (code === 0) return 'bi-sun-fill';
   if (code === 1 || code === 2) return 'bi-cloud-sun';
   if (code === 3) return 'bi-clouds';

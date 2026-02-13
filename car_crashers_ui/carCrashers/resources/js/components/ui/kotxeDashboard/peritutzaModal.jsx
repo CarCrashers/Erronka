@@ -82,7 +82,7 @@ const PeritutzaModal = ({ show, onClose, eskaera }) => {
                                     // CAMBIO AQUÍ: Actualizamos 'desguazatzeko'
                                     onChange={e => setData('desguazatzeko', e.target.checked)} 
                                 />
-                                <label className="form-check-label fw-bold">Desguazatze?</label>
+                                <label className="form-check-label fw-bold">Desguazatzeko?</label>
                             </div>
                         </div>
                         <div className="modal-footer bg-light">
