@@ -137,7 +137,7 @@ class UserController extends Controller
                     ->whereColumn('matrikula', 'kotxeak.matrikula')
             ]);
 
-        $tipo = $request->get('tipo');
+        $tipo = $request->get('mota');
         if ($tipo === 'desguazado') {
             $query->whereHas('produktuak', fn($q) => $q->whereNotNull('pieza_id'));
         } elseif ($tipo === 'venta') {

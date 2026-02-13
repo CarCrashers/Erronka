@@ -218,12 +218,6 @@ function ProfilaDashboard() {
                     {/* Quick Actions */}
                     <div className="row mt-4">
                         <div className="col-md-6">
-                            <Link href="/dashboard" className="btn btn-outline-secondary w-100">
-                                <i className="bi bi-arrow-left me-2"></i>
-                                Itzuli Dashboard-era
-                            </Link>
-                        </div>
-                        <div className="col-md-6">
                             <Link href="/eskaerak" className="btn btn-outline-primary w-100">
                                 <i className="bi bi-receipt me-2"></i>
                                 Nire Eskaerak
