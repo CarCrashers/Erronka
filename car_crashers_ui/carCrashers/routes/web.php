@@ -129,6 +129,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update']);
     Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update'])->name('peritutza.update');
     Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
+
+    Route::get('/reports', function () {
+        $dataStats = [
+            'kotxeakCount' => Kotxea::count(),
+            'piezakCount' => Pieza::count(),
+            'peritutzaEskaerakCount' => PeritutzaEskaera::count(),
+        ];
+
+        return Inertia::render('reports', ['dataStats' => $dataStats]);
+    })->name('reports');
 });
 
 
