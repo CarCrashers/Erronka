@@ -16,36 +16,36 @@ use Illuminate\Support\Facades\Storage;
 class PeritutzaEskaeraController extends Controller
 {
 
-   public function index()
-{
-    $peritutza = PeritutzaEskaera::latest()->get()->map(function ($e) {
+    public function index()
+    {
+        $peritutza = PeritutzaEskaera::latest()->get()->map(function ($e) {
 
-        $paths = $e->argazkiak ?? [];
+            $paths = $e->argazkiak ?? [];
 
-        if (is_string($paths)) {
-            $paths = json_decode($paths, true) ?? [];
-        }
+            if (is_string($paths)) {
+                $paths = json_decode($paths, true) ?? [];
+            }
 
-        if (!is_array($paths)) {
-            $paths = [];
-        }
+            if (!is_array($paths)) {
+                $paths = [];
+            }
 
-        $argazkiUrls = collect($paths)
-            ->filter(fn ($p) => is_string($p) && $p !== '')
-            ->map(fn ($p) => Storage::disk('public')->url($p)) 
-            ->values()
-            ->all();
+            $argazkiUrls = collect($paths)
+                ->filter(fn ($p) => is_string($p) && $p !== '')
+                ->map(fn ($p) => Storage::disk('public')->url($p)) 
+                ->values()
+                ->all();
 
-        return [
-            ...$e->toArray(),
-            'argazki_urls' => $argazkiUrls,
-        ];
-    });
+            return [
+                ...$e->toArray(),
+                'argazki_urls' => $argazkiUrls,
+            ];
+        });
 
-    return Inertia::render('peritutza', [
-        'peritutza' => $peritutza,
-    ]);
-}
+        return Inertia::render('peritutza', [
+            'peritutza' => $peritutza,
+        ]);
+    }
 
 
     public function update(Request $request, $id)
@@ -75,14 +75,16 @@ class PeritutzaEskaeraController extends Controller
                 $argazkiNagusia = $argazkiak[0] ?? null;
 
                 // 1) KOTXEAK
-                Kotxea::firstOrCreate(
+                Kotxea::updateOrCreate(
                     ['matrikula' => $peritutza->matrikula],
                     [
-                        'marka'   => $peritutza->marka ?? 'Ezezaguna',
-                        'modeloa' => $peritutza->modelo ?? 'Ezezaguna',
-                        'urtea'   => $peritutza->urtea ?? null,
+                        'marka'     => $peritutza->marka ?? 'Ezezaguna',
+                        'modeloa'   => $peritutza->modelo ?? 'Ezezaguna',
+                        'urtea'     => $peritutza->urtea ?? null,
+                        'argazkiak' => $argazkiak,
                     ]
                 );
+
 
                 // 2) PRODUKTUAK (aquí copiamos fotos)
                 Produktua::updateOrCreate(

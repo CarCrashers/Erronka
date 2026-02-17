@@ -36,8 +36,6 @@ function Kotxeak({ kotxeak }) {
     { key: 'marka', label: 'Marka', width: '140px' },
     { key: 'modeloa', label: 'Modeloa', width: '140px' },
     { key: 'urtea', label: 'Urtea', width: '90px' },
-
-    // NUEVO: fotos
     {
       key: 'argazkiak',
       label: 'Argazkiak',
@@ -52,7 +50,7 @@ function Kotxeak({ kotxeak }) {
             title="Ikusi argazkiak"
             disabled={count === 0}
             onClick={(e) => {
-              e.stopPropagation(); // importante si luego añades click por fila
+              e.stopPropagation();
               handleOpenFotos(item);
             }}
           >
@@ -73,6 +71,7 @@ function Kotxeak({ kotxeak }) {
 
   return (
     <>
+      {      console.log(kotxeak?.[0]) }
       <div className="mb-3">
         <button
           className="btn-dashboard-create"
