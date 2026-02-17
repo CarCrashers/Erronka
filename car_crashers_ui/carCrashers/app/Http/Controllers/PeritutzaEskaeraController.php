@@ -41,11 +41,13 @@ class PeritutzaEskaeraController extends Controller
 
         //Argazkiak
         $argazkiPaths = [];
-
-        if ($request->hasFile('argazkiak'))
-        {
-            foreach ($request->file('argazkiak') as $argazkia)
-            {
+        if ($request->hasFile('argazkiak')) {
+            foreach ($request->file('argazkiak') as $argazkia) {
+                // Tamaina eta mota balidatu
+                if ($argazkia->getSize() > 5 * 1024 * 1024 || !in_array($argazkia->getMimeType(), ['image/jpeg', 'image/png', 'image/webp'])) {
+                    throw ValidationException::withMessages(['argazkiak' => 'Argazkiak 5MB baino txikiagoak eta JPG/PNG/WEBP bakarrik.']);
+                }
+                
                 $path = $argazkia->store('peritutza_argazkiak', 'public');
                 $argazkiPaths[] = $path;
             }
@@ -64,7 +66,7 @@ class PeritutzaEskaeraController extends Controller
             'urtea'            => $data['urtea'],
             'egoera_kotxe'     => $data['egoera'],
             'desk'             => $data['deskribapena'] ?? 'Deskribapenik ez.',
-            'argazkiak'        => $argazkiPaths,
+            'argazkiak'        => json_encode($argazkiPaths),
             'prezioa'          => null,           // Perituak jarriko du
             'eskaera_egoera'   => 'zain',         // Hasierako egoera: zain
             'produktu_id'      => null,
