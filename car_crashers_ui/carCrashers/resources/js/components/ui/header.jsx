@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Logo from "@assets/images/logo.jpg";
 import { Link, usePage } from "@inertiajs/react";
 import Saioa from "./saioa/saioa.jsx";
@@ -11,6 +12,25 @@ function Header() {
   const handleObraClick = () => {
     window.location.href = '/error';
   };
+  useEffect(() => {
+    const obtenerUbicacion = () => {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const coords = {
+              lat: position.coords.latitude,
+              lon: position.coords.longitude,
+              timestamp: new Date().getTime(),
+            };
+            localStorage.setItem("user_location", JSON.stringify(coords));
+          },
+          (error) => console.warn("Ubicación denegada")
+        );
+      }
+    };
+
+    obtenerUbicacion();
+  }, []);
 
   return (
     <>

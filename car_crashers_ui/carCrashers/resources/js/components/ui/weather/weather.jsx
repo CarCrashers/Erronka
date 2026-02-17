@@ -27,7 +27,7 @@ function Weather() {
                 cityName = cityData.locality || cityData.city || "Zure Kokapena";
             }
         } catch (e) {
-            console.log("No se pudo obtener el nombre de la ciudad");
+            console.log("Ezin izan da herriaren izena lortu");
         }
         
         if (isMounted && data && data.current) {
@@ -45,14 +45,19 @@ function Weather() {
     };
 
     const initWeather = () => {
-        if (navigator.geolocation) {
+        const savedLocation = JSON.parse(localStorage.getItem('user_location'));
+
+        if (savedLocation && savedLocation.lat && savedLocation.lon) {
+            console.log("Usando ubicación guardada en LocalStorage.");
+            fetchWeather(savedLocation.lat, savedLocation.lon);
+        } 
+        else if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    console.log("Ubicación detectada.");
                     fetchWeather(position.coords.latitude, position.coords.longitude);
                 },
                 (error) => {
-                    console.warn("Ubicación denegada/error. Usando Donostia.");
+                    console.warn("Ubicación denegada. Usando Donostia.");
                     fetchWeather(DEFAULT_LAT, DEFAULT_LON);
                 }
             );
@@ -99,7 +104,6 @@ function getWeatherIcon(code) {
   if (code >= 80 && code <= 82) return 'bi-cloud-rain-fill';
   if (code >= 85 && code <= 86) return 'bi-snow';
   if (code >= 95 && code <= 99) return 'bi-cloud-lightning-rain';
-  
   return 'bi-cloud-question';
 }
 
