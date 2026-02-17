@@ -10,17 +10,43 @@ use Inertia\Inertia;
 use App\Models\Kotxea;
 use App\Models\Produktua;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class PeritutzaEskaeraController extends Controller
 {
 
-    public function index()
-    {
-        return Inertia::render('peritutza', [
-            'peritutza' => PeritutzaEskaera::latest()->get()
-        ]);
-    }
+   public function index()
+{
+    $peritutza = PeritutzaEskaera::latest()->get()->map(function ($e) {
+
+        $paths = $e->argazkiak ?? [];
+
+        if (is_string($paths)) {
+            $paths = json_decode($paths, true) ?? [];
+        }
+
+        if (!is_array($paths)) {
+            $paths = [];
+        }
+
+        $argazkiUrls = collect($paths)
+            ->filter(fn ($p) => is_string($p) && $p !== '')
+            ->map(fn ($p) => Storage::disk('public')->url($p)) 
+            ->values()
+            ->all();
+
+        return [
+            ...$e->toArray(),
+            'argazki_urls' => $argazkiUrls,
+        ];
+    });
+
+    return Inertia::render('peritutza', [
+        'peritutza' => $peritutza,
+    ]);
+}
+
 
     public function update(Request $request, $id)
     {
