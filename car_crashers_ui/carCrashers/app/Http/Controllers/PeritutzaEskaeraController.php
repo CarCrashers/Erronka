@@ -10,7 +10,7 @@ use Inertia\Inertia;
 use App\Models\Kotxea;
 use App\Models\Produktua;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 
 class PeritutzaEskaeraController extends Controller
@@ -18,10 +18,35 @@ class PeritutzaEskaeraController extends Controller
 
     public function index()
     {
+        $peritutza = PeritutzaEskaera::latest()->get()->map(function ($e) {
+
+            $paths = $e->argazkiak ?? [];
+
+            if (is_string($paths)) {
+                $paths = json_decode($paths, true) ?? [];
+            }
+
+            if (!is_array($paths)) {
+                $paths = [];
+            }
+
+            $argazkiUrls = collect($paths)
+                ->filter(fn ($p) => is_string($p) && $p !== '')
+                ->map(fn ($p) => Storage::disk('public')->url($p)) 
+                ->values()
+                ->all();
+
+            return [
+                ...$e->toArray(),
+                'argazki_urls' => $argazkiUrls,
+            ];
+        });
+
         return Inertia::render('peritutza', [
-            'peritutza' => PeritutzaEskaera::latest()->get()
+            'peritutza' => $peritutza,
         ]);
     }
+
 
     public function update(Request $request, $id)
     {
@@ -30,35 +55,56 @@ class PeritutzaEskaeraController extends Controller
 
         $peritutza->prezioa = $request->prezioa;
         $peritutza->eskaera_egoera = $request->eskaera_egoera;
-        $peritutza->desguazatzeko = $request->desguazatzeko ? 1 : 0; 
-        $peritutza->save(); 
+        $peritutza->desguazatzeko = $request->desguazatzeko ? 1 : 0;
+        $peritutza->save();
 
         if ($request->eskaera_egoera === 'amaituta') {
-        
-        DB::transaction(function () use ($peritutza) {
-            
-            Kotxea::firstOrCreate(
-                ['matrikula' => $peritutza->matrikula],
-                [
-                    'marka'   => $peritutza->marka ?? 'Ezezaguna',
-                    'modeloa' => $peritutza->modelo ?? 'Ezezaguna',
-                    'urtea'   => $peritutza->urtea ?? null,
-                ]
-            );
 
-            Produktua::updateOrCreate(
-                ['matrikula' => $peritutza->matrikula],
-                [
-                    'pieza_id'    => null,
-                    'egoera'       => 'salgai',
-                    'deskribapena'  => trim("Ibilgailu peritatua: " . ($peritutza->marka ?? '') . " " . ($peritutza->modelo ?? '')),
-                    'prezioa'      => $peritutza->prezioa ?? 0,
-                ]
-            );
-        });
-    }
+            DB::transaction(function () use ($peritutza) {
 
-    return redirect()->back()->with('success', 'Datuak ondo eguneratu dira.');
+               
+                $argazkiak = $peritutza->argazkiak ?? [];
+
+                if (is_string($argazkiak)) {
+                    $argazkiak = json_decode($argazkiak, true) ?? [];
+                }
+
+                if (!is_array($argazkiak)) {
+                    $argazkiak = [];
+                }
+
+                $argazkiNagusia = $argazkiak[0] ?? null;
+
+                // 1) KOTXEAK
+                Kotxea::updateOrCreate(
+                    ['matrikula' => $peritutza->matrikula],
+                    [
+                        'marka'     => $peritutza->marka ?? 'Ezezaguna',
+                        'modeloa'   => $peritutza->modelo ?? 'Ezezaguna',
+                        'urtea'     => $peritutza->urtea ?? null,
+                        'argazkiak' => $argazkiak,
+                    ]
+                );
+
+
+                // 2) PRODUKTUAK (aquí copiamos fotos)
+                Produktua::updateOrCreate(
+                    ['matrikula' => $peritutza->matrikula],
+                    [
+                        'pieza_id'         => null,
+                        'egoera'           => 'salgai',
+                        'deskribapena'     => trim("Ibilgailu peritatua: " . ($peritutza->marka ?? '') . " " . ($peritutza->modelo ?? '')),
+                        'prezioa'          => $peritutza->prezioa ?? 0,
+
+                        // >>> FOTOS COPIADAS DESDE PERITUTZA_ESKAERA
+                        'argazkiak'        => $argazkiak,        // json (array cast)
+                        'argazki_nagusia'  => $argazkiNagusia,   // para la card
+                    ]
+                );
+            });
+        }
+
+        return back()->with('success', 'Eskaera eguneratua.');
     }
 
     public function create()
