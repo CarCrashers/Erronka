@@ -4,7 +4,7 @@ import HeaderDashboard from '../components/ui/headerDashboard/headerDashboard.js
 import AsideDashboard from '../components/ui/asideDashboard/asideDashboard.jsx';
 import EskaerakDashboard from '../components/ui/eskaerakDashboard/eskaerakDashboard.jsx';
 import ProfilaDashboard from '../components/ui/profilaDashboard/profilaDashboard.jsx';
-import KotxeakDashboard from '../components/ui/kotxeakDashboard/kotxeakDashboard.jsx';
+import KotxeakDashboard from '../components/ui/kotxeDashboard/kotxeak.jsx';
 import '../components/ui/kotxeDashboard/kotxeak';
 
 function Dashboard({ children }) {

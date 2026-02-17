@@ -116,12 +116,12 @@ Route::get('/login', function () {
 /*
 * DASHBOARD ORRIA (Auth erabilita)
 */
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('dashboard', function () {
+//         return Inertia::render('dashboard');
+//     })->name('dashboard');
     
-});
+// });
 
 
 
@@ -197,10 +197,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update']);
     Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update'])->name('peritutza.update');
     Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
+    
     //Profila
-    Route::get('/profile', function() {
+    /*Route::get('/profile', function() {
         return Inertia::render('dashboard');
-    });
+    });*/
     //Editatzeko ruta 
     Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
 
