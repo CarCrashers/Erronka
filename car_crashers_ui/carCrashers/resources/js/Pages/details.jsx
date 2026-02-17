@@ -73,10 +73,7 @@ function Details() {
                 </div>
 
                 <div class="col-12 d-flex justify-content-lg-between justify-content-around flex-wrap mt-3 gap-3">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    
                 </div>
             </div>
         </div>
