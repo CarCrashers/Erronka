@@ -213,7 +213,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     //user kotxeak ikusteko
-    Route::get('/kotxeak',[UserController::class,'lortuKotxeak'])->name('kotxeak.index');
+    //Route::get('/kotxeak',[UserController::class,'lortuKotxeak'])->name('kotxeak.index');
 
 
     Route::get('/reports', function () {

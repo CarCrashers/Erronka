@@ -110,7 +110,7 @@ class PeritutzaEskaeraController extends Controller
     }
 
 
-    public function index()
+    /*public function index()
     {
         $user = auth()->user();
         
@@ -121,7 +121,7 @@ class PeritutzaEskaeraController extends Controller
             ->get();
 
         return Inertia::render('dashboard', ['eskaerak' => $eskaerak]);
-    }
+    }*/
 
 
     public function destroy(PeritutzaEskaera $eskaera)
