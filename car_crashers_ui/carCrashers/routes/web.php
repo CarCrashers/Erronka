@@ -215,6 +215,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //user kotxeak ikusteko
     Route::get('/kotxeak',[UserController::class,'lortuKotxeak'])->name('kotxeak.index');
 
+
+    Route::get('/reports', function () {
+        $dataStats = [
+            'kotxeakCount' => Kotxea::count(),
+            'piezakCount' => Pieza::count(),
+            'peritutzaEskaerakCount' => PeritutzaEskaera::count(),
+        ];
+
+        return Inertia::render('reports', ['dataStats' => $dataStats]);
+    })->name('reports');
 });
 
 
