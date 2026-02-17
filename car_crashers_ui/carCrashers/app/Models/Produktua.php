@@ -16,7 +16,13 @@ class Produktua extends Model
         'pieza_id',
         'egoera',
         'deskribapena',
+        'argazkiak',
+        'argazki_nagusia',
         'prezioa',
+    ];
+
+    protected $casts = [
+        'argazkiak' => 'array',
     ];
 
     public function kotxea()

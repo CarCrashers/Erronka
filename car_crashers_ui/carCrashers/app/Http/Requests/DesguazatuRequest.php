@@ -6,17 +6,18 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DesguazatuRequest extends FormRequest
 {
-    
     public function authorize(): bool
     {
         return true;
     }
 
-
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'documentacionOk' => filter_var($this->input('documentacionOk'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? false,
+            'matrikula' => strtoupper((string) $this->input('matrikula')),
+
+            'egoera' => $this->input('egoera') === 'null' ? null : $this->input('egoera'),
+            'documentacionOk' => $this->input('options-outlined'),
         ]);
     }
 
@@ -25,40 +26,48 @@ class DesguazatuRequest extends FormRequest
         $currentYear = now()->year;
 
         return [
-            // Kontaktu datuak
-            'nombreCompleto' => ['required', 'string', 'max:255'],
-            'email'          => ['required', 'email'],
-            'telefono'       => ['required', 'string', 'max:20'],
+            'emaila'      => ['required', 'email', 'max:254'],
+            'izenAbizena' => ['required', 'string', 'max:255'],
+            'telefonoa'   => ['required', 'string', 'max:20'],
 
-            // Kotxe datuak
-            'marca'     => ['required', 'string', 'max:100'],
+            'matrikula' => ['required', 'regex:/^[0-9]{4}[A-Z]{3}$/'],
+            'marka'     => ['required', 'string', 'max:100'],
             'modelo'    => ['required', 'string', 'max:100'],
-            'ano'       => ['required', 'integer', 'digits:4', 'min:1900', "max:$currentYear"],
-            'estado'    => ['required', 'in:bikaina,ongi,nahikoa'],
-            
-            // Dokumentazio checkbox/radio
-            'documentacionOk' => ['required', 'boolean'],
+            'urtea'     => ['required', 'integer', 'digits:4', 'min:1900', "max:$currentYear"],
+            'kilometro' => ['required', 'integer', 'min:0', 'max:2000000'],
+            'egoera'    => ['required', 'in:bikaina,ongi,nahikoa'],
 
-            // Deskribapena 
-            'descripcion' => ['nullable', 'string', 'max:1000'],
+            'options-outlined' => ['required', 'in:0,1'],
 
-            'fotos'       => ['required', 'array', 'min:1'],
-            'fotos.*'     => ['file', 'image', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'deskribapena' => ['nullable', 'string', 'max:1000'],
+
+            'argazkiak'   => ['required', 'array', 'min:1', 'max:10'],
+            'argazkiak.*' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'], // 5MB
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nombreCompleto.required' => 'Izen-abizenak beharrezkoak dira.',
-            'email.required' => 'Emaila beharrezkoa da.',
-            'email.email' => 'Emaila ez da zuzena.',
-            'marca.required' => 'Marka aukeratu behar duzu.',
-            'ano.max' => 'Urtea ezin da gaurkoa baino handiagoa.',
-            'estado.in' => 'Egoera aukeratu behar duzu.',
-            'documentacionOk.boolean' => 'Dokumentazio egoera zehaztu behar duzu.',
-            'fotos.required' => 'Gutxienez argazki bat bidali behar duzu.',
-            'fotos.*.image' => 'Fitxategiak irudiak izan behar dira (JPG/PNG).',
+            'emaila.required' => 'Emaila beharrezkoa da.',
+            'emaila.email'    => 'Emaila ez da zuzena.',
+
+            'izenAbizena.required' => 'Izen-abizenak beharrezkoak dira.',
+            'telefonoa.required'   => 'Telefonoa beharrezkoa da.',
+
+            'matrikula.required' => 'Matrikula beharrezkoa da.',
+            'matrikula.regex'    => 'Matrikula formatua: 0000 ABC.',
+
+            'urtea.max' => 'Urtea ezin da gaurkoa baino handiagoa.',
+            'egoera.required' => 'Egoera aukeratu behar duzu.',
+            'egoera.in'       => 'Egoera aukeratu behar duzu.',
+
+            'options-outlined.required' => 'Dokumentazioa aukeratu behar duzu.',
+            'options-outlined.in'       => 'Dokumentazioa aukeratu behar duzu.',
+
+            'argazkiak.required' => 'Gutxienez argazki bat bidali behar duzu.',
+            'argazkiak.*.image'  => 'Fitxategiek irudiak izan behar dira (JPG/PNG/WEBP).',
+            'argazkiak.*.max'    => 'Argazki bakoitza 5MB baino txikiagoa izan behar da.',
         ];
     }
 }

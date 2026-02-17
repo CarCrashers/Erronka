@@ -57,28 +57,7 @@ function HeaderDashboard() {
             <i className="bi bi-search"></i>
           </button>
 
-          {/* Notificaciones */}
-          <div className="dropdown">
-            <button
-              className="btn btn-sm btn-link text-white position-relative"
-              type="button"
-              data-bs-toggle="dropdown"
-            >
-              <i className="bi bi-bell fs-5"></i>
-              <span className="position-absolute top-0 start-100 translate-middle badge badge-danger badge-counter">
-                3
-              </span>
-            </button>
-            <ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
-              <li><h6 className="dropdown-header">Notificaciones</h6></li>
-              <li><a className="dropdown-item" href="#">Nueva solicitud de peritación</a></li>
-              <li><a className="dropdown-item" href="#">Stock bajo: Motor 2.0 TDI</a></li>
-              <li><a className="dropdown-item" href="#">Vehículo listo para venta</a></li>
-              <li><hr className="dropdown-divider" /></li>
-              <li><a className="dropdown-item text-center small" href="#">Ver todas</a></li>
-            </ul>
-          </div>
-
+         
           {/* Usuario */}
           <div className="dropdown">
             <button

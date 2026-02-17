@@ -39,6 +39,8 @@ class PeritutzaEskaeraController extends Controller
         $peritutza->desguazatzeko = $request->desguazatzeko ? 1 : 0; 
 
         $peritutza->save(); 
+
+        //Crear (coche o pieza) Y producto
         return redirect()->back();
     }
 

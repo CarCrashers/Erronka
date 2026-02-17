@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Illuminate\Http\Request;
 use App\Http\Requests\DesguazatuRequest;
+use App\Models\PeritutzaEskaera;
+use Illuminate\Support\Facades\Auth;
+
 
 class DesguazatuController extends Controller
 {
@@ -12,10 +16,8 @@ class DesguazatuController extends Controller
          $data = $request->validated();
         $argazkiPaths = [];
 
-        // **FOTOS - IGUAL QUE SALDU**
         if ($request->hasFile('argazkiak')) {
             foreach ($request->file('argazkiak') as $argazkia) {
-                // Validación segura
                 if ($argazkia->getSize() > 5 * 1024 * 1024 || 
                     !in_array($argazkia->getMimeType(), ['image/jpeg', 'image/png', 'image/webp'])) {
                     throw ValidationException::withMessages([
@@ -28,11 +30,10 @@ class DesguazatuController extends Controller
             }
         }
 
-        // **CREAR DESGUAZATU - SOLO CAMBIA desguazatzeko = true**
         PeritutzaEskaera::create([
             'erab_id'          => Auth::id(),
             'langile_id'       => null,
-            'desguazatzeko'    => true,  // <<-- ESTO ES LO ÚNICO DIFERENTE
+            'desguazatzeko'    => true, 
             'kotxe_matrikula'  => null,
             'matrikula'        => $data['matrikula'],
             'marka'            => $data['marka'],
