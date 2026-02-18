@@ -18,7 +18,7 @@ function SaskiProduktu({ item, onEzabatu }) {
     <div className="p-3 rounded-4 border shadow-lg d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3">
       <div className="d-flex flex-grow-1">
         <img 
-          src={p.argazkia || '/placeholder-car.jpg'} 
+          src={p.argazki_nagusia ? `/storage/${p.argazki_nagusia}` : '/images/placeholder.png'} 
           alt={izena}
           className="me-3 rounded shadow-sm"
           style={{width: '90px', height: '90px', objectFit: 'cover'}}

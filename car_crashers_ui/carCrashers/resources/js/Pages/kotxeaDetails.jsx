@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/layout.jsx';
 import ReturnBack from '../components/ui/buttons/returnBack/returnBack.jsx';
 import Carrusel from '../components/ui/carrusel/carrusel.jsx';
 import KotxeakCard from '../components/ui/cards/kotxeak/kotxeak.jsx';
 import PiezakCard from '../components/ui/cards/piezak/piezak.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
-import { usePage } from '@inertiajs/react';
+import { usePage, router, Head } from '@inertiajs/react';
 
 
 function Details() {
@@ -13,14 +13,40 @@ function Details() {
     const produk = produktua[0];
     const kotxe = kotxea[0];
 
+    const [showAlert, setShowAlert] = useState(false);
+    const { flash } = usePage().props;
+
+    const gehituSaskira = () => {
+        router.post(`/details/save/${kotxe.matrikula}`, {
+        produktua_id: produk.id,
+        });
+    };
+
+    
+    useEffect(() => {
+    if (flash?.success) {
+      setShowAlert(true);
+    
+      const timer = setTimeout(() => setShowAlert(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [flash?.success]);
+
     return (
         <React.StrictMode>
         <Layout>
+             {showAlert && (
+                <div className="alert alert-success alert-dismissible fade show position-fixed" 
+                    style={{ top: '20px', right: '20px', zIndex: 9999, maxWidth: '400px' }}
+                    role="alert">
+                    <i className="bi bi-check-circle-fill me-2"></i>
+                    {flash.success}
+                </div>
+            )}
             <Goikoa>
                 <h1>Kotxearen informazioa</h1>
                 <p>Behar duzun kotxea aurkitu</p>
             </Goikoa>
-
             <div className='container'>
                 <div className='row ms-2'>
                     <div className='col'>
@@ -30,7 +56,7 @@ function Details() {
 
                 <div className='row ms-2'>
                     <div className='col-12 col-lg-6'>
-                        <Carrusel />
+                        <Carrusel produktua={produk} />
                     </div>
 
                     <div className="col-12 col-md-6 col-lg-4 mt-lg-0 mt-md-4 mt-sm-4">
@@ -54,7 +80,11 @@ function Details() {
                                 <h5 className="">{produk.prezioa} €</h5>
                             </div>
                             <div className="mt-3">
-                                <button className="bg-orange w-100 rounded-5 border-0 py-2 text-white">
+                                <button
+                                    type="button"
+                                    className="bg-orange w-100 rounded-5 border-0 py-2 text-white"
+                                    onClick={gehituSaskira}
+                                >
                                     Saskira gehitu
                                 </button>
                             </div>

@@ -1,18 +1,55 @@
-import React from 'react';
-import { router } from '@inertiajs/react';
+import React, { useEffect, useState } from 'react';
+import { router, usePage } from '@inertiajs/react';
 import Layout from '../components/layout/layout.jsx';
 import SaskiProduktua from '../components/ui/cards/saskiProduktu/saskiProduktu.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
 
 function Saskia({ saskia, items, total }) 
 {
+
+   const { flash } = usePage().props;
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState('success');
+
   const ezabatuItem = (itemId) => {
     if (confirm('Ezabatu produktua saskitik?')) {
       router.delete(`/saskia/item/${itemId}`);
     }
   };
+
+  useEffect(() => {
+    if (flash?.success || flash?.error) {
+      setAlertType(flash?.success ? 'success' : 'danger');
+      setShowAlert(true);
+      const timer = setTimeout(() => setShowAlert(false), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [flash?.success, flash?.error]);
+
+  const erosi = () => {
+    if (confirm('Ziur al zaude produktuak erosi nahi dituzula?')) {
+      router.post('/saskia/erosi');
+    }
+  };
+
+ 
   return (
     <Layout>
+      {showAlert && (
+        <div 
+          className={`alert alert-${alertType} alert-dismissible fade show position-fixed`}
+          style={{ top: '20px', right: '20px', zIndex: 9999, maxWidth: '500px' }}
+          role="alert"
+        >
+          <i className={`bi ${alertType === 'success' ? 'bi-check-circle-fill' : 'bi-x-circle-fill'} me-2`}></i>
+          {flash?.success || flash?.error}
+          <button 
+            type="button" 
+            className="btn-close ms-2" 
+            onClick={() => setShowAlert(false)} 
+          />
+        </div>
+      )}
       <Goikoa>
         <h1>Zure saskia</h1>
         <p>Hauek dira gordetako produktuak</p>
@@ -54,7 +91,10 @@ function Saskia({ saskia, items, total })
               
               <button 
                 className="bg-orange w-100 rounded-5 border-0 py-2 mt-3 text-white"
-                disabled={!items || items.length === 0}>
+                disabled={!items || items.length === 0}
+                onClick={erosi}
+              >
+                <i className="bi bi-bag-check me-2"></i>
                 Erosi
               </button>
             </div>

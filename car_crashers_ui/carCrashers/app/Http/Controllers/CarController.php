@@ -8,17 +8,30 @@ use App\Models\Pieza;
 
 class CarController extends Controller
 {
-    public function index()
+   public function index()
     {
-        $kotxeak = Produktua::whereNull('pieza_id')->with('kotxea.produktuak')->get()->pluck('kotxea')->unique('matrikula')->values();
+        $kotxeak = Produktua::whereNull('pieza_id')
+            ->where('egoera', 'salgai')
+            ->with('kotxea.produktuak')
+            ->get()
+            ->pluck('kotxea')
+            ->unique('matrikula')
+            ->values();
 
-        $piezak = Pieza::with(['produktuak'])->get();
+        $piezak = Pieza::whereHas('produktuak', function ($q) {
+                $q->where('egoera', 'salgai');
+            })
+            ->with(['produktuak' => function ($q) {
+                $q->where('egoera', 'salgai');
+            }])
+            ->get();
 
         return Inertia::render('erosi', [
             'kotxeak' => $kotxeak,
             'piezak'  => $piezak,
         ]);
     }
+
 
     public function showKotxea($matrikula) {
         $produktua = Produktua::where('matrikula', $matrikula)->whereNull('pieza_id')->get();

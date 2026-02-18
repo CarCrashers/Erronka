@@ -51,7 +51,7 @@ Route::get('/erosi', [CarController::class, 'index'])->name('cars.index');
 //Route::get('/details/{id}', [CarController::class, 'show'])->name('details');
 Route::get('/details/{matrikula}/{pieza_id}', [CarController::class, 'showPieza'])->name('details.pieza');
 Route::get('/details/{matrikula}', [CarController::class, 'showKotxea'])->name('details.kotxea');
- 
+Route::post('/details/save/{matrikula}',[SaskiaController::class,'saveItem'])->name('details.save');
 /* ********************************** */
 
 
@@ -95,6 +95,10 @@ Route::middleware(['auth', 'verified'])->group(function ()
 
     // SASKIA ITEM EZABATU
     Route::delete('/saskia/item/{itemId}', [SaskiaController::class, 'destroyItem'])->name('saskia.item.ezabatu');
+
+    //SASKIA EROSI
+    Route::post('/saskia/erosi', [SaskiaController::class, 'buyItems'])->name('saskia.erosi');
+
 
 });
 

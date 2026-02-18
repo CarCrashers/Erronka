@@ -1,17 +1,27 @@
 import './kotxeak.css';
-import imgCar from '@assets/images/carExample.jpeg';
 import { Link } from '@inertiajs/react';
 
 function Kotxeak({ kotxea }) {
     const productua = kotxea.produktuak?.[0] || {};
     const egoera = productua.egoera || kotxea.egoera || 'Unknown';
     const prezioa = productua.prezioa || 'Kontsultatu';
-    const url = "details/"+productua.matrikula;
+    const url = "/details/"+productua.matrikula;
+
+    const argazkiUrl = productua.argazki_nagusia
+        ? `/storage/${productua.argazki_nagusia}`
+        : '/images/placeholder.png';
 
     return (
         <div className="card shadow-lg">
             <div className="position-relative">
-                <img src={imgCar} className="card-img-top" alt="..." />
+                <img 
+                    src={argazkiUrl} 
+                    className="card-img-top" 
+                    alt={`${kotxea.marka} ${kotxea.modeloa}`}
+                    onError={(e) => { 
+                        e.target.src = '/images/placeholder.png';
+                    }}
+                />
                 <span
                 className="badge text-bg-success rounded-pill position-absolute"
                 style={{ top: "10px", left: "10px" }}
