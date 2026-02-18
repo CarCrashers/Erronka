@@ -8,7 +8,7 @@ function Kotxeak({ kotxea }) {
     const url = "/details/"+productua.matrikula;
 
     const argazkiUrl = productua.argazki_nagusia
-        ? `/storage/${productua.argazki_nagusia}`
+        ? `${productua.argazki_nagusia}`
         : '/images/placeholder.png';
 
     return (
@@ -17,6 +17,7 @@ function Kotxeak({ kotxea }) {
                 <img 
                     src={argazkiUrl} 
                     className="card-img-top" 
+                    style={{ height: '200px', objectFit: 'cover' }}
                     alt={`${kotxea.marka} ${kotxea.modeloa}`}
                     onError={(e) => { 
                         e.target.src = '/images/placeholder.png';

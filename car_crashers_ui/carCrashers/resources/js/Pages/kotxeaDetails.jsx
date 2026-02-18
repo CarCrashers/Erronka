@@ -102,9 +102,9 @@ function Details() {
                         {antzekoKotxeak.map((kotxea) =>
                             <KotxeakCard kotxea={kotxea} />
                         )}
-                        {/* {antzekoPiezak.map((pieza) =>
+                         {antzekoPiezak.map((pieza) =>
                             <PiezakCard pieza={pieza} />
-                        )} */}
+                        )} 
                     </div>
                 </div>
             </div>

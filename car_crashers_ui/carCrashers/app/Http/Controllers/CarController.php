@@ -37,9 +37,12 @@ class CarController extends Controller
         $produktua = Produktua::where('matrikula', $matrikula)->whereNull('pieza_id')->get();
         $kotxea = Kotxea::where('matrikula', $matrikula)->get();
 
-        $antzekoKotxeak = Kotxea::with(['produktuak'])->where('matrikula', '!=', $matrikula)->get()->random(1);
+        $antzekoKotxeak = Kotxea::with(['produktuak'])->where('matrikula', '!=', $matrikula)->get()->random(2);
+        
+        $antzekoPiezak = Pieza::with(['produktuak'])->where('matrikula', '!=', $matrikula)->get()->random(2);
 
-        return Inertia::render('kotxeaDetails', compact('produktua', 'kotxea', 'antzekoKotxeak'));
+
+        return Inertia::render('kotxeaDetails', compact('produktua', 'kotxea', 'antzekoKotxeak', 'antzekoPiezak'));
     }
 
     public function showPieza($matrikula, $pieza_id) {

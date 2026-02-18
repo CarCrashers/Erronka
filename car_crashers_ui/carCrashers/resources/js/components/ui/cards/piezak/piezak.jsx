@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 
 function Piezak({ pieza }) {
     const productua = pieza.produktuak?.[0] || {};
-    const egoera = productua.egoera || kotxea.egoera || 'Unknown';
+    const egoera = productua.egoera || 'Unknown';
     const prezioa = productua.prezioa || 'Kontsultatu';
     const url = "details/"+productua.matrikula+"/"+pieza.id;
 
