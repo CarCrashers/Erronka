@@ -9,14 +9,16 @@ import { usePage } from '@inertiajs/react';
 
 
 function Details() {
-    const { produktua, antzekoKotxeak, antzekoPiezak } = usePage().props;
+    const { produktua, kotxea, antzekoKotxeak, antzekoPiezak } = usePage().props;
+    const produk = produktua[0];
+    const kotxe = kotxea[0];
 
     return (
         <React.StrictMode>
         <Layout>
             <Goikoa>
-                <h1>Produktuaren informazioa</h1>
-                <p>Behar duzun kotxea edo pieza aurkitu</p>
+                <h1>Kotxearen informazioa</h1>
+                <p>Behar duzun kotxea aurkitu</p>
             </Goikoa>
 
             <div className='container'>
@@ -33,17 +35,15 @@ function Details() {
 
                     <div className="col-12 col-md-6 col-lg-4 mt-lg-0 mt-md-4 mt-sm-4">
                         <div className="d-flex flex-column p-3 rounded-4 border shadow-lg h-100">
-                            <h3>{produktua.matrikula}</h3>
+                            <h3>{kotxe.marka} {kotxe.modeloa}</h3>
                             <hr />
-                            <h3>Marka</h3>
                             <ul className="py-3">
-                                <li>Datuak: Datu</li>
-                                <li>Datuak: Datu</li>
-                                <li>Datuak: Datu</li>
-                                <li>Datuak: Datu</li>
+                                <li>Urtea: {kotxe.urtea}</li>
+                                <li>Matrikula: {kotxe.matrikula}</li>
+                                <li>Egoera: {produk.egoera}</li>
                             </ul>
                             <p className="mb-0">
-                                Descripcion: Lorem ipsum dolor sit amet consectetur adipiscing elit, euismod mauris ridiculus accumsan fames aptent, est venenatis sollicitudin aenean lectus neque.
+                                {produk.deskribapena}
                             </p>
                         </div>
                     </div>
@@ -51,17 +51,9 @@ function Details() {
                     <div className="col-12 col-md-6 col-lg-2 h-50 mt-lg-0 mt-md-4 mt-sm-4">
                         <div className="d-flex flex-column justify-content-between h-100 p-3 rounded-4 border shadow-lg">
                             <div>
-                                <h5 className="text-danger">XX.XX $</h5>
-                                <p className="text-success mb-0">Stock-a: XX</p>
+                                <h5 className="">{produk.prezioa} €</h5>
                             </div>
                             <div className="mt-3">
-                                <select className="form-select mb-2">
-                                    <option>Kopurua...</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>...</option>
-                                </select>
                                 <button className="bg-orange w-100 rounded-5 border-0 py-2 text-white">
                                     Saskira gehitu
                                 </button>
@@ -71,18 +63,18 @@ function Details() {
                 </div>
 
                 
-                <div class="row flex-column ms-2 mt-5 mb-4 p-3 rounded-4 border shadow-lg">
-                    <div class="col-12 px-3">
+                <div className="row flex-column ms-2 mt-5 mb-4 p-3 rounded-4 border shadow-lg">
+                    <div className="col-12 px-3">
                         <h1>Antzeko produktuak</h1>
                     </div>
 
-                    <div class="col-12 d-flex justify-content-lg-between justify-content-around flex-wrap mt-3 gap-3">
+                    <div className="col-12 d-flex justify-content-lg-between justify-content-around flex-wrap mt-3 gap-3">
                         {antzekoKotxeak.map((kotxea) =>
                             <KotxeakCard kotxea={kotxea} />
                         )}
-                        {antzekoPiezak.map((pieza) =>
+                        {/* {antzekoPiezak.map((pieza) =>
                             <PiezakCard pieza={pieza} />
-                        )}
+                        )} */}
                     </div>
                 </div>
             </div>

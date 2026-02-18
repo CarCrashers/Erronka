@@ -5,46 +5,36 @@ use Inertia\Inertia;
 use App\Models\Produktua;
 use App\Models\Kotxea;
 use App\Models\Pieza;
-use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-    public function index() {
-        // Carga todos los productos con relaciones (evita N+1)
-        $produktuak = Produktua::with(['kotxea', 'pieza'])->get();
+    public function index()
+    {
+        $kotxeak = Produktua::whereNull('pieza_id')->with('kotxea.produktuak')->get()->pluck('kotxea')->unique('matrikula')->values();
 
-        // Variable con coches únicos (de productos o todos si prefieres)
-        $kotxeak = Kotxea::whereIn('matrikula', $produktuak->pluck('matrikula'))
-                         ->with(['piezak', 'produktuak'])
-                         ->get();
-        // O si quieres TODOS los coches: $kotxeak = Kotxea::with(['piezak', 'produktuak'])->get();
-
-        // Variable con piezas únicas (de productos)
-        $piezak = Pieza::whereIn('id', $produktuak->pluck('pieza_id'))
-                       ->with(['kotxea', 'produktuak'])
-                       ->get();
-        // O si quieres TODAS las piezas: $piezak = Pieza::with(['kotxea', 'produktuak'])->get();
+        $piezak = Pieza::with(['produktuak'])->get();
 
         return Inertia::render('erosi', [
             'kotxeak' => $kotxeak,
-            'piezak' => $piezak
+            'piezak'  => $piezak,
         ]);
     }
 
-    public function show($id) {
-        $produktua = Produktua::findOrFail($id);
+    public function showKotxea($matrikula) {
+        $produktua = Produktua::where('matrikula', $matrikula)->whereNull('pieza_id')->get();
+        $kotxea = Kotxea::where('matrikula', $matrikula)->get();
 
-        $antzekoKotxeak = Kotxea::get()->random(2);
-        $antzekoPiezak = Pieza::get()->random(2);
+        $antzekoKotxeak = Kotxea::with(['produktuak'])->where('matrikula', '!=', $matrikula)->get()->random(1);
 
-        return Inertia::render('details', compact('produktua', 'antzekoKotxeak', 'antzekoPiezak'));
-    }
-
-    public function showKotxea($matrikula, $pieza_id) {
-        
+        return Inertia::render('kotxeaDetails', compact('produktua', 'kotxea', 'antzekoKotxeak'));
     }
 
     public function showPieza($matrikula, $pieza_id) {
+        $produktua = Produktua::where('matrikula', $matrikula)->get();
+        $pieza = Pieza::with('produktuak')->where('id', $pieza_id)->get();
 
+        $antzekoKotxeak = Kotxea::with(['produktuak'])->where('matrikula', '!=', $matrikula)->get()->random(1);
+
+        return Inertia::render('piezaDetails', compact('produktua', 'pieza', 'antzekoKotxeak'));
     }
 }
