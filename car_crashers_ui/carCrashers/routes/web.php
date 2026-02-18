@@ -203,7 +203,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     });*/
     //Editatzeko ruta 
-    Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
 
 
     //user eskaerak ikusteko
