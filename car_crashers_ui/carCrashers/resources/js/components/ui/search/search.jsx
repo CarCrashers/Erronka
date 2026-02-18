@@ -13,9 +13,9 @@ function Search() {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-xxl-12 col-xl-11 col-lg-10 col-md-10 col-sm-10 col-10">
-        <div className="border rounded-5 py-3 px-3 px-md-4 shadow-lg bg-white">
-          <div className="row g-3 align-items-center">
+      <div className="col-12">
+        <div className="border rounded-4 py-3 px-3 px-md-4 shadow-lg bg-white">
+          <div className="row g-2 g-md-3 align-items-center">
 
             {/* Buscador */}
             <div className="col-12 col-md-6 col-lg-5">
@@ -25,7 +25,7 @@ function Search() {
                 </span>
                 <input
                   type="text"
-                  className="form-control border-start-0"
+                  className="form-control form-control-sm border-start-0"
                   placeholder="Bilatu..."
                 />
               </div>
@@ -48,7 +48,7 @@ function Search() {
                 <input
                   type="number"
                   name="min"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   placeholder="Min"
                   min="0"
                   value={priceRange.min}
@@ -58,7 +58,7 @@ function Search() {
                 <input
                   type="number"
                   name="max"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   placeholder="Max"
                   min="0"
                   value={priceRange.max}

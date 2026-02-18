@@ -128,21 +128,21 @@ function Desguazatu() {
         <p>Zure kotxea desguazatu hemen. Informazioa eta argazkiak igorri.</p>
       </Goikoa>
 
-      <div className="container py-5">
+      <div className="container-fluid py-3 py-md-5">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-10 col-lg-8 rounded-3 shadow-lg my-4 p-4 p-md-5">
+          <div className="col-12 col-md-11 col-lg-8 rounded-3 shadow-lg my-3 my-md-4 p-3 p-md-4 p-lg-5">
             {isSuccess ? (
               <SuccessMessage onReset={berrabiarazi} />
             ) : (
               <>
                 <div id="title" className="mb-3">
-                  <h1 className="text-black text-primary">Desguazerako formularioa</h1>
-                  * derrigorrezko eremuak
+                  <h1 className="h4 h-md-3 text-black text-primary">Desguazerako formularioa</h1>
+                  <small className="text-muted">* derrigorrezko eremuak</small>
                 </div>
                 <hr />
                 <Forms name="desguazatu" onSubmit={konprobatuFormularioa}>
                   <div id="kontaktua" className="mb-4">
-                    <h5>Kontaktu datuak</h5>
+                    <h5 className="h6 h-md-5">Kontaktu datuak</h5>
                     <div className="row g-3">
                       <div className="col-12">
                         <FloatingInput 

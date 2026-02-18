@@ -2,7 +2,7 @@ import imgCar from '@assets/images/carExample.jpeg';
 
 function Carrusel() {
   return (
-    <div id="carouselExampleIndicators" className="carousel slide h-100">
+    <div id="carouselExampleIndicators" className="carousel slide w-100 rounded-3" style={{ minHeight: '300px' }}>
       <div className="carousel-indicators">
         <button
           type="button"
@@ -26,26 +26,29 @@ function Carrusel() {
         ></button>
       </div>
 
-      <div className="carousel-inner rounded-4 h-100">
-        <div className="carousel-item active h-100">
+      <div className="carousel-inner rounded-3">
+        <div className="carousel-item active" style={{ minHeight: '300px' }}>
           <img
             src={imgCar}
             className="d-block w-100 h-100 object-fit-cover"
-            alt="Dubai"
+            alt="Produktua 1"
+            style={{ minHeight: '300px' }}
           />
         </div>
-        <div className="carousel-item h-100">
+        <div className="carousel-item" style={{ minHeight: '300px' }}>
           <img
             src={imgCar}
             className="d-block w-100 h-100 object-fit-cover"
-            alt="Hong Kong"
+            alt="Produktua 2"
+            style={{ minHeight: '300px' }}
           />
         </div>
-        <div className="carousel-item h-100">
+        <div className="carousel-item" style={{ minHeight: '300px' }}>
           <img
             src={imgCar}
             className="d-block w-100 h-100 object-fit-cover"
-            alt="Taiwan"
+            alt="Produktua 3"
+            style={{ minHeight: '300px' }}
           />
         </div>
       </div>

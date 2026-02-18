@@ -12,7 +12,7 @@ function Layout({ children }) {
           <NavBar />
       </React.StrictMode>
 
-      <main className="flex-fill">{children}</main>
+      {children}
 
       <React.StrictMode>
           <Footer />

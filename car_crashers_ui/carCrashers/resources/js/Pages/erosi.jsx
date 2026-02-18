@@ -50,9 +50,9 @@ function Erosi() {
           <p>Produktu katalogo honetan, zure beharretara egokitutako ibilgailuak aurki ditzakezu.</p>
         </Goikoa>
 
-        <div className="container my-4 py-5">
+        <div className="container-fluid my-4 py-3 py-md-5">
           <div className="row justify-content-center">
-            <div className="col-12">
+            <div className="col-12 col-lg-10">
               <Search />
               <div className="py-2" />
               <ProducToggle 
@@ -64,10 +64,12 @@ function Erosi() {
             </div>
           </div>
 
-          <div class="row justify-content-start">
-            <div class="col-12 mt-5 d-flex justify-content-around flex-wrap gap-3">
-              {/* Mostrar aquí los coches o piezas depende el ProducToggle */}
-              {renderContent()}
+          <div className="row justify-content-start">
+            <div className="col-12 mt-5 d-grid gap-3">
+              <div className="row g-2 g-md-3 g-lg-4">
+                {/* Mostrar aquí los coches o piezas depende el ProducToggle */}
+                {renderContent()}
+              </div>
             </div>
           </div>
           <div className='row'>
