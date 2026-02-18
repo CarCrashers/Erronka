@@ -100,23 +100,20 @@ const Peritutza = ({ peritutza, isUserView = false, userMota}) => {
           </div>
         )}
 
-        <DashboardContent
-          data={peritutza}
-          title={isUserView ? 'Nire Eskaerak' : 'Peritutza Eskaerak'} 
-          icon="bi bi-clipboard-data-fill"
-          columns={columns}
-          emptyMessage="Ez dago peritutza eskaerarik momentu honetan."
-          keyField="id"
-          onEdit={canEdit ? handleEdit : null}                        
-          deleteRoute={canEdit ? (id) => `/peritutza/${id}` : null}   
-        />
+      <DashboardContent
+        data={peritutza}
+        title="Peritutza Eskaerak"
+        icon="bi bi-clipboard-data-fill"
+        columns={columns}
+        emptyMessage="Ez dago peritutza eskaerarik momentu honetan."
+        keyField="id"
+        onEdit={handleEdit}
+        deleteRoute={(id) => `/peritutza/${id}`}
+      />
 
-        {canEdit && (
-          <PeritutzaModal show={showEditModal} onClose={handleCloseEditModal} eskaera={selectedEskaera} />
-        )}
-
-        <PeritutzaFotosModal show={showFotosModal} onClose={handleCloseFotos} eskaera={selectedFotosEskaera} />
-      </>
+      <PeritutzaModal show={showEditModal} onClose={handleCloseEditModal} eskaera={selectedEskaera} />
+      <PeritutzaFotosModal show={showFotosModal} onClose={handleCloseFotos} eskaera={selectedFotosEskaera} />
+    </>
   );
 };
 

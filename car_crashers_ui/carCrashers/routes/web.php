@@ -14,6 +14,7 @@ use Inertia\Inertia;
 use App\Models\Kotxea;
 use App\Models\Pieza;
 use App\Models\PeritutzaEskaera;
+use App\Models\Produktua;
 
 /*
 * HASIERA ORRIA
@@ -172,9 +173,24 @@ Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', function () {
+        $user = auth()->user();
+        
+        if ($user->mota === 'admin') {
+            $kotxeakCount = Kotxea::count();
+            $piezakCount = Pieza::count();
+        } else {
+            $userMatrikulak = PeritutzaEskaera::where('erab_id', $user->id)
+                                ->pluck('matrikula');
+
+            $kotxeakCount = $userMatrikulak->count();
+            $piezakCount = Produktua::whereIn('matrikula', $userMatrikulak)
+                            ->whereNotNull('pieza_id')
+                            ->count();
+        }
+
         return Inertia::render('dashboard', [ 
-            'kotxeakCount' => Kotxea::count(),
-            'piezakCount' => Pieza::count(),
+            'kotxeakCount' => $kotxeakCount,
+            'piezakCount' => $piezakCount,
         ]);
     })->name('dashboard');
 
@@ -199,11 +215,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
     
     //Profila
-    /*Route::get('/profile', function() {
+    Route::get('/profile', function() {
         return Inertia::render('dashboard');
-    });*/
+    });
     //Editatzeko ruta 
-    Route::get('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
 
 
     //user eskaerak ikusteko
@@ -211,6 +227,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //user eskaerak ezabatzeko
     Route::delete('/eskaerak/{eskaera}', [PeritutzaEskaeraController::class, 'destroy'])->name('eskaerak.destroy');
+
+    Route::get('/kontaktua', function() {
+        return Inertia::render('dashboard');
+    })->name('dashboard.kontaktua');
 
 
     //user kotxeak ikusteko

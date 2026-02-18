@@ -42,13 +42,13 @@ function AsideDashboard() {
               <>
                 <div className="small text-muted text-uppercase mb-2">Nire Gunea</div>
                 <ItemDashboard name="Dashboard" icon="bi bi-speedometer2" href="/dashboard" />
-                <ItemDashboard name="Nire profila" icon="bi bi-person-fill" href="/user/update" />
+                <ItemDashboard name="Nire profila" icon="bi bi-person-fill" href="/profile" />
                 <ItemDashboard name="Nire Eskaerak" icon="bi bi-file-text" href="/nire-eskaerak" />
                 {/*<ItemDashboard name="Fakturak" icon="bi bi-receipt" href="/invoices" />*/}
                 
                 <div className="mt-4 pt-3 border-top">
                   <h6 className="sidebar-heading text-muted text-uppercase px-0 mb-3 small">Laguntza</h6>
-                  <ItemDashboard name="Kontaktua" icon="bi bi-envelope" href="/contact" />
+                  <ItemDashboard name="Kontaktua" icon="bi bi-envelope" href="/kontaktua" />
                 </div>
               </>
             )}
