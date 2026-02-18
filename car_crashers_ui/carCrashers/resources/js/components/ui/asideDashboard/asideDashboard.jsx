@@ -28,7 +28,7 @@ function AsideDashboard() {
               <>
                 <div className="small text-muted text-uppercase mb-2">Administrazioa</div>
                 <ItemDashboard name="Dashboard" icon="bi bi-speedometer2" href="/dashboard" />
-                <ItemDashboard name="Peritutza eskaerak" icon="bi bi-file-earmark" href="/peritutza" />
+                <ItemDashboard name="Peritutza eskaerak" preserveState={false} icon="bi bi-file-earmark" href="/peritutza" />
                 <ItemDashboard name="Kotxeak" icon="bi bi-car-front-fill" href="/kotxeak" />
                 <ItemDashboard name="Piezak" icon="bi bi-tools" href="/piezak" />
                 <ItemDashboard name="Reports" icon="bi bi-graph-up" href="/reports" />

@@ -18,6 +18,8 @@ class PeritutzaEskaeraController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+
         $peritutza = PeritutzaEskaera::latest()->get()->map(function ($e) {
 
             $paths = $e->argazkiak ?? [];
@@ -28,7 +30,7 @@ class PeritutzaEskaeraController extends Controller
 
             if (!is_array($paths)) {
                 $paths = [];
-            }
+            }   
 
             $argazkiUrls = collect($paths)
                 ->filter(fn ($p) => is_string($p) && $p !== '')
@@ -44,43 +46,45 @@ class PeritutzaEskaeraController extends Controller
 
         return Inertia::render('peritutza', [
             'peritutza' => $peritutza,
+            'userMota'  => $user->mota, // ← GEHITU HAU
         ]);
     }
 
     public function userEskaerak()
     {
-        
+        $user = Auth::user();
+
         $peritutza = PeritutzaEskaera::where('erab_id', Auth::id())
             ->latest()
             ->get()
             ->map(function ($e) {
-
                 $paths = $e->argazkiak ?? [];
-
                 if (is_string($paths)) {
                     $paths = json_decode($paths, true) ?? [];
                 }
-
                 if (!is_array($paths)) {
                     $paths = [];
                 }
 
-                $argazkiUrls = collect($paths)
-                    ->filter(fn ($p) => is_string($p) && $p !== '')
-                    ->map(fn ($p) => Storage::disk('public')->url($p))
+                $urls = collect($paths)
+                    ->filter(fn($p) => is_string($p) && $p !== '')
+                    ->map(fn($p) => Storage::disk('public')->url($p))
                     ->values()
                     ->all();
 
                 return [
                     ...$e->toArray(),
-                    'argazki_urls' => $argazkiUrls,
+                    'argazki_urls' => $urls,
                 ];
             });
 
-        return Inertia::render('peritutza', [ 
-            'peritutza' => $peritutza,
+        return Inertia::render('peritutza', [
+            'peritutza'  => $peritutza,
+            'isUserView' => true,
+            'userMota'   => $user->mota, 
         ]);
     }
+
 
 
     public function update(Request $request, $id)

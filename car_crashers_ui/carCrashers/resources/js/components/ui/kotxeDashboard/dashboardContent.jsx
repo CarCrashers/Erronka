@@ -5,6 +5,8 @@ import './dashboardContent.css';
 function DashboardContent({ data, title, icon, columns, emptyMessage, keyField = 'id', onEdit, deleteRoute }) {
   const [deletingId, setDeletingId] = useState(null);
 
+  const hasActions = onEdit || deleteRoute;
+
   const handleDelete = (item) => {
     setDeletingId(item[keyField]);
     router.delete(deleteRoute(item[keyField]), {
@@ -41,7 +43,7 @@ function DashboardContent({ data, title, icon, columns, emptyMessage, keyField =
                       {col.label}
                     </th>
                   ))}
-                  <th style={{ minWidth: '120px' }}>Akzioak</th>
+                  {hasActions && <th style={{ minWidth: '120px' }}>Akzioak</th>}
                 </tr>
               </thead>
 
@@ -57,52 +59,60 @@ function DashboardContent({ data, title, icon, columns, emptyMessage, keyField =
                         </td>
                       ))}
 
-                      <td>
-                        <div
-                          className="dashboard-content-actions"
-                          onClick={(e) => {
-                            // evita cualquier “burbujeo” raro
-                            e.stopPropagation();
-                          }}
-                        >
-                          <button
-                            type="button"
-                            className="btn-dashboard-edit"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onEdit(item);
-                            }}
-                            title="Eguneratu"
-                            disabled={rowIsDeleting}
+                      {hasActions && (
+                        <td>
+                          <div
+                            className="dashboard-content-actions"
+                            onClick={(e) => e.stopPropagation()}
                           >
-                            <i className="bi bi-pencil"></i>
-                          </button>
-
-                          <button
-                            type="button"
-                            className="btn-dashboard-delete"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (window.confirm('Ziur al zaude elementu hau ezabatu nahi duzula?')) {
-                                handleDelete(item);
-                              }
-                            }}
-                            title="Ezabatu"
-                            disabled={rowIsDeleting}
-                          >
-                            {rowIsDeleting ? (
-                              <span className="spinner-border spinner-border-sm spinner-loading" role="status" aria-hidden="true"></span>
-                            ) : (
-                              <i className="bi bi-trash"></i>
+                            {/* Botón EDITAR: solo si onEdit existe */}
+                            {onEdit && (
+                              <button
+                                type="button"
+                                className="btn-dashboard-edit"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onEdit(item);
+                                }}
+                                title="Eguneratu"
+                                disabled={rowIsDeleting}
+                              >
+                                <i className="bi bi-pencil"></i>
+                              </button>
                             )}
-                          </button>
-                        </div>
-                      </td>
+
+                            {/* Botón ELIMINAR: solo si deleteRoute existe */}
+                            {deleteRoute && (
+                              <button
+                                type="button"
+                                className="btn-dashboard-delete"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (window.confirm('Ziur al zaude elementu hau ezabatu nahi duzula?')) {
+                                    handleDelete(item);
+                                  }
+                                }}
+                                title="Ezabatu"
+                                disabled={rowIsDeleting}
+                              >
+                                {rowIsDeleting ? (
+                                  <span
+                                    className="spinner-border spinner-border-sm spinner-loading"
+                                    role="status"
+                                    aria-hidden="true"
+                                  ></span>
+                                ) : (
+                                  <i className="bi bi-trash"></i>
+                                )}
+                              </button>
+                            )}
+                          </div>
+                        </td>
+                      )}
                     </tr>
                   );
                 })}
               </tbody>
-
             </table>
           </div>
         )}

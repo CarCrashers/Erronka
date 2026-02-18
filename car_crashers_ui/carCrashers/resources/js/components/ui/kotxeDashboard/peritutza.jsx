@@ -5,7 +5,10 @@ import PeritutzaFotosModal from './PeritutzaFotosModal';
 import DashboardContent from './dashboardContent.jsx';
 import './dashboardContent.css';
 
-const Peritutza = ({ peritutza }) => {
+const Peritutza = ({ peritutza, isUserView = false, userMota}) => {
+
+  const canEdit = userMota === 'langile' || userMota === 'admin';
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedEskaera, setSelectedEskaera] = useState(null);
 
@@ -60,8 +63,6 @@ const Peritutza = ({ peritutza }) => {
       width: '110px',
       render: (item) => (item.prezioa ? `${item.prezioa} €` : <span className="text-muted small">---</span>),
     },
-
-    // NUEVO: botón "ojo" para fotos
     {
       key: 'argazkiak',
       label: 'Argazkiak',
@@ -76,7 +77,7 @@ const Peritutza = ({ peritutza }) => {
             title="Ikusi argazkiak"
             disabled={count === 0}
             onClick={(e) => {
-              e.stopPropagation(); // no disparar acciones de fila
+              e.stopPropagation();
               handleOpenFotos(item);
             }}
           >
@@ -89,32 +90,33 @@ const Peritutza = ({ peritutza }) => {
   ];
 
   return (
-    <>
-      <div className="mb-3 d-flex justify-content">
-        <Link href="/desguazatu" className="btn-dashboard-create text-decoration-none">
-          <i className="bi bi-plus-circle me-2"></i>
-          Eskaera Berria
-        </Link>
-      </div>
+      <>
+        {canEdit && (
+          <div className="mb-3 d-flex justify-content">
+            <Link href="/desguazatu" className="btn-dashboard-create text-decoration-none">
+              <i className="bi bi-plus-circle me-2"></i>
+              Eskaera Berria
+            </Link>
+          </div>
+        )}
 
-      <DashboardContent
-        data={peritutza}
-        title="Peritutza Eskaerak"
-        icon="bi bi-clipboard-data-fill"
-        columns={columns}
-        emptyMessage="Ez dago peritutza eskaerarik momentu honetan."
-        keyField="id"
-        onEdit={handleEdit}
-        deleteRoute={(id) => `/peritutza/${id}`}
-        // IMPORTANTE: ya NO pasamos onRowClick
-      />
+        <DashboardContent
+          data={peritutza}
+          title={isUserView ? 'Nire Eskaerak' : 'Peritutza Eskaerak'} 
+          icon="bi bi-clipboard-data-fill"
+          columns={columns}
+          emptyMessage="Ez dago peritutza eskaerarik momentu honetan."
+          keyField="id"
+          onEdit={canEdit ? handleEdit : null}                        
+          deleteRoute={canEdit ? (id) => `/peritutza/${id}` : null}   
+        />
 
-      {/* Modal editar */}
-      <PeritutzaModal show={showEditModal} onClose={handleCloseEditModal} eskaera={selectedEskaera} />
+        {canEdit && (
+          <PeritutzaModal show={showEditModal} onClose={handleCloseEditModal} eskaera={selectedEskaera} />
+        )}
 
-      {/* Modal fotos */}
-      <PeritutzaFotosModal show={showFotosModal} onClose={handleCloseFotos} eskaera={selectedFotosEskaera} />
-    </>
+        <PeritutzaFotosModal show={showFotosModal} onClose={handleCloseFotos} eskaera={selectedFotosEskaera} />
+      </>
   );
 };
 
