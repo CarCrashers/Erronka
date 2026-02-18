@@ -61,7 +61,6 @@ const Peritutza = ({ peritutza }) => {
       render: (item) => (item.prezioa ? `${item.prezioa} €` : <span className="text-muted small">---</span>),
     },
 
-    // NUEVO: botón "ojo" para fotos
     {
       key: 'argazkiak',
       label: 'Argazkiak',
@@ -76,7 +75,7 @@ const Peritutza = ({ peritutza }) => {
             title="Ikusi argazkiak"
             disabled={count === 0}
             onClick={(e) => {
-              e.stopPropagation(); // no disparar acciones de fila
+              e.stopPropagation();
               handleOpenFotos(item);
             }}
           >
@@ -106,13 +105,9 @@ const Peritutza = ({ peritutza }) => {
         keyField="id"
         onEdit={handleEdit}
         deleteRoute={(id) => `/peritutza/${id}`}
-        // IMPORTANTE: ya NO pasamos onRowClick
       />
 
-      {/* Modal editar */}
       <PeritutzaModal show={showEditModal} onClose={handleCloseEditModal} eskaera={selectedEskaera} />
-
-      {/* Modal fotos */}
       <PeritutzaFotosModal show={showFotosModal} onClose={handleCloseFotos} eskaera={selectedFotosEskaera} />
     </>
   );
