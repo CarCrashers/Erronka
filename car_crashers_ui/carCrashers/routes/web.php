@@ -199,11 +199,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
     
     //Profila
-    /*Route::get('/profile', function() {
+    Route::get('/profile', function() {
         return Inertia::render('dashboard');
-    });*/
+    });
     //Editatzeko ruta 
-    Route::get('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
 
 
     //user eskaerak ikusteko
