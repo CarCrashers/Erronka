@@ -47,6 +47,41 @@ class PeritutzaEskaeraController extends Controller
         ]);
     }
 
+    public function userEskaerak()
+    {
+        
+        $peritutza = PeritutzaEskaera::where('erab_id', Auth::id())
+            ->latest()
+            ->get()
+            ->map(function ($e) {
+
+                $paths = $e->argazkiak ?? [];
+
+                if (is_string($paths)) {
+                    $paths = json_decode($paths, true) ?? [];
+                }
+
+                if (!is_array($paths)) {
+                    $paths = [];
+                }
+
+                $argazkiUrls = collect($paths)
+                    ->filter(fn ($p) => is_string($p) && $p !== '')
+                    ->map(fn ($p) => Storage::disk('public')->url($p))
+                    ->values()
+                    ->all();
+
+                return [
+                    ...$e->toArray(),
+                    'argazki_urls' => $argazkiUrls,
+                ];
+            });
+
+        return Inertia::render('peritutza', [ 
+            'peritutza' => $peritutza,
+        ]);
+    }
+
 
     public function update(Request $request, $id)
     {

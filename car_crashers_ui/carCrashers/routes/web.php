@@ -207,7 +207,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     //user eskaerak ikusteko
-    Route::get('/nire-eskaerak', [PeritutzaEskaeraController::class,'index'])->name('eskaerak.index');
+    Route::get('/nire-eskaerak', [PeritutzaEskaeraController::class,'userEskaerak'])->name('eskaerak.user');
 
     //user eskaerak ezabatzeko
     Route::delete('/eskaerak/{eskaera}', [PeritutzaEskaeraController::class, 'destroy'])->name('eskaerak.destroy');
