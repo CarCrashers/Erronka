@@ -44,6 +44,7 @@
         "@types/react-dom": "^19.2.0",
         "@vitejs/plugin-react": "^5.0.0",
         "bootstrap-icons": "^1.13.1",
+        "chart.js": "^4.5.1",
         "clsx": "^2.1.1",
         "concurrently": "^9.0.1",
         "globals": "^15.14.0",
@@ -51,6 +52,7 @@
         "laravel-vite-plugin": "^2.0",
         "lucide-react": "^0.475.0",
         "react": "^19.2.0",
+        "react-chartjs-2": "^5.3.1",
         "react-dom": "^19.2.0",
         "typescript": "^5.7.2",
         "vite": "^7.0.4"

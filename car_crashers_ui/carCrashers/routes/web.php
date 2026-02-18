@@ -13,74 +13,138 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Kotxea;
 use App\Models\Pieza;
+use App\Models\PeritutzaEskaera;
+
+/*
+* HASIERA ORRIA
+*/
 
 Route::get('/', function () {
     return Inertia::render('home');
 })->name('home');
 
+/* ********************************** */
+
+
+/*
+* NOR GARA ORRIA
+*/
+
 Route::get('/norGara', function () {
     return Inertia::render('norGara');
 })->name('norGara');
 
+/* ********************************** */
+
+/*
+* EROSI ORRIA
+*/
+
 Route::get('/erosi', [CarController::class, 'index'])->name('cars.index');
+
+/* ********************************** */
+
+/*
+* PRODUKTU XEHETASUNAK
+*/
 
 //Route::get('/details/{id}', [CarController::class, 'show'])->name('details');
 Route::get('/details/{matrikula}/{pieza_id}', [CarController::class, 'showPieza'])->name('details.pieza');
 Route::get('/details/{matrikula}', [CarController::class, 'showKotxea'])->name('details.kotxea');
  
+/* ********************************** */
+
+
+/*
+* DESGUAZATU ORRIA
+*/
+
 Route::get('/desguazatu', function () {
     return Inertia::render('desguazatu');
 })->name('desguazatu');
 
+/* ********************************** */
+
+
+/*
+* DESGUAZATU ESKAERA
+*/
 
 Route::post('/desguazatu', [DesguazatuController::class, 'store'])
     ->name('desguazatu.store');
 
-// saldu orria
-Route::middleware('auth')->group(function () {
+/* ********************************** */
+
+
+/*
+* AUTH BEHARRA DUTEN ORRIAK / ESKAERAK 
+*/
+
+Route::middleware(['auth', 'verified'])->group(function () 
+{
+    // SALDU ORRIA
     Route::get('/saldu', [PeritutzaEskaeraController::class, 'create'])->name('saldu');
+    /* ************* */
+
+    // SALDU ESKAERA
     Route::post('/saldu', [PeritutzaEskaeraController::class, 'store'])->name('saldu.store');
+    /* ************* */
 
-
-    // SASKIA RUTAS
-    Route::get('/saskia/datos', [SaskiaController::class, 'index'])->name('saskia.datos');
-    Route::delete('/saskia/item/{itemId}', [SaskiaController::class, 'destroyItem'])->name('saskia.item.ezabatu');
+    // SASKIA ORRIA
     Route::get('/saskia', [SaskiaController::class, 'index'])->name('saskia');
+
+    // SASKIA ITEM EZABATU
+    Route::delete('/saskia/item/{itemId}', [SaskiaController::class, 'destroyItem'])->name('saskia.item.ezabatu');
+
 });
 
+/* ********************************** */
 
 
-/*Route::get('/dashboard', function () {
-    return Inertia::render('dashboard');
-})->name('dashboard');*/
 
-Route::get('/error', function () {
-    return Inertia::render('ObrasEnMantenimiento');
-})->name('error');
+/*
+* MODAL-A IREKITZEKO
+*/
 
 Route::get('/login', function () {
     return Inertia::render('saioa');
 })->name('login');
 
-// berifikatuta egon behar zara dashboard-ean sartzeko, bestela ez da sartzen
-/*Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});*/
+/* ********************************** */
 
-// Dashboard-etik --> home-ra
+
+/*
+* DASHBOARD ORRIA (Auth erabilita)
+*/
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('dashboard', function () {
+//         return Inertia::render('dashboard');
+//     })->name('dashboard');
+    
+// });
+
+
+
+
+/*
+* LOGOUT (Home-era bueltatzen du )
+*/
 
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+/* ********************************** */
+
 
 // Autentikazio rutak
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/login', action: [LoginController::class, 'login']);
 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
 });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
@@ -95,7 +159,15 @@ Route::middleware('auth')->group(function () {
         ->name('verification.send');
 });
 
+
+/*
+* BERIFIKATZE RUTA
+*/
+
 Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->name('register.verify');
+
+/* ********************************** */
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -120,6 +192,40 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/peritutza', [PeritutzaEskaeraController::class, 'index'])->name('peritutza.index');
+    Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update']);
+    Route::put('/peritutza/{id}', [PeritutzaEskaeraController::class, 'update'])->name('peritutza.update');
+    Route::delete('/peritutza/{id}', [PeritutzaEskaeraController::class, 'destroy'])->name('peritutza.destroy');
+    
+    //Profila
+    /*Route::get('/profile', function() {
+        return Inertia::render('dashboard');
+    });*/
+    //Editatzeko ruta 
+    Route::get('/user/update', [UserController::class, 'updateProfile'])->name('profile.update');
+
+
+    //user eskaerak ikusteko
+    Route::get('/nire-eskaerak', [PeritutzaEskaeraController::class,'userEskaerak'])->name('eskaerak.user');
+
+    //user eskaerak ezabatzeko
+    Route::delete('/eskaerak/{eskaera}', [PeritutzaEskaeraController::class, 'destroy'])->name('eskaerak.destroy');
+
+
+    //user kotxeak ikusteko
+    //Route::get('/kotxeak',[UserController::class,'lortuKotxeak'])->name('kotxeak.index');
+
+
+    Route::get('/reports', function () {
+        $dataStats = [
+            'kotxeakCount' => Kotxea::count(),
+            'piezakCount' => Pieza::count(),
+            'peritutzaEskaerakCount' => PeritutzaEskaera::count(),
+        ];
+
+        return Inertia::render('reports', ['dataStats' => $dataStats]);
+    })->name('reports');
 });
 
 
@@ -138,3 +244,12 @@ Route::get('/test-email', function () {
     // 3. Renderizamos el correo en el navegador
     return $notification->toMail($user);
 });
+
+
+
+
+
+//obras
+Route::get('/error', function () {
+    return Inertia::render('ObrasEnMantenimiento');
+})->name('error');
