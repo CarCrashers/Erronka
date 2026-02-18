@@ -35,5 +35,14 @@ class ProduktuArgazkiSeeder extends Seeder
             ]),
             'argazki_nagusia' => 'storage/peritutza_argazkiak/Peu1.jpeg',
         ]);
+
+        // Bmw Serie 3 2016
+        Produktua::where('matrikula','2233HIJ')->update([
+             'argazkiak'       => json_encode([
+                'storage/peritutza_argazkiak/Bmw1.jpeg',
+                'storage/peritutza_argazkiak/Bmw2.jpeg',
+            ]),
+            'argazki_nagusia' => 'storage/peritutza_argazkiak/Bmw1.jpeg',
+        ]);
     }
 }
