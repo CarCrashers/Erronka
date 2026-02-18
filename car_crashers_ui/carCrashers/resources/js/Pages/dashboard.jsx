@@ -4,6 +4,7 @@ import HeaderDashboard from '../components/ui/headerDashboard/headerDashboard.js
 import AsideDashboard from '../components/ui/asideDashboard/asideDashboard.jsx';
 import MainDashboardContent from '../components/ui/mainDashboard/mainDashboard.jsx';
 import ProfilaDashboard from '../components/ui/profilaDashboard/profilaDashboard.jsx';
+import KontaktuaDashboard from '../components/ui/kontaktuaDashboard/kontaktua.jsx';
 import '../components/ui/kotxeDashboard/kotxeak';
 
 function Dashboard({ children }) {
@@ -22,6 +23,8 @@ function Dashboard({ children }) {
         <main className="flex-fill overflow-auto bg-light" style={{ padding: '2rem' }}>
           {url === '/profile' ? (
             <ProfilaDashboard />
+              ) : url === '/kontaktua' ? (
+            <KontaktuaDashboard />
           ) : (
             children
           )}

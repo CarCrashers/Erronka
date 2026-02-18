@@ -228,6 +228,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //user eskaerak ezabatzeko
     Route::delete('/eskaerak/{eskaera}', [PeritutzaEskaeraController::class, 'destroy'])->name('eskaerak.destroy');
 
+    Route::get('/kontaktua', function() {
+        return Inertia::render('dashboard');
+    })->name('dashboard.kontaktua');
+
 
     //user kotxeak ikusteko
     //Route::get('/kotxeak',[UserController::class,'lortuKotxeak'])->name('kotxeak.index');
