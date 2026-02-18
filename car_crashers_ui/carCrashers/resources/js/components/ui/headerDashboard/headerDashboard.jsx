@@ -31,8 +31,8 @@ function HeaderDashboard() {
             <i className="bi bi-search"></i>
           </button>
 
-          {/* NUEVO DISEÑO DE USUARIO IMPLEMENTADO */}
-          <div className="dropdown">
+          {/*Erabiltzailearen Dropdown Menua*/}
+          <div className="dropdown" style={{ zIndex: 9999, position: 'relative' }}>
             <button
               className="user-dropdown-btn d-flex align-items-center gap-2"
               type="button"

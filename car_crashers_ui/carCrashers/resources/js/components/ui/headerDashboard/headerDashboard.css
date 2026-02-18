@@ -70,9 +70,17 @@
   top: -5px;
 }
 
-/* --- NUEVOS ESTILOS DE USUARIO --- */
+/* 1. Forzar que el header entero esté por encima de todo */
+.navbar-dashboard {
+    background-color: #f97316 !important;
+    z-index: 1050 !important; /* Capa base del header */
+    position: sticky;
+    top: 0;
+    overflow: visible !important; /* IMPORTANTE: Permite que el dropdown "salga" del header */
+}
+
 .user-dropdown-btn {
-    background: rgba(255, 255, 255, 0.9); /* Blanco semitransparente para resaltar sobre naranja */
+    background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(0, 0, 0, 0.05);
     padding: 5px 12px;
     border-radius: 50px;

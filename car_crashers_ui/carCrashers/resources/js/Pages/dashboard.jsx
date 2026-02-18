@@ -25,9 +25,7 @@ function Dashboard({ children }) {
             <ProfilaDashboard />
               ) : url === '/kontaktua' ? (
             <KontaktuaDashboard />
-          ) : (
-            children
-          )}
+          ) : null}
           {/* {url === '/dashboard' ? <MainDashboardContent /> : children} */}
           {/* {url.startsWith('/dashboard') ? <MainDashboardContent {...props} /> : children} */}
           {url === '/dashboard' ? <MainDashboardContent {...props} /> : children}
