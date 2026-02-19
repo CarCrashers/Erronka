@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
+import { router } from '@inertiajs/react';
 import DashboardContent from '../kotxeDashboard/dashboardContent.jsx';
 import UserModal from './erabiltzaileModal.jsx';
 
 function Erabiltzaileak({ users }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleRestore = (user) => {
+    if (confirm('¿Quieres recuperar este usuario?')) {
+      router.patch(`/users/${user.id}/restore`, {}, {
+        onSuccess: () => {
+          console.log('Usuario recuperado');
+        },
+        onError: (errors) => {
+          console.error('Error al recuperar usuario:', errors);
+        }
+      });
+    }
+  };
 
   const columns = [
     {
@@ -28,6 +42,17 @@ function Erabiltzaileak({ users }) {
         <span className={`badge ${item.mota === 'admin' ? 'bg-danger' : 'bg-info'}`}>
           {item.mota === 'admin' ? 'Admin' : 'Erabiltzailea'}
         </span>
+      )
+    },
+    {
+      key: 'deleted_at',
+      label: 'Egoera',
+      render: (item) => (
+        item.deleted_at ? (
+          <span className="badge bg-danger">Ezabatuta</span>
+        ) : (
+          <span className="badge bg-success">Aktiboa</span>
+        )
       )
     },
     {
@@ -56,7 +81,7 @@ function Erabiltzaileak({ users }) {
         </button>
       </div>
 
-      <DashboardContent data={users} title="Erabiltzaileak" icon="bi bi-people" columns={columns} emptyMessage="Ez dago erabiltzailerik datu-basean" onEdit={handleEdit} deleteRoute={(id) => `/users/${id}`}/>
+      <DashboardContent data={users} title="Erabiltzaileak" icon="bi bi-people" columns={columns} emptyMessage="Ez dago erabiltzailerik datu-basean" onEdit={handleEdit} deleteRoute={(id) => `/users/${id}`} onRestore={handleRestore}/>
 
       <UserModal show={showModal} onClose={handleCloseModal} user={selectedUser}/>
     </>

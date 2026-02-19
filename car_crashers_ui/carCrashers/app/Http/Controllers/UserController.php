@@ -19,8 +19,25 @@ class UserController extends Controller
     // Mostrar todos los usuarios
     public function index()
     {
+        $allUsers = User::withTrashed()->latest()->get();
+
         return Inertia::render('erabiltzaileak', [
-            'users' => User::latest()->get(),
+            'users' => $allUsers
+        ]);
+    }
+
+    public function restore($id)
+    {
+        User::withTrashed()->findOrFail($id)->restore();
+        return back()->with('success', 'Usuario recuperado');
+    }
+
+    public function dashboard()
+    {
+        $allUsers = User::withTrashed()->latest()->get();
+
+        return Inertia::render('profilaDashboard', [
+            'users' => $allUsers
         ]);
     }
 

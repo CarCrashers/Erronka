@@ -172,6 +172,10 @@ Route::get('/register/verify/{code}', [AuthController::class, 'verifyByCode'])->
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    Route::get('/erabiltzaileak', [UserController::class, 'index'])->name('users');
+    Route::get('/profila', [UserController::class, 'profila'])->name('dashboard.profila');
+    Route::patch('/users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+    
     Route::get('/dashboard', function () {
         $user = auth()->user();
         

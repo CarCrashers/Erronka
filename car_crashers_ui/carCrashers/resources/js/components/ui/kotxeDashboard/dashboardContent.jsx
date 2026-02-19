@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { router } from '@inertiajs/react';
 import './dashboardContent.css';
 
-function DashboardContent({ data, title, icon, columns, emptyMessage, keyField = 'id', onEdit, deleteRoute }) {
+function DashboardContent({ data, title, icon, columns, emptyMessage, keyField = 'id', onEdit, deleteRoute, onRestore }) {
   const [deletingId, setDeletingId] = useState(null);
 
-  const hasActions = onEdit || deleteRoute;
+  const hasActions = onEdit || deleteRoute || onRestore;
 
   const handleDelete = (item) => {
     setDeletingId(item[keyField]);
@@ -66,7 +66,7 @@ function DashboardContent({ data, title, icon, columns, emptyMessage, keyField =
                             onClick={(e) => e.stopPropagation()}
                           >
                             {/* Botón EDITAR: solo si onEdit existe */}
-                            {onEdit && (
+                            {onEdit && !item.deleted_at && (
                               <button
                                 type="button"
                                 className="btn-dashboard-edit btn btn-sm btn-outline-primary"
@@ -78,6 +78,22 @@ function DashboardContent({ data, title, icon, columns, emptyMessage, keyField =
                                 disabled={rowIsDeleting}
                               >
                                 <i className="bi bi-pencil"></i>
+                              </button>
+                            )}
+
+                            {/* Botón RECUPERAR: solo si el item está eliminado y onRestore existe */}
+                            {onRestore && item.deleted_at && (
+                              <button
+                                type="button"
+                                className="btn btn-sm btn-outline-success"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onRestore(item);
+                                }}
+                                title="Berreskuratu"
+                                disabled={rowIsDeleting}
+                              >
+                                <i className="bi bi-arrow-counterclockwise"></i>
                               </button>
                             )}
 
