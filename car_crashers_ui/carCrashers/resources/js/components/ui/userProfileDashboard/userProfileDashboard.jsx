@@ -213,16 +213,6 @@ function UserProfileDashboard() {
                             )}
                         </div>
                     </div>
-
-                    {/* Quick Actions */}
-                    <div className="row mt-4">
-                        <div className="col-md-6">
-                            <Link href="/eskaerak" className="btn btn-outline-primary w-100">
-                                <i className="bi bi-receipt me-2"></i>
-                                Nire Eskaerak
-                            </Link>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
