@@ -6,6 +6,7 @@ import MainDashboardContent from '../components/ui/mainDashboard/mainDashboard.j
 import ProfilaDashboard from '../components/ui/profilaDashboard/profilaDashboard.jsx';
 import KontaktuaDashboard from '../components/ui/kontaktuaDashboard/kontaktua.jsx';
 import '../components/ui/kotxeDashboard/kotxeak';
+import UserProfileDashboard from '../components/ui/userProfileDashboard/userProfileDashboard.jsx';
 
 function Dashboard({ children }) {
   const { url, props } = usePage();
@@ -36,7 +37,7 @@ function Dashboard({ children }) {
         </div>
         <main className="flex-fill overflow-auto bg-light p-2 p-md-3 p-lg-4" style={{ minHeight: '0' }}>
           {url === '/profile' ? (
-            <ProfilaDashboard />
+            <UserProfileDashboard />
               ) : url === '/kontaktua' ? (
             <KontaktuaDashboard />
           ) : null}
