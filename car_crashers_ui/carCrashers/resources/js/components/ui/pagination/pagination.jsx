@@ -1,23 +1,34 @@
+import { Link } from '@inertiajs/react';
 import './pagination.css';
 
-function Pagination() {
+function Pagination({ links }) {
+  if (!links) return null;
+
   return (
-    <nav className="d-flex justify-content-center mt-4 mt-md-5 px-2" aria-label="Page navigation example">
-        <ul className="pagination pagination-sm">
-            <li className="page-item">
-                <a className="page-link" href="#" aria-label="Previous">
-                    <i className="bi bi-arrow-left-circle-fill text-warning"></i>
-                </a>
-            </li>
-            <li className="page-item"><a className="page-link text-dark small" href="#"><strong>1</strong></a></li>
-            <li className="page-item"><a className="page-link text-dark small" href="#"><strong>2</strong></a></li>
-            <li className="page-item"><a className="page-link text-dark small" href="#"><strong>3</strong></a></li>
-            <li className="page-item">
-                <a className="page-link" href="#" aria-label="Next">
-                    <i className="bi bi-arrow-right-circle-fill text-warning"></i>
-                </a>
-            </li>
-        </ul>
+    <nav className="d-flex justify-content-center mt-5" aria-label="Page navigation">
+      <ul className="pagination">
+        {links.map((link, index) => (
+          <li
+            key={index}
+            className={`page-item ${link.active ? 'active' : ''} ${!link.url ? 'disabled' : ''}`}
+          >
+            {link.url ? (
+              <Link
+                href={link.url}
+                className="page-link text-dark"
+                preserveScroll
+                preserveState
+              >
+                <span dangerouslySetInnerHTML={{ __html: link.label }} />
+              </Link>
+            ) : (
+              <span className="page-link text-dark">
+                <span dangerouslySetInnerHTML={{ __html: link.label }} />
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

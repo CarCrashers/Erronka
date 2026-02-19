@@ -4,9 +4,10 @@ import { Link } from '@inertiajs/react';
 
 function Piezak({ pieza }) {
     const productua = pieza.produktuak?.[0] || {};
-    const egoera = productua.egoera || kotxea.egoera || 'Unknown';
+    const egoera = productua.egoera || 'Unknown';
     const prezioa = productua.prezioa || 'Kontsultatu';
-    
+    const url = "details/"+productua.matrikula+"/"+pieza.id;
+
     return(
         <div className="card shadow-lg h-100">
             <div className="position-relative overflow-hidden" style={{ height: "200px" }}>
@@ -23,14 +24,13 @@ function Piezak({ pieza }) {
                 {/* Marca y modelo más destacados */}
                 <h5 className="card-title fw-bold text-dark mb-3 small">{pieza.zatia}</h5>
 
-                {/* Precio grande y llamativo */}
                 <div className="bg-warning bg-opacity-25 rounded-3 p-2 text-center mb-3">
                     <small className="text-muted d-block">Prezioa</small>
                     <span className="fs-6 fs-md-5 fw-bold text-dark">{prezioa} €</span>
                 </div>
 
                 {/* Botón a ancho completo */}
-                <Link href="/details" className="btn btn-secondary btn-sm w-100 mt-auto">
+                <Link href={url} className="btn btn-secondary btn-sm w-100 mt-auto">
                 Ikusi <i className="bi bi-box-arrow-up-right"></i>
                 </Link>
             </div>

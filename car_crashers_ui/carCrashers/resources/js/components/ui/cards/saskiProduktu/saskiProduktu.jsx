@@ -18,10 +18,10 @@ function SaskiProduktu({ item, onEzabatu }) {
     <div className="p-2 p-md-3 rounded-3 border shadow-sm d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 gap-md-3">
       <div className="d-flex flex-grow-1 w-100">
         <img 
-          src={p.argazkia || '/placeholder-car.jpg'} 
+          src={p.argazki_nagusia ? `${p.argazki_nagusia}` : '/images/placeholder.png'} 
           alt={izena}
-          className="me-2 me-md-3 rounded shadow-sm"
-          style={{width: '70px', height: '70px', minWidth: '70px', objectFit: 'cover'}}
+          className="me-3 me-md-3 rounded shadow-sm"
+          style={{width: '90px', height: '90px', objectFit: 'scale'}}
         />
         <div className="d-flex flex-column flex-grow-1 min-w-0">
           <h6 className="mb-1 small text-truncate">{izena}</h6>

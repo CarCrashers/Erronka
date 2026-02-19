@@ -1,6 +1,6 @@
 import './productToggle.css';
 
-function ProducToggle({ mota, onMotaChange, kotxeakCount, piezakCount }) {
+function ProducToggle({ mota, onMotaChange }) {
   return (
     <div className="d-flex justify-content-xxl-start justify-content-center">
       <div className="col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4">
@@ -19,7 +19,7 @@ function ProducToggle({ mota, onMotaChange, kotxeakCount, piezakCount }) {
               aria-selected="true"
               onClick={() => onMotaChange(0)}
             >
-              <i className="bi bi-car-front-fill"></i> Kotxea ({kotxeakCount})
+              <i className="bi bi-car-front-fill"></i> Kotxea
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -32,7 +32,7 @@ function ProducToggle({ mota, onMotaChange, kotxeakCount, piezakCount }) {
               aria-selected="false"
               onClick={() => onMotaChange(1)}
             >
-              <i className="bi bi-tools"></i> Pieza ({piezakCount})
+              <i className="bi bi-tools"></i> Pieza
             </button>
           </li>
         </ul>

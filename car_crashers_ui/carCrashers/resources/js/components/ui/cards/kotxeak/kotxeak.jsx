@@ -1,16 +1,28 @@
 import './kotxeak.css';
-import imgCar from '@assets/images/carExample.jpeg';
 import { Link } from '@inertiajs/react';
 
 function Kotxeak({ kotxea }) {
     const productua = kotxea.produktuak?.[0] || {};
     const egoera = productua.egoera || kotxea.egoera || 'Unknown';
     const prezioa = productua.prezioa || 'Kontsultatu';
+    const url = "/details/"+productua.matrikula;
+
+    const argazkiUrl = productua.argazki_nagusia
+        ? `${productua.argazki_nagusia}`
+        : '/images/placeholder.png';
 
     return (
-        <div className="card shadow-lg h-100">
-            <div className="position-relative overflow-hidden" style={{ height: "200px" }}>
-                <img src={imgCar} className="card-img-top w-100 h-100 object-fit-cover" alt="..." />
+        <div className="card shadow-lg">
+            <div className="position-relative">
+                <img 
+                    src={argazkiUrl} 
+                    className="card-img-top" 
+                    style={{ height: '200px', objectFit: 'cover' }}
+                    alt={`${kotxea.marka} ${kotxea.modeloa}`}
+                    onError={(e) => { 
+                        e.target.src = '/images/placeholder.png';
+                    }}
+                />
                 <span
                 className="badge text-bg-success rounded-pill position-absolute"
                 style={{ top: "10px", left: "10px", fontSize: "0.75rem" }}
@@ -24,7 +36,6 @@ function Kotxeak({ kotxea }) {
                 <h5 className="card-title fw-bold text-dark mb-1 small">{kotxea.marka}</h5>
                 <h6 className="card-subtitle text-muted mb-3 small">{kotxea.modeloa}</h6>
 
-                {/* Precio grande y llamativo */}
                 <div className="bg-warning bg-opacity-25 rounded-3 p-2 text-center mb-3">
                     <small className="text-muted d-block">Prezioa</small>
                     <span className="fs-6 fs-md-5 fw-bold text-dark">{prezioa} €</span>

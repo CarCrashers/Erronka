@@ -1,86 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/layout/layout.jsx';
 import Search from '../components/ui/search/search.jsx';
 import ProducToggle from '../components/ui/buttons/producToggle/productToggle.jsx';
 import KotxeakCard from '../components/ui/cards/kotxeak/kotxeak.jsx';
 import PiezakCard from '../components/ui/cards/piezak/piezak.jsx';
-import Pagination from '../components/ui/pagination/pagination.jsx';
 import Goikoa from '../components/ui/goikoa/goikoa.jsx';
-import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
+
 
 function Erosi() {
   const { kotxeak, piezak } = usePage().props;
   const [mota, setMota] = useState(0);
+  const [text, setText] = useState("");
+  const [status, setStatus] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState("");
 
-  const handleMotaChange = (newMota) => setMota(newMota);
 
-  const kotxeakCount = kotxeak?.length || 0;
-  const piezakCount = piezak?.length || 0;
-
-  const renderContent = () => {
-    if (mota === 0) {
-      return (
-        <>
-          {kotxeak?.map((kotxea) => (
-            <div key={kotxea.matrikula} className="col-lg-3 col-md-6 mb-4">
-              <KotxeakCard kotxea={kotxea} />
-            </div>
-          ))}
-        </>
-      );
-    } else {
-      return (
-        <>
-          {piezak?.map((pieza) => (
-            <div key={pieza.id} className="col-lg-3 col-md-6 mb-4">
-              <PiezakCard pieza={pieza} />
-            </div>
-          ))}
-        </>
-      );
-    }
+  const handleMotaChange = (newMota) => {
+    setMota(newMota);
+    setText(""); setStatus(""); setMaxPrice(""); setMinPrice("");
   };
 
+
+  const filterItems = (items) => items?.filter(item => {
+    const textMatch = !text ||
+      item.matrikula?.toLowerCase().includes(text.toLowerCase()) ||
+      item.marka?.toLowerCase().includes(text.toLowerCase()) ||
+      item.modeloa?.toLowerCase().includes(text.toLowerCase()) ||
+      item.zatia?.toLowerCase().includes(text.toLowerCase());
+
+    const statusMatch = !status || item.produktuak?.[0]?.egoera === status;
+    const price = item.produktuak?.[0]?.prezioa || 0;
+    const priceMatch = (!minPrice || price >= parseFloat(minPrice)) && (!maxPrice || price <= parseFloat(maxPrice));
+
+    return textMatch && statusMatch && priceMatch;
+  }) || [];
+
+
+  const filteredKotxeak = filterItems(kotxeak);
+  const filteredPiezak = filterItems(piezak);
+
+
   return (
-    <React.StrictMode>
-      <Layout>
-        <Goikoa>
-          <h1>Produktu Katalogoa</h1>
-          <p>Produktu katalogo honetan, zure beharretara egokitutako ibilgailuak aurki ditzakezu.</p>
-        </Goikoa>
+    <Layout>
+      <Goikoa>
+        <h1>Produktu Katalogoa</h1>
+        <p>Produktu katalogo honetan, zure beharretara egokitutako ibilgailuak aurki ditzakezu.</p>
+      </Goikoa>
 
-        <div className="container-fluid my-4 py-3 py-md-5">
-          <div className="row justify-content-center">
-            <div className="col-12 col-lg-10">
-              <Search />
-              <div className="py-2" />
-              <ProducToggle 
-                mota={mota}
-                onMotaChange={handleMotaChange}
-                kotxeakCount={kotxeakCount}
-                piezakCount={piezakCount}
-              />
-            </div>
-          </div>
-
-          <div className="row justify-content-start">
-            <div className="col-12 mt-5 d-grid gap-3">
-              <div className="row g-2 g-md-3 g-lg-4">
-                {/* Mostrar aquí los coches o piezas depende el ProducToggle */}
-                {renderContent()}
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className="d-flex justify-content-center mt-3">
-                <Pagination />
-            </div>
+      <div className="container my-4 py-5">
+        <div className="row justify-content-center">
+          <div className="col-12">
+            <Search
+              text={text} status={status} maxPrice={maxPrice} minPrice={minPrice}
+              onTextChange={(e) => setText(e.target.value)}
+              onStatusChange={(e) => setStatus(e.target.value)}
+              onMaxPriceChange={(e) => setMaxPrice(e.target.value)}
+              onMinPriceChange={(e) => setMinPrice(e.target.value)}
+            />
+            <div className="py-2" />
+            <ProducToggle mota={mota} onMotaChange={handleMotaChange} />
           </div>
         </div>
-      </Layout>
-    </React.StrictMode>
+
+        <div className="mt-5">
+          {/* Kotxeak */}
+          {mota === 0 && (
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+              {filteredKotxeak.map((kotxea, index) => (
+                <div key={`kotxe-${kotxea.matrikula}-${index}`} className="col">
+                  <KotxeakCard kotxea={kotxea} />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Piezak */}
+          {mota === 1 && (
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+              {filteredPiezak.map((pieza, index) => (
+                <div key={`pieza-${pieza.id}-${index}`} className="col">
+                  <PiezakCard pieza={pieza} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </Layout>
   );
 }
+
 
 export default Erosi;
