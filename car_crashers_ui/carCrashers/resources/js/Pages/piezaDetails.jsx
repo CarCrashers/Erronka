@@ -37,10 +37,12 @@ function Details() {
                         <div className="d-flex flex-column p-3 rounded-4 border shadow-lg h-100">
                             <h3>{piezaa.zatia}</h3>
                             <hr />
+                            <span><strong>DATUAK:</strong></span>
                             <ul className="py-3">
                                 <li>Matrikula: {piezaa.matrikula}</li>
                                 <li>Egoera: {produk.egoera}</li>
                             </ul>
+                            <p><strong>DESKRIBAPENA:</strong></p><br />
                             <p className="mb-0">
                                 {produk.deskribapena}
                             </p>

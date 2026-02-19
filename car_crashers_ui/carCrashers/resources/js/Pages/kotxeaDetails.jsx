@@ -63,11 +63,13 @@ function Details() {
                         <div className="d-flex flex-column p-3 rounded-4 border shadow-lg h-100">
                             <h3>{kotxe.marka} {kotxe.modeloa}</h3>
                             <hr />
+                            <span><strong>DATUAK:</strong></span>
                             <ul className="py-3">
-                                <li>Urtea: {kotxe.urtea}</li>
-                                <li>Matrikula: {kotxe.matrikula}</li>
-                                <li>Egoera: {produk.egoera}</li>
+                                <li><strong>URTEA:</strong> {kotxe.urtea}</li>
+                                <li><strong>MATRIKULA:</strong> {kotxe.matrikula}</li>
+                                <li><strong>EGOERA:</strong> {produk.egoera}</li>
                             </ul>
+                            <p><strong>DESKRIBAPENA:</strong></p><br />
                             <p className="mb-0">
                                 {produk.deskribapena}
                             </p>
