@@ -48,7 +48,7 @@ function Kotxeak({ kotxea }) {
                 </p>
 
                 {/* Botón a ancho completo */}
-                <Link href="/details" className="btn btn-secondary btn-sm w-100 mt-auto">
+                <Link href={url} className="btn btn-secondary btn-sm w-100 mt-auto">
                 Ikusi <i className="bi bi-box-arrow-up-right"></i>
                 </Link>
             </div>
