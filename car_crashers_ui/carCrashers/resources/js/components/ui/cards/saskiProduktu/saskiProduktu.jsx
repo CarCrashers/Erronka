@@ -15,32 +15,32 @@ function SaskiProduktu({ item, onEzabatu }) {
   }
 
   return (
-    <div className="p-3 rounded-4 border shadow-lg d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3">
-      <div className="d-flex flex-grow-1">
+    <div className="p-2 p-md-3 rounded-3 border shadow-sm d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 gap-md-3">
+      <div className="d-flex flex-grow-1 w-100">
         <img 
-          src={p.argazkia || '/placeholder-car.jpg'} 
+          src={p.argazki_nagusia ? `${p.argazki_nagusia}` : '/images/placeholder.png'} 
           alt={izena}
-          className="me-3 rounded shadow-sm"
-          style={{width: '90px', height: '90px', objectFit: 'cover'}}
+          className="me-3 me-md-3 rounded shadow-sm"
+          style={{width: '90px', height: '90px', objectFit: 'scale'}}
         />
-        <div className="d-flex flex-column flex-grow-1">
-          <h5 className="mb-1">{izena}</h5>
-          <p className="mb-1 text-muted">{mota}</p>
-          <div className="d-flex justify-content-between align-items-center">
-            <span className="badge bg-light text-dark px-2 py-1">
+        <div className="d-flex flex-column flex-grow-1 min-w-0">
+          <h6 className="mb-1 small text-truncate">{izena}</h6>
+          <p className="mb-1 text-muted small text-truncate">{mota}</p>
+          <div className="d-flex justify-content-between align-items-center gap-2">
+            <span className="badge bg-light text-dark px-2 py-1 small">
               x{item.kopurua}
             </span>
-            <p className="mb-0 text-danger fs-5">{item.prezioa_unit} €</p>
+            <p className="mb-0 text-danger small fw-bold">{item.prezioa_unit} €</p>
           </div>
         </div>
       </div>
       
       <button 
-        className="btn btn-danger align-self-stretch align-self-sm-center px-3" 
+        className="btn btn-danger btn-sm align-self-start align-self-sm-center px-2" 
         onClick={onEzabatu}
       >
-        <i className="fas fa-trash me-1"></i>
-        Ezabatu
+        <i className="bi bi-trash me-1"></i>
+        <span className="d-none d-sm-inline">Ezabatu</span>
       </button>
     </div>
   );

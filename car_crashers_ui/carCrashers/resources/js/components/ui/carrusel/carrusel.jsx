@@ -1,74 +1,77 @@
-import imgCar from '@assets/images/carExample.jpeg';
+function Carrusel({ produktua }) 
+{
+  const argazkiak = Array.isArray(produktua?.argazkiak) ? produktua.argazkiak : [];
+  
+  const urls = argazkiak
+    .filter(p => p && typeof p === 'string' && p.trim() !== '')
+    .map(p => {
+      const cleanPath = String(p).replace(/^\/?storage\//i, '').trim();
+      return `/storage/${cleanPath}`;
+    });
 
-function Carrusel() {
+  const finalUrls = urls.length > 0 ? urls : ['/images/placeholder.png'];
+
+  const carouselId = 'produktuaCarousel';
+
   return (
-    <div id="carouselExampleIndicators" className="carousel slide h-100">
+    <div id={carouselId} className="carousel slide w-100 rounded-3" style={{ minHeight: '300px' }} data-bs-ride="carousel">
       <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-href="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-href="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-href="2"
-          aria-label="Slide 3"
-        ></button>
+        {finalUrls.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            data-bs-target={`#${carouselId}`}
+            data-bs-slide-to={idx}
+            className={idx === 0 ? 'active' : ''}
+            aria-current={idx === 0 ? 'true' : undefined}
+            aria-label={`Slide ${idx + 1}`}
+          />
+        ))}
       </div>
 
-      <div className="carousel-inner rounded-4 h-100">
-        <div className="carousel-item active h-100">
-          <img
-            src={imgCar}
-            className="d-block w-100 h-100 object-fit-cover"
-            alt="Dubai"
-          />
-        </div>
-        <div className="carousel-item h-100">
-          <img
-            src={imgCar}
-            className="d-block w-100 h-100 object-fit-cover"
-            alt="Hong Kong"
-          />
-        </div>
-        <div className="carousel-item h-100">
-          <img
-            src={imgCar}
-            className="d-block w-100 h-100 object-fit-cover"
-            alt="Taiwan"
-          />
-        </div>
+      <div className="carousel-inner rounded-3">
+        {finalUrls.map((url, idx) => (
+          <div
+            key={idx}
+            className={`carousel-item h-100 ${idx === 0 ? 'active' : ''}`}
+            style={{ minHeight: '300px' }}
+          >
+            <img
+              src={url}
+              className="d-block w-100 h-100 object-fit-cover"
+              alt={`Argazkia ${idx + 1}`}
+              onError={(e) => {
+                e.target.src = '/images/placeholder.png';
+              }}
+              style={{ minHeight: '300px' }}
+            />
+          </div>
+        ))}
       </div>
 
-      <button
-        className="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev"
-      >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
+      {finalUrls.length > 1 && (
+        <>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target={`#${carouselId}`}
+            data-bs-slide="prev"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
 
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target={`#${carouselId}`}
+            data-bs-slide="next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </>
+      )}
     </div>
   );
 }

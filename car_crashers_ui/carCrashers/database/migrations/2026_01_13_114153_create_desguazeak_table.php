@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('helbidea');
             $table->string('telefonoa');
             $table->string('email');
-            $table->foreignId('arduradun_id')->constrained('langileak');
+            $table->foreignId('arduradun_id')->nullable()->constrained('langileak');
             $table->timestamps();
         });
     }

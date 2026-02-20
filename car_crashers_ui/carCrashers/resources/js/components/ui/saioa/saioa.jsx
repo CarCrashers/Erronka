@@ -1,11 +1,13 @@
 import { useForm, router } from '@inertiajs/react';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Logo from '@assets/images/logo.jpg';
 import './saioa.css';
 
 
 const Saioa = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const modalRef = useRef(null);
+  const bsModalRef = useRef(null);
 
   const { data, setData, post, processing, errors, reset, clearErrors } = useForm({
     name: '',
@@ -13,6 +15,16 @@ const Saioa = () => {
     password: '',
     password_confirmation: '',
   });
+
+  // Inicializar modal de Bootstrap cuando se monta el componente
+  useEffect(() => {
+    if (modalRef.current && !bsModalRef.current) {
+      bsModalRef.current = new bootstrap.Modal(modalRef.current, {
+        backdrop: 'static',
+        keyboard: false
+      });
+    }
+  }, []);
 
   const toggleMode = (e) => {
     e?.preventDefault?.();
@@ -23,27 +35,9 @@ const Saioa = () => {
   };
 
   const hideModal = () => {
-    const modalEl = document.getElementById('saioa');
-    if (!modalEl) return;
-
-    // remove Bootstrap modal visible classes/styles
-    modalEl.classList.remove('show');
-    modalEl.style.display = 'none';
-    modalEl.setAttribute('aria-hidden', 'true');
-    modalEl.removeAttribute('aria-modal');
-
-    // remove modal-open from body
-    document.body.classList.remove('modal-open');
-    document.body.style.removeProperty('padding-right');
-
-    // remove any existing backdrops
-    document.querySelectorAll('.modal-backdrop').forEach((el) => el.parentNode && el.parentNode.removeChild(el));
-
-    // try clicking any close button inside modal
-    try {
-      const closeBtn = modalEl.querySelector('[data-bs-dismiss="modal"]');
-      if (closeBtn) closeBtn.click();
-    } catch (e) { /* ignore */ }
+    if (bsModalRef.current) {
+      bsModalRef.current.hide();
+    }
   };
 
   const handleSubmit = (e) => {
@@ -56,7 +50,7 @@ const Saioa = () => {
       preserveScroll: true,
       onBefore: () => {},
       onSuccess: () => {
-        // hide modal using DOM fallback
+        // hide modal
         hideModal();
 
         // reset sensitive fields
@@ -73,7 +67,7 @@ const Saioa = () => {
 
 
   return (
-    <div className="modal fade" id="saioa" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div className="modal fade" ref={modalRef} id="saioa" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content p-4 rounded-4 shadow-lg border-0">
           <button type="button" className="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
